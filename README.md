@@ -1,0 +1,5 @@
+Pull(Get update main)
+Push(Update the github branch) 
+Rebase(Make sure im up to date to the main) 
+Merch(Then able to push to main)
+Delete path(Once merch to main delete your path then make a new one then repeat)
