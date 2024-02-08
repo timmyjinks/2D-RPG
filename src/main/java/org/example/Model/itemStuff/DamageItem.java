@@ -1,4 +1,4 @@
-package org.example.Model;
+package org.example.Model.itemStuff;
 
 public class DamageItem {
     int minDamage;
