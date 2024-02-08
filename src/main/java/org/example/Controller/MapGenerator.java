@@ -31,4 +31,5 @@ public class MapGenerator {
         // set isEnemyRoom boolean value in each room based on number generated (10% chance to be enemy room)
         return (myRandom.nextInt(100) + 1) <= 10;
     }
+    // this is the test for rebasing an shit
 }
