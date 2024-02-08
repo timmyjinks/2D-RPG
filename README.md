@@ -1,5 +1,7 @@
-1.Pull(Get update main)
-     2.Push(Update the github branch) 
-            3.Rebase(Make sure im up to date to the main) 
-                     4.Merge(Then able to push to main)
-                             5.Delete path(Once merch to main delete your path then make a new one then repeat)
+<b>Before thinking about merging anything</b>
+<br>
+1.git fetch -u origin main:main (update your local main)<br>
+2.git push -u origin <your branch> (update your remote branch)<br>
+3.git rebase main (update your local branch with main)<br>
+4.merge and squash on GitHub<br>
+5.delete your branch
