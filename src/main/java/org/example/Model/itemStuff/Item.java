@@ -1,10 +1,13 @@
 package org.example.Model.itemStuff;
 
 public abstract class Item {
-    String name;
-    int durability;
+    protected String name;
+    protected int durability;
 
-    public void use() {
-
+    public Item(String name, int durability) {
+        this.name = name;
+        this.durability = durability;
     }
+
+    public abstract int use();
 }
