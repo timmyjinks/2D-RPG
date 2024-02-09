@@ -1,8 +1,8 @@
 package org.example.Model.itemStuff;
 
 public class DamageItem extends Item {
-    private final int minDamage;
-    private final int maxDamage;
+    protected final int minDamage;
+    protected final int maxDamage;
 
     public DamageItem(String name, int durability, int minDamage, int maxDamage) {
         super(name, durability);
@@ -13,5 +13,13 @@ public class DamageItem extends Item {
     @Override
     public int use() {
         return (int)Math.floor(Math.random() * (maxDamage - minDamage + 1) + minDamage);
+    }
+
+    public int getMinDamage() {
+        return this.minDamage;
+    }
+
+    public int getMaxDamage() {
+        return this.maxDamage;
     }
 }
