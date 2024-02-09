@@ -1,8 +1,10 @@
 package org.example.Controller;
 
+import org.example.Model.MapStuff.Map;
 import org.example.View.MyIO;
 
 public class MovementController {
+    Map world = new Map();
     private MyIO inputOutput = new MyIO();
 
     public void move() {
@@ -37,7 +39,14 @@ public class MovementController {
     public int left(int move) {
         move -= 1;
         if ((move + 7) % 7 == 6) {
-            move += 1;
+            int moveRoom = world.getPlayerWorldPosition();
+            moveRoom -= 1;
+            if ((moveRoom + 5) % 5 != 4) {
+                world.setPlayerWorldPosition(moveRoom);
+                move = ((move - 1) + 7);
+            } else {
+                move += 1;
+            }
         }
         return move;
     }
@@ -45,7 +54,14 @@ public class MovementController {
     public int right(int move) {
         move += 1;
         if (move % 7 == 0) {
-            move -= 1;
+            int moveRoom = world.getPlayerWorldPosition();
+            moveRoom += 1;
+            if (moveRoom % 5 != 0) {
+                world.setPlayerWorldPosition(moveRoom);
+                move = ((move + 1) - 7);
+            } else {
+                move -= 1;
+            }
         }
         return move;
     }
@@ -53,7 +69,14 @@ public class MovementController {
     public int up(int move) {
         move -= 7;
         if (move / 7 == -1) {
-            move += 7;
+            int moveRoom = world.getPlayerWorldPosition();
+            moveRoom -= 5;
+            if (moveRoom / 5 != -1) {
+                world.setPlayerWorldPosition(moveRoom);
+                move = ((move - 7) + 49);
+            } else {
+                move += 7;
+            }
         }
         return move;
     }
@@ -61,7 +84,14 @@ public class MovementController {
     public int down(int move) {
         move += 7;
         if (move / 7 == 8) {
-            move -= 7;
+            int moveRoom = world.getPlayerWorldPosition();
+            moveRoom += 5;
+            if (moveRoom / 5 != 4) {
+                world.setPlayerWorldPosition(moveRoom);
+                move = ((move + 7) - 49);
+            } else {
+                move -= 7;
+            }
         }
         return move;
     }
