@@ -12,8 +12,10 @@ public class MapGenerator {
         for (int row = 0; row < 5; row++){
             for (int column = 0; column < 5; column++){
                 myRooms[row][column] = new Room();
-                // sets each position in the room to increasing integer values (start 0, end 48)
                 myRooms[row][column].setEnemyRoom(isEnemyRoom());
+                // gives each of the 25 rooms a unique number between 0 and 24
+                myRooms[row][column].setRoomNumber((row*5) + column);
+                // sets each position in the room to increasing integer values (start 0, end 48)
                 myRooms[row][column].setRoomPositions(populateRooms());
             }
         }
