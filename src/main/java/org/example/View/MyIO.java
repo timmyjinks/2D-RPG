@@ -39,4 +39,22 @@ public class MyIO {
         }
         return intOutput;
     }
+
+    public char charInput(String prompt) {
+        char charOutput = 0;
+        boolean bloop = true;
+
+        if (!prompt.isEmpty()) {
+            System.out.println(prompt);
+        }
+        try {
+            while (bloop) {
+                charOutput = stringInput(prompt).toLowerCase().charAt(0);
+                bloop = false;
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Can't be empty");
+        }
+        return charOutput;
+    }
 }
