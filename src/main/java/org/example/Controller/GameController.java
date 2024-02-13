@@ -1,5 +1,14 @@
 package org.example.Controller;
 
-public class GameController {
+import org.example.Model.MapStuff.Map;
+import org.example.Model.Player;
 
+public class GameController {
+    private Map world = new Map();
+    private Player myPlayer = new Player();
+    private MovementController myMovement = new MovementController(world);
+    private CombatController myCombat = new CombatController();
+    public void startHere(){
+        myMovement.move(myPlayer);
+    }
 }

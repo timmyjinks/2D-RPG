@@ -1,96 +1,84 @@
 package org.example.Controller;
 
 import org.example.Model.MapStuff.Map;
+import org.example.Model.Player;
 import org.example.View.MyIO;
 
 public class MovementController {
-    Map world = new Map();
+    private Map world;
     private MyIO inputOutput = new MyIO();
 
-    public void move() {
+    public MovementController(Map world) {
+        this.world = world;
+    }
+
+    public void move(Player myplayer) {
         // room array position = roomPosition[int/7][int%7]
         int move = 0; // get player position in room
-        int movementDirection = inputOutput.intInput("1) move up \n 2) move down \n 3) move left \n 4) move right");
-        switch (movementDirection) {
-            case 1:
-                // movement up will decrement integer by 7
-                move(up(move));
-                break;
-            case 2:
-                // movement down will increment integer by 7
-                move(down(move));
-                break;
-            case 3:
-                // movement left will decrement integer by 1
-                move(left(move));
-                break;
-            case 4:
-                // movement right will increment integer by 1
-                move(right(move));
-                break;
+        char movementDirection = 'u';
+        while (movementDirection != 'p') {
+            movementDirection = inputOutput.charInput("Use W,A,S,D to move. I for inventory. And P to exit");
+            move = myplayer.getPositionInRoom();
+            switch (movementDirection) {
+                case 'w':
+                    // movement up will decrement integer by 7
+                    myplayer.setPositionInRoom(vertical(move, 0, 0, -7));
+                    break;
+                case 's':
+                    // movement down will increment integer by 7
+                    myplayer.setPositionInRoom(vertical(move, 6, 4, 7));
+                    break;
+                case 'a':
+                    // movement left will decrement integer by 1
+                    myplayer.setPositionInRoom(horizontal(move, 0, 0, -1));
+                    break;
+                case 'd':
+                    // movement right will increment integer by 1
+                    myplayer.setPositionInRoom(horizontal(move, 6, 4, 1));
+                    break;
+            }
         }
     }
 
-    public void move(int move) {
-        // roomPosition[move/7][move%7].setPlayer();
-    }
-
+    //    public void move(int move) {
+//        // roomPosition[move/7][move%7].setPlayer();
+//    }
     //region movement directions
-    public int left(int move) {
-        move -= 1;
-        if ((move + 7) % 7 == 6) {
+    public int horizontal(int move, int bounds, int worldDirection, int posMod) {
+        if (move % 7 != bounds) {
+            move += posMod;
+        } else {
             int moveRoom = world.getPlayerWorldPosition();
-            moveRoom -= 1;
-            if ((moveRoom + 5) % 5 != 4) {
-                world.setPlayerWorldPosition(moveRoom);
-                move = ((move - 1) + 7);
-            } else {
-                move += 1;
+            if (moveRoom % 5 != worldDirection) {
+                if (bounds == 0) {
+                    moveRoom -= 1;
+                    move += 6;
+                    world.setPlayerWorldPosition(moveRoom, 1);
+                } else {
+                    moveRoom += 1;
+                    move -= 6;
+                    world.setPlayerWorldPosition(moveRoom, -1);
+                }
             }
         }
         return move;
     }
 
-    public int right(int move) {
-        move += 1;
-        if (move % 7 == 0) {
+    public int vertical(int move, int bounds, int worldDirection, int posMod) {
+        if (move / 7 != bounds) {
+            move += posMod;
+        } else {
             int moveRoom = world.getPlayerWorldPosition();
-            moveRoom += 1;
-            if (moveRoom % 5 != 0) {
-                world.setPlayerWorldPosition(moveRoom);
-                move = ((move + 1) - 7);
-            } else {
-                move -= 1;
-            }
-        }
-        return move;
-    }
-
-    public int up(int move) {
-        move -= 7;
-        if (move / 7 == -1) {
-            int moveRoom = world.getPlayerWorldPosition();
-            moveRoom -= 5;
-            if (moveRoom / 5 != -1) {
-                world.setPlayerWorldPosition(moveRoom);
-                move = ((move - 7) + 49);
-            } else {
-                move += 7;
-            }
-        }
-        return move;
-    }
-
-    public int down(int move) {
-        move += 7;
-        if (move / 7 == 8) {
-            int moveRoom = world.getPlayerWorldPosition();
-            moveRoom += 5;
-            if (moveRoom / 5 != 4) {
-                world.setPlayerWorldPosition(moveRoom);
-                move = ((move + 7) - 49);
-            } else {
-                move -= 7;
+            if (moveRoom / 5 != worldDirection) {
+                if (bounds == 0) {
+                    moveRoom -= 5;
+                    move += 42;
+                    world.setPlayerWorldPosition(moveRoom, 5);
+                } else {
+                    moveRoom += 5;
+                    move -= 42;
+                    world.setPlayerWorldPosition(moveRoom, -5);
+                }
             }
         }
         return move;

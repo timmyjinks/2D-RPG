@@ -8,9 +8,13 @@ public class Map {
     public Map (){
         MapGenerator myMapGenerator = new MapGenerator();
         myMapGenerator.generateMap(rooms);
+        this.playerWorldPosition = 12;
     }
-    public void setPlayerWorldPosition(int position){
+    public void setPlayerWorldPosition(int position, int worldPosMod){
         this.playerWorldPosition = position;
+        rooms[position/5][position%5].setHasPlayer(true);
+        position += worldPosMod;
+        rooms[position/5][position%5].setHasPlayer(false);
     }
 
     public int getPlayerWorldPosition() {
