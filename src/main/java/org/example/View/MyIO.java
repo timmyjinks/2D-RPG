@@ -44,9 +44,9 @@ public class MyIO {
         char charOutput = 0;
         boolean bloop = true;
 
-        if (!prompt.isEmpty()) {
-            System.out.println(prompt);
-        }
+//        if (!prompt.isEmpty()) {
+//            System.out.println(prompt);
+//        }
         try {
             while (bloop) {
                 charOutput = stringInput(prompt).toLowerCase().charAt(0);

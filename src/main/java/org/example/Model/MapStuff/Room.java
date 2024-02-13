@@ -1,9 +1,10 @@
 package org.example.Model.MapStuff;
 
 public class Room {
-    private int roomNumber;
-    private int[][] roomPositions = new int[7][7];
-    private boolean isEnemyRoom = false;
+    protected int roomNumber;
+    protected int[][] roomPositions = new int[7][7];
+    protected boolean isEnemyRoom = false;
+    protected boolean hasPlayer = false;
     public int[][] getRoomPositions(){
         return roomPositions;
     }
@@ -15,6 +16,9 @@ public class Room {
     }
     public void setRoomNumber(int roomNumber){
         this.roomNumber = roomNumber;
+    }
+    public void setHasPlayer(boolean hasPlayer){
+        this.hasPlayer = hasPlayer;
     }
     public int getRoomNumber(){
         return roomNumber;
