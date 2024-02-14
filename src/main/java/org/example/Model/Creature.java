@@ -6,12 +6,19 @@ import org.example.Model.itemStuff.HealingItem;
 import org.example.Model.itemStuff.Item;
 
 public class Creature implements Attacker {
-    private int health, damage, defense, speed;
+    private int health, speed;
     private String name;
-    private Item[] inventory = new Item[10];
+    private boolean isAlive;
     private DamageItem weapon;
     private HealingItem ring;
     private DefenseItem armour;
+
+    public Creature(String name, int health, int speed) {
+        this.name = name;
+        this.health = health;
+        this.speed = speed;
+        isAlive = true;
+    }
 
     @Override
     public int attack(Creature enemy) {
@@ -44,12 +51,8 @@ public class Creature implements Attacker {
         this.name = name;
     }
 
-    public Item[] getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(Item[] inventory) {
-        this.inventory = inventory;
+    public boolean isAlive() {
+        return this.health > 0;
     }
 
     public DamageItem getWeapon() {
