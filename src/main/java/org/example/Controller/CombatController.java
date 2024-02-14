@@ -14,8 +14,9 @@ public class CombatController {
         while (attacker.isAlive() || defender.isAlive()) {
             if (round == 1) {
                 attacker = getSpeed(attacker, defender);
+            } else {
+                attacker = getPlayerTurn(defender);
             }
-            attacker = getPlayerTurn(defender);
             attacker.attack(defender);
         }
     }
