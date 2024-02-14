@@ -1,30 +1,20 @@
 package org.example.Model.itemStuff;
 
 public class HealingItem extends  Item{
-    public int healthPower;
+    protected int diceSides;
+    protected int diceAmount;
+    protected int damageModifier;
 
-    public HealingItem(String name, int durability, int healthPower) {
-        super(name, healthPower);
-        this.healthPower = healthPower;
+    public HealingItem(String name, int durability, int diceSides, int diceAmount, int damageModifier) {
+        super(name, durability);
+        this.diceSides = diceSides;
+        this.diceAmount = diceAmount;
+        this.damageModifier = damageModifier;
     }
 
     @Override
     public int use() {
-        setDurability(1);
-        return getHealthPower();
-    }
-
-    public int getHealthPower() {
-        return healthPower;
-    }
-
-    public void setHealthPower(int healthPower) {
-        if (healthPower <= 0) {
-            this.healthPower = 1;
-        } else if (healthPower > 10) {
-            this.healthPower = 10;
-        } else {
-            this.healthPower = healthPower;
-        }
+        super.setDurability(1);
+        return itemDice.rollDice(diceSides, diceAmount, damageModifier);
     }
 }

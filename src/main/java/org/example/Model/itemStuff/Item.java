@@ -1,8 +1,11 @@
 package org.example.Model.itemStuff;
 
+import org.example.utility.Dice;
+
 public abstract class Item {
     protected String name;
     protected int durability;
+    protected Dice itemDice = new Dice();
 
     public Item(String name, int durability) {
         this.name = name;
