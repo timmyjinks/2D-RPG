@@ -2,7 +2,7 @@ package org.example.Model;
 
 import org.example.Model.itemStuff.Item;
 
-public class Player extends Creature {
+public abstract class Player extends Creature {
     private Item healingItem, defenseItem, damageItem;
     private int healingPotions = 0;
     private int positionInRoom;
