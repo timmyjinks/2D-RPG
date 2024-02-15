@@ -2,7 +2,7 @@ package org.example.Model;
 
 public abstract class Enemy extends Creature {
     public Enemy(String name, int health, int speed) {
-        super(name, health, speed);
+        super(name);
     }
 
     public boolean willDropItem() {

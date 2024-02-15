@@ -5,7 +5,7 @@ import org.example.Model.itemStuff.DefenseItem;
 import org.example.Model.itemStuff.HealingItem;
 import org.example.Model.itemStuff.Item;
 
-public class Creature implements Attacker {
+public abstract class Creature implements Attacker {
     private int health, speed;
     private String name;
     private boolean isAlive;
@@ -13,7 +13,7 @@ public class Creature implements Attacker {
     private HealingItem ring;
     private DefenseItem armour;
 
-    public Creature(String name, int health, int speed) {
+    public Creature(String name) {
         this.name = name;
         this.health = health;
         this.speed = speed;

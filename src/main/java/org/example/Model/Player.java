@@ -2,14 +2,16 @@ package org.example.Model;
 
 import org.example.Model.itemStuff.Item;
 
+import java.util.Arrays;
+
 public abstract class Player extends Creature {
     private Item healingItem, defenseItem, damageItem;
     private int healingPotions = 0;
     private Item[] inventory = new Item[10];
     private int positionInRoom;
 
-    public Player(String name, int health, int speed){
-        super(name, health, speed);
+    public Player(String name){
+        super(name);
         positionInRoom = 24;
     }
 
@@ -27,5 +29,18 @@ public abstract class Player extends Creature {
 
     public void setInventory(Item item) {
 
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                " name= " + super.getName() +
+                "healingItem=" + healingItem +
+                ", defenseItem=" + defenseItem +
+                ", damageItem=" + damageItem +
+                ", healingPotions=" + healingPotions +
+                ", inventory=" + Arrays.toString(inventory) +
+                ", positionInRoom=" + positionInRoom +
+                '}';
     }
 }
