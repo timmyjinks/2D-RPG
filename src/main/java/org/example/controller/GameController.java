@@ -8,6 +8,7 @@ public class GameController {
     private Player player;
     private MovementController myMovement = new MovementController(world);
     private CombatController myCombat = new CombatController();
+
     public void startHere(){
 //        myMovement.move(myPlayer);
     }
