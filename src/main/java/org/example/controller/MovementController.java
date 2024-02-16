@@ -1,6 +1,6 @@
 package org.example.controller;
 
-import org.example.model.MapStuff.Map;
+import org.example.model.mappy.Map;
 import org.example.model.Player;
 import org.example.view.MyIO;
 

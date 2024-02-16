@@ -1,7 +1,7 @@
 package org.example.controller;
 
-import org.example.model.MapStuff.Room;
-import org.example.model.MapStuff.SpawnRoom;
+import org.example.model.mappy.Room;
+import org.example.model.mappy.SpawnRoom;
 
 import java.util.Random;
 

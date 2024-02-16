@@ -1,4 +1,4 @@
-package org.example.model.MapStuff;
+package org.example.model.mappy;
 
 public class SpawnRoom extends Room{
     public SpawnRoom(){

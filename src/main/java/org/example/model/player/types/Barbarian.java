@@ -1,4 +1,6 @@
-package org.example.model;
+package org.example.model.player.types;
+
+import org.example.model.Player;
 
 public class Barbarian extends Player {
     public Barbarian(String name) {
