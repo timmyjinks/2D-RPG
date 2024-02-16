@@ -1,35 +1,44 @@
 package org.example.controller;
 
+import de.gurkenlabs.litiengine.entities.EntityInfo;
 import org.example.model.Entity;
 import org.example.view.Menu;
 
 public class CombatController {
     Menu menu = new Menu();
-     int round = 1;
-    public void fight (Entity attacker, Entity defender) {
-        if (attacker == null || defender == null)
+    private int round = 1;
+    private Entity attacker;
+    private Entity defender;
+
+    public void fight (Entity player, Entity enemy) {
+        if (player == null || enemy == null)
         {
             return;
         }
-        while (attacker.isAlive() || defender.isAlive()) {
+        while (player.isAlive() && enemy.isAlive()) {
             if (round == 1) {
-                attacker = getSpeed(attacker, defender);
+                getSpeed(player, enemy);
             } else {
-                attacker = getPlayerTurn(defender);
+                getPlayerTurn();
             }
             attacker.attack(defender);
+            round++;
         }
     }
 
-    private Entity getSpeed(Entity attacker, Entity defender) {
-        if (defender.getSpeed() > attacker.getSpeed()) {
-            return defender;
+    private void getSpeed(Entity player, Entity enemy) {
+        if (enemy.getSpeed() > player.getSpeed()) {
+            attacker = enemy;
+            defender = player;
         } else {
-            return attacker;
+            attacker = player;
+            defender = enemy;
         }
     }
 
-    private Entity getPlayerTurn(Entity defender) {
-        return defender;
+    private void getPlayerTurn() {
+        Entity temp = attacker;
+        attacker = defender;
+        defender = temp;
     }
 }
