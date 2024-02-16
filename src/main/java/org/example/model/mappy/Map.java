@@ -1,4 +1,4 @@
-package org.example.model.MapStuff;
+package org.example.model.mappy;
 
 import org.example.controller.MapGenerator;
 

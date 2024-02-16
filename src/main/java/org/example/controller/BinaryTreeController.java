@@ -1,6 +1,9 @@
 package org.example.controller;
 
 import org.example.model.*;
+import org.example.model.player.types.Barbarian;
+import org.example.model.player.types.Paladin;
+import org.example.model.player.types.Wizard;
 import org.example.view.MyIO;
 
 public class BinaryTreeController {

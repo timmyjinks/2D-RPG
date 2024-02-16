@@ -1,8 +1,8 @@
 package org.example.model;
 
 public abstract class Enemy extends Entity {
-    public Enemy(String name, int health, int speed) {
-        super(name, health, speed);
+    public Enemy(String name, int health, int speed, int armorClass) {
+        super(name, health, speed, armorClass);
     }
 
     public boolean willDropItem() {

@@ -1,4 +1,4 @@
-package org.example.model.MapStuff;
+package org.example.model.mappy;
 
 public class Room {
     protected int roomNumber;
@@ -13,6 +13,9 @@ public class Room {
     }
     public void setEnemyRoom(boolean isEnemyRoom){
         this.isEnemyRoom = isEnemyRoom;
+    }
+    public boolean isEnemyRoom() {
+        return isEnemyRoom;
     }
     public void setRoomNumber(int roomNumber){
         this.roomNumber = roomNumber;
