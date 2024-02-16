@@ -31,7 +31,11 @@ public abstract class Entity implements Attacker {
     }
 
     public void setHealth(int health) {
-        this.health = health;
+        if (health <= 0) {
+            this.health = 0;
+        } else {
+            this.health = health;
+        }
     }
 
     public int getSpeed() {
