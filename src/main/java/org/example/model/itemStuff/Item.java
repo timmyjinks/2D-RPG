@@ -29,4 +29,11 @@ public abstract class Item {
     public void setDurability(int itemDamage) {
         this.durability -= itemDamage;
     }
+
+    @Override
+    public String toString() {
+        return "\nName: " + this.name +
+               "\nDurability: " + this.durability;
+    }
+
 }

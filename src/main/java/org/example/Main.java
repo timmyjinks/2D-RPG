@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         GameController game = new GameController();
         game.startHere();
-        Game.init(args);
-        Game.start();
+//        Game.init(args);
+//        Game.start();
     }
 }

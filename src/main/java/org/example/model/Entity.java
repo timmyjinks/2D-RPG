@@ -1,22 +1,22 @@
 package org.example.model;
 
-import org.example.model.itemStuff.DamageItem;
-import org.example.model.itemStuff.DefenseItem;
-import org.example.model.itemStuff.HealingItem;
+import org.example.model.itemStuff.*;
 
 public abstract class Entity implements Attacker {
-    private int health, speed;
     private String name;
+    private int health, speed;
     private boolean isAlive;
     private DamageItem weapon;
-    private HealingItem ring;
+    private HealingItem healingItem;
     private DefenseItem armour;
 
-    public Entity(String name) {
+    public Entity(String name, int health, int speed) {
         this.name = name;
         this.health = health;
         this.speed = speed;
-        isAlive = true;
+        this.isAlive = true;
+        this.weapon = new Sword("Copper sword");
+
     }
 
     @Override
@@ -62,12 +62,12 @@ public abstract class Entity implements Attacker {
         this.weapon = weapon;
     }
 
-    public HealingItem getRing() {
-        return ring;
+    public HealingItem getHealingItem() {
+        return healingItem;
     }
 
-    public void setRing(HealingItem ring) {
-        this.ring = ring;
+    public void setHealingItem(HealingItem healingItem) {
+        this.healingItem = healingItem;
     }
 
     public DefenseItem getArmour() {
@@ -76,5 +76,13 @@ public abstract class Entity implements Attacker {
 
     public void setArmour(DefenseItem armour) {
         this.armour = armour;
+    }
+
+    @Override
+    public String toString() {
+        return "\nName: " + this.name +
+               "\nHealth: " + this.health +
+               "\nSpeed: " + this.speed +
+               "\nWeapon: " + this.weapon;
     }
 }

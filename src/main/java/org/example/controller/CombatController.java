@@ -11,7 +11,7 @@ public class CombatController {
         {
             return;
         }
-        while (attacker.isAlive() || defender.isAlive()) {
+        while (attacker.isAlive() && defender.isAlive()) {
             if (round == 1) {
                 attacker = getSpeed(attacker, defender);
             } else {

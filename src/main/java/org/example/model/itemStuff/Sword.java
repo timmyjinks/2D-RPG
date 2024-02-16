@@ -1,7 +1,12 @@
 package org.example.model.itemStuff;
 
 public class Sword extends DamageItem {
-    public Sword(String name, int durability) {
-        super(name, durability, 2, 8, 3);
+    public Sword(String name) {
+        super(name, 10, 2, 8, 3);
+    }
+
+    @Override
+    public String toString() {
+        return "\nSword: " + super.toString();
     }
 }
