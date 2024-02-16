@@ -4,6 +4,6 @@ import org.example.model.Player;
 
 public class Paladin extends Player {
     public Paladin(String name) {
-        super(name,0,0);
+        super(name,0,0,0);
     }
 }
