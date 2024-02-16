@@ -14,6 +14,9 @@ public class Room {
     public void setEnemyRoom(boolean isEnemyRoom){
         this.isEnemyRoom = isEnemyRoom;
     }
+    public boolean isEnemyRoom() {
+        return isEnemyRoom;
+    }
     public void setRoomNumber(int roomNumber){
         this.roomNumber = roomNumber;
     }

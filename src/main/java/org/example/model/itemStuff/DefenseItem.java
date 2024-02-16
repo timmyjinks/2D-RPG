@@ -13,18 +13,4 @@ public class DefenseItem extends Item {
         setDurability(1);
         return this.defense;
     }
-
-    public int getDefense() {
-        return defense;
-    }
-
-    public void setDefense(int defense) {
-        if (defense <= 0) {
-            this.defense = 1;
-        } else if (defense > 15) {
-            this.defense = 15;
-        } else {
-            this.defense = defense;
-        }
-    }
 }

@@ -17,6 +17,9 @@ public class MapGenerator {
                 } else {
                 myRooms[row][column] = new Room();
                 myRooms[row][column].setEnemyRoom(isEnemyRoom());
+                if (myRooms[row][column].isEnemyRoom()){
+                    // TODO generate enemies for room
+                }
                 // gives each of the 25 rooms a unique number between 0 and 24
                 myRooms[row][column].setRoomNumber((row*5) + column);
                 // sets each position in the room to increasing integer values (start 0, end 48)
@@ -35,7 +38,7 @@ public class MapGenerator {
         return myIntArray;
     }
     public boolean isEnemyRoom(){
-        // set isEnemyRoom boolean value in each room based on number generated (10% chance to be enemy room)
-        return (myRandom.nextInt(100) + 1) <= 10;
+        // set isEnemyRoom boolean value in each room based on number generated (95% chance to be enemy room)
+        return (myRandom.nextInt(100) + 1) <= 95;
     }
 }
