@@ -11,6 +11,9 @@ public class DamageItem extends Item {
         this.diceAmount = diceAmount;
         this.damageModifier = damageModifier;
     }
+    public int getDamageModifier(){
+        return damageModifier;
+    }
 
     @Override
     public int use() {

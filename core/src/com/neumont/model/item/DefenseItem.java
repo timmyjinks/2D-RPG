@@ -19,12 +19,6 @@ public class DefenseItem extends Item {
     }
 
     public void setDefense(int defense) {
-        if (defense <= 0) {
-            this.defense = 1;
-        } else if (defense > 15) {
-            this.defense = 15;
-        } else {
-            this.defense = defense;
-        }
+        this.defense = defense;
     }
 }
