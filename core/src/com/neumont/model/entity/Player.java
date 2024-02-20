@@ -1,14 +1,18 @@
 package com.neumont.model.entity;
 
+import com.neumont.model.item.HealingItem;
 import com.neumont.model.item.Item;
 
+import java.util.Arrays;
+
 public abstract class Player extends Entity {
-    private int healingPotions = 0;
+    private HealingItem ring;
+    private Item[] healingPotions = new Item[10];
     private Item[] inventory = new Item[10];
     private int positionInRoom;
 
-    public Player(String name, int health, int speed){
-        super(name, health, speed);
+    public Player(String name, int health, int speed, int armorClass){
+        super(name, health, speed, armorClass);
         positionInRoom = 24;
     }
 
@@ -26,5 +30,26 @@ public abstract class Player extends Entity {
 
     public void setInventory(Item item) {
 
+    }
+    public int howManyPotions(){
+        int howManyPots = 0;
+        for (int howMany = 0; howMany < healingPotions.length; howMany++){
+            if (healingPotions[howMany] != null){
+                howManyPots++;
+            } else {
+                return howManyPots;
+            }
+        }
+        return howManyPots;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                " name= " + super.getName() +
+                ", healingPotions=" + howManyPotions() +
+                ", inventory=" + Arrays.toString(inventory) +
+                ", positionInRoom=" + positionInRoom +
+                '}';
     }
 }

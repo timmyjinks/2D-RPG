@@ -1,31 +1,42 @@
 package com.neumont.model.entity;
 
+
 import com.neumont.model.item.DamageItem;
 import com.neumont.model.item.DefenseItem;
-import com.neumont.model.item.HealingItem;
-import com.neumont.model.item.Sword;
+import com.neumont.util.Dice;
 
 public abstract class Entity implements Attacker {
+    private int health, speed, armorClass;
     private String name;
-    private int health, speed;
     private boolean isAlive;
     private DamageItem weapon;
-    private HealingItem healingItem;
     private DefenseItem armour;
+    private Dice entityDice = new Dice();
 
-    public Entity(String name, int health, int speed) {
+    public Entity(String name, int health, int speed, int armorClass) {
         this.name = name;
         this.health = health;
         this.speed = speed;
-        this.isAlive = true;
-        this.weapon = new Sword("Copper sword");
+        this.armorClass = armorClass;
+        isAlive = true;
     }
 
     @Override
-    public int attack(Entity enemy) {
-        // add dice roll logic
-        enemy.setHealth(enemy.getHealth() - weapon.use());
-        return enemy.getHealth();
+    public int attack(Entity attacked) {
+        int hit = entityDice.rollDice(20, 1, weapon.getDamageModifier());
+        int damage = 0;
+        if (hit >= attacked.getArmorClass() + attacked.getArmour().use()) {
+            damage += weapon.use();
+            if (hit == 20) {
+                damage *= 2;
+            }
+        }
+        attacked.setHealth(attacked.getHealth() - damage);
+        return attacked.getHealth();
+    }
+
+    public int getArmorClass() {
+        return armorClass;
     }
 
     public int getHealth() {
@@ -34,10 +45,10 @@ public abstract class Entity implements Attacker {
 
     public void setHealth(int health) {
         if (health <= 0) {
-            this.health = 0;
-        } else {
-            this.health = health;
+            health = 0;
+            isAlive = false;
         }
+        this.health = health;
     }
 
     public int getSpeed() {
@@ -68,13 +79,6 @@ public abstract class Entity implements Attacker {
         this.weapon = weapon;
     }
 
-    public HealingItem getHealingItem() {
-        return healingItem;
-    }
-
-    public void setHealingItem(HealingItem healingItem) {
-        this.healingItem = healingItem;
-    }
 
     public DefenseItem getArmour() {
         return armour;
@@ -82,13 +86,5 @@ public abstract class Entity implements Attacker {
 
     public void setArmour(DefenseItem armour) {
         this.armour = armour;
-    }
-
-    @Override
-    public String toString() {
-        return "\nName: " + this.name +
-               "\nHealth: " + this.health +
-               "\nSpeed: " + this.speed +
-               "\nWeapon: " + this.weapon;
     }
 }
