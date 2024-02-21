@@ -25,6 +25,7 @@ public class PathTreeGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose(); // Dispose the current menu frame
+                new PathTreeGUI();
             }
         });
 

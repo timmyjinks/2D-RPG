@@ -1,6 +1,6 @@
 package edu.sandwichproductions;
 
-import GUI.StartingMenu;
+import GUI.StartingMenuGUI;
 
 
 import javax.swing.*;
@@ -11,7 +11,7 @@ public class DesktopLauncher {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new StartingMenu();
+				new StartingMenuGUI();
 			}
 		});
 

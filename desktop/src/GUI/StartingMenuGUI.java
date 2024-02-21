@@ -1,16 +1,12 @@
 package GUI;
 
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import edu.sandwichproductions.Game;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StartingMenu extends JFrame {
-    public StartingMenu() {
+public class StartingMenuGUI extends JFrame {
+    public StartingMenuGUI() {
         // Create and configure the JFrame
         JFrame frame = new JFrame("Starting Menu");
         frame.setSize(300, 200);
@@ -29,7 +25,7 @@ public class StartingMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose(); // Dispose the current menu frame
-                new Map();
+                new MapGUI();
             }
         });
 

@@ -4,8 +4,8 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import edu.sandwichproductions.Game;
 
-public class Map {
-    public Map() {
+public class MapGUI {
+    public MapGUI() {
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
         config.setForegroundFPS(60);
         config.setWindowedMode(2200,1300);
