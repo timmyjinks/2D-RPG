@@ -1,19 +1,27 @@
 package edu.sandwichproductions.controller;
 
+import edu.sandwichproductions.Game;
+import edu.sandwichproductions.model.entity.Barbarian;
 import edu.sandwichproductions.model.map.Map;
 import edu.sandwichproductions.view.Menu;
 import edu.sandwichproductions.model.entity.Player;
 
 public class GameController {
     private Map world;
-    private Menu menu = new Menu();
-    private Player player;
+    private final Menu menu;
+    private Player player = new Barbarian("John");
     private MovementController myMovement;
-    private CombatController myCombat = new CombatController();
+    private final CombatController myCombat;
     private int selection = 0;
+    private Game game = new Game();
+
+    public GameController() {
+        menu = new Menu();
+        myCombat = new CombatController();
+    }
 
     public void run(){
-        while (selection != 3) {
+        while (selection != 1) {
             selection = menu.startMenu();
             switch (selection) {
                 case 1 -> startGame();
@@ -25,6 +33,13 @@ public class GameController {
     public void startGame() {
         world = new Map();
         myMovement = new MovementController(world);
-        // character selection
+    }
+
+    public MovementController getMyMovement() {
+        return this.myMovement;
+    }
+
+    public Player getPlayer() {
+        return this.player;
     }
 }
