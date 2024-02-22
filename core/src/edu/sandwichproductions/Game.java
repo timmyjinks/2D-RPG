@@ -25,8 +25,8 @@ public class Game extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		room = new Sprite(new Texture("room.png"), 180, 180);
 		enemyRoom = new Sprite(new Texture("enemyroom.png"), 180, 180);
-		character = new Sprite(new Texture("badlogic.jpg"), 50, 50);
-		enemy = new Sprite(new Texture("skeleton.png"), 50 , 50);
+		character = new Sprite(new Texture("shlagg.jpg"), 150, 150);
+		enemy = new Sprite(new Texture("skeleton.png"));
 		tileHeight = (int)room.getHeight();
 		tileWidth = (int)room.getWidth();
 		controller = new GameController();
@@ -60,12 +60,13 @@ public class Game extends ApplicationAdapter {
 	public void drawMap() {
 		int currentPlayerPosition = controller.getWorld().getPlayerWorldPosition();
 		batch.begin();
+
 		for (int row = 0; row < 7; row++) {
 			for (int column = 0; column < 7; column++) {
 				if (controller.getWorld().getRooms()[currentPlayerPosition / 5][currentPlayerPosition % 5].isEnemyRoom()) {
 					batch.draw(this.enemyRoom, row * (tileWidth + 1), column * (tileHeight + 1));
 					if (controller.getWorld().getRooms()[currentPlayerPosition / 5][currentPlayerPosition % 5].getRoomPositions()[row][column] == 50) {
-						batch.draw(enemy, row * (tileWidth + 1) + entityDimension, column * (tileHeight + 1) + entityDimension);
+						batch.draw(enemy, row * (tileWidth + 1) + entityDimension + 40, column * (tileHeight + 1) + entityDimension);
 					}
 				} else {
 					batch.draw(this.room, row * (tileWidth + 1), column * (tileHeight + 1));
