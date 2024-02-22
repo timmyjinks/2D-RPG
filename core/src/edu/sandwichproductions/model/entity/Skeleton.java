@@ -1,7 +1,7 @@
 package edu.sandwichproductions.model.entity;
 
-public class Goblin extends Enemy {
-    public Goblin(String name) {
+public class Skeleton extends Enemy {
+    public Skeleton(String name) {
         super(name, 40, 25, 0);
     }
 

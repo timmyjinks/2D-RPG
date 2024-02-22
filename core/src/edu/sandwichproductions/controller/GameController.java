@@ -42,4 +42,8 @@ public class GameController {
     public Player getPlayer() {
         return this.player;
     }
+
+    public Map getWorld() {
+        return this.world;
+    }
 }
