@@ -1,5 +1,7 @@
 package edu.sandwichproductions.model.map;
 
+import edu.sandwichproductions.model.entity.Enemy;
+
 public class Room {
     protected int roomNumber;
     protected int[][] roomPositions = new int[7][7];

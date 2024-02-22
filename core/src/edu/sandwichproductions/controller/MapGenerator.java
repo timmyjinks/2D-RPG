@@ -1,5 +1,6 @@
 package edu.sandwichproductions.controller;
 
+import edu.sandwichproductions.model.entity.Skeleton;
 import edu.sandwichproductions.model.map.SpawnRoom;
 import edu.sandwichproductions.model.map.Room;
 
@@ -16,10 +17,7 @@ public class MapGenerator {
                     myRooms[row][column] = new SpawnRoom();
                 } else {
                     myRooms[row][column] = new Room();
-                    myRooms[row][column].setEnemyRoom(isEnemyRoom());
-                    if (myRooms[row][column].isEnemyRoom()){
-                        // TODO generate enemies for room
-                    }
+                    myRooms[row][column].setEnemyRoom(true);
                     // gives each of the 25 rooms a unique number between 0 and 24
                     myRooms[row][column].setRoomNumber((row*5) + column);
                     // sets each position in the room to increasing integer values (start 0, end 48)
@@ -28,17 +26,21 @@ public class MapGenerator {
             }
         }
     }
-    public int[][] populateRooms(){
+    public int[][] populateRooms() {
         int[][] myIntArray = new int[7][7];
-        for (int row = 0; row < 7; row++){
-            for (int column = 0; column < 7; column++){
-                myIntArray[row][column] = (row*7) + (column);
+        for (int row = 0; row < 7; row++) {
+            for (int column = 0; column < 7; column++) {
+                if (tileIsEnemy()) {
+                    myIntArray[row][column] = 50;
+                } else {
+                    myIntArray[row][column] = (row * 7) + (column);
+                }
             }
         }
         return myIntArray;
     }
-    public boolean isEnemyRoom(){
-        // set isEnemyRoom boolean value in each room based on number generated (95% chance to be enemy room)
-        return (myRandom.nextInt(100) + 1) <= 95;
+
+    public boolean tileIsEnemy() {
+        return myRandom.nextInt(100) + 1 <= 25;
     }
 }
