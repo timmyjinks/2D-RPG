@@ -12,6 +12,7 @@ public abstract class Entity implements Attacker {
     private DamageItem weapon;
     private DefenseItem armour;
     private Dice entityDice = new Dice();
+    private int positionInRoom;
 
     public Entity(String name, int health, int speed, int armorClass) {
         this.name = name;
@@ -19,17 +20,24 @@ public abstract class Entity implements Attacker {
         this.speed = speed;
         this.armorClass = armorClass;
         isAlive = true;
+        this.weapon = new DamageItem("stick", 10, 4, 2, 1);
     }
 
     @Override
     public int attack(Entity attacked) {
         int hit = entityDice.rollDice(20, 1, weapon.getDamageModifier());
         int damage = 0;
-        if (hit >= attacked.getArmorClass() + attacked.getArmour().use()) {
-            damage += weapon.use();
-            if (hit == 20) {
-                damage *= 2;
+        if (attacked.getArmour() != null) {
+            if (hit >= attacked.getArmorClass() + attacked.getArmour().use()) {
+                damage += weapon.use();
+                if (hit == 20) {
+                    damage *= 2;
+                }
             }
+        }
+        damage += weapon.use();
+        if (hit == 20) {
+            damage *= 2;
         }
         attacked.setHealth(attacked.getHealth() - damage);
         return attacked.getHealth();
@@ -86,5 +94,13 @@ public abstract class Entity implements Attacker {
 
     public void setArmour(DefenseItem armour) {
         this.armour = armour;
+    }
+
+    public int getPositionInRoom() {
+        return this.positionInRoom;
+    }
+
+    public void setPositionInRoom(int positionInRoom) {
+        this.positionInRoom = positionInRoom;
     }
 }
