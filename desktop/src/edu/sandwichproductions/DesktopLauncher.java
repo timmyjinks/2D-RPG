@@ -1,19 +1,11 @@
 package edu.sandwichproductions;
 
+import GUI.StartGUI;
 import GUI.StartingMenuGUI;
+import GUI.UserClassGUI;
 
-
-import javax.swing.*;
-
-// Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument
-public class DesktopLauncher {
+public class DesktopLauncher extends StartingMenuGUI {
 	public static void main (String[] arg) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				new StartingMenuGUI();
-			}
-		});
-
+		new StartingMenuGUI();
 	}
 }
