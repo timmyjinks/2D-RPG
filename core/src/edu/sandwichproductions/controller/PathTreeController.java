@@ -22,7 +22,7 @@ public class PathTreeController {
             branch(get.Mountain1(),get.Mountain2(),get.Mountain3(),7,8,9); // Mountain entry
         }
         else if(position == 3){
-            branch(get.Town1(),get.Town2(),get.Town3(),10,12,13); // Town entry
+            branch(get.Town1(),get.Town2(),get.Town3(),10,11,12); // Town entry
         }
         getUserClass();
     }
@@ -35,6 +35,30 @@ public class PathTreeController {
         }
         else if(position == 6){
             getUserClass(get.Paladin());
+        }
+        switch(position){
+            case 4:
+                getUserClass(get.Druid());
+                break;
+            case 5:
+            case 6:
+                getUserClass(get.Rogue());
+                break;
+            case 7:
+                getUserClass(get.Paladin());
+                break;
+            case 8:
+
+                break;
+            case 9:
+                break;
+            case 10:
+                break;
+            case 11:
+                break;
+            case 12:
+                break;
+
         }
 
     }
