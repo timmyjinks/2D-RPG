@@ -1,5 +1,6 @@
 package edu.sandwichproductions.controller;
 
+import edu.sandwichproductions.model.entity.Enemy;
 import edu.sandwichproductions.model.entity.Skeleton;
 import edu.sandwichproductions.model.map.SpawnRoom;
 import edu.sandwichproductions.model.map.Room;
@@ -9,6 +10,8 @@ import java.util.Random;
 public class MapGenerator {
 
     Random myRandom = new Random();
+    Enemy[] enemies = new Enemy[7];
+
     public void generateMap(Room[][] myRooms){
         // generates all rooms on the map
         for (int row = 0; row < 5; row++){
@@ -22,6 +25,8 @@ public class MapGenerator {
                     myRooms[row][column].setRoomNumber((row*5) + column);
                     // sets each position in the room to increasing integer values (start 0, end 48)
                     myRooms[row][column].setRoomPositions(populateRooms());
+                    myRooms[row][column].setEnemies(enemies);
+                    enemies = new Enemy[7];
                 }
             }
         }
@@ -31,10 +36,16 @@ public class MapGenerator {
         for (int row = 0; row < 7; row++) {
             for (int column = 0; column < 7; column++) {
                 if (tileIsEnemy()) {
-                    myIntArray[row][column] = 50;
-                } else {
-                    myIntArray[row][column] = (row * 7) + (column);
+                    Enemy enemy = new Skeleton("Skeleton");
+                    enemy.setPositionInRoom((row * 7) + column);
+                    for (int i = 0; i < enemies.length; i++) {
+                        if (enemies[i] == null) {
+                            enemies[i] = enemy;
+                            break;
+                        }
+                    }
                 }
+                myIntArray[row][column] = (row * 7) + (column);
             }
         }
         return myIntArray;

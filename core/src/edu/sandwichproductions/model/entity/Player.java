@@ -9,19 +9,10 @@ public abstract class Player extends Entity {
     private HealingItem ring;
     private Item[] healingPotions = new Item[10];
     private Item[] inventory = new Item[10];
-    private int positionInRoom;
 
     public Player(String name, int health, int speed, int armorClass){
         super(name, health, speed, armorClass);
-        positionInRoom = 24;
-    }
-
-    public int getPositionInRoom() {
-        return positionInRoom;
-    }
-
-    public void setPositionInRoom(int positionInRoom) {
-        this.positionInRoom = positionInRoom;
+        setPositionInRoom(24);
     }
 
     public Item[] getInventory() {
@@ -49,7 +40,6 @@ public abstract class Player extends Entity {
                 " name= " + super.getName() +
                 ", healingPotions=" + howManyPotions() +
                 ", inventory=" + Arrays.toString(inventory) +
-                ", positionInRoom=" + positionInRoom +
                 '}';
     }
 }
