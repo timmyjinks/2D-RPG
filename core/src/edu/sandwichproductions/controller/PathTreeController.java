@@ -2,178 +2,80 @@ package edu.sandwichproductions.controller;
 
 import edu.sandwichproductions.view.UserChoice;
 
-import java.io.IOException;
-
 
 public class PathTreeController {
     UserChoice get = new UserChoice();
-    public void startOfPath() throws InterruptedException, IOException {
-        boolean vool = true;
-        while (vool) {
-            String user = get.start();
-            switch (user){
-                case "1":
-                    String userA = get.Forest();
-                    switch (userA){
-                        case "1":
-                            userA = get.Forest1();
-                            switch (userA){
-                                case "1":
-                                    ahead();
-                                    break;
-                                case "2":
-                                    ahead();
-                                    break;
-                                case "3":
-                                    ahead();
-                                    break;
-                            }
-                        case "2":
-                            userA = get.Forest2();
-                            switch (userA){
-                                case "1":
-                                    ahead();
-                                    break;
-                                case "2":
-                                    ahead();
-                                    break;
-                                case "3":
-                                    ahead();
-                                    break;
-                            }
-                        case "3":
-                            userA = get.Forest3();
-                            switch (userA){
-                                case "1":
-                                    ahead();
-                                    break;
-                                case "2":
-                                    ahead();
-                                    break;
-                                case "3":
-                                    ahead();
-                                    break;
-                            }
-                    }
-                    break;
-                case "2":
-                    String userB = get.Mountain();
-                    switch (userB){
-                        case "1":
-                            userA = get.Mountain1();
-                            switch (userA){
-                                case "1":
-                                    ahead();
-                                    break;
-                                case "2":
-                                    ahead();
-                                    break;
-                                case "3":
-                                    ahead();
-                                    break;
-                            }
-                        case "2":
-                            userA = get.Mountain2();
-                            switch (userA){
-                                case "1":
-                                    ahead();
-                                    break;
-                                case "2":
-                                    ahead();
-                                    break;
-                                case "3":
-                                    ahead();
-                                    break;
-                            }
-                        case "3":
-                            userA = get.Mountain3();
-                            switch (userA){
-                                case "1":
-                                    ahead();
-                                    break;
-                                case "2":
-                                    ahead();
-                                    break;
-                                case "3":
-                                    ahead();
-                                    break;
-                            }
-                    }
-                    break;
-                case "3":
-                    String userC = get.Town();
-                    switch (userC){
-                        case "1":
-                            userA = get.Town1();
-                            switch (userA){
-                                case "1":
-                                    ahead();
-                                    break;
-                                case "2":
-                                    ahead();
-                                    break;
-                                case "3":
-                                    ahead();
-                                    break;
-                            }
-                        case "2":
-                            userA = get.Town2();
-                            switch (userA){
-                                case "1":
-                                    ahead();
-                                    break;
-                                case "2":
-                                    ahead();
-                                    break;
-                                case "3":
-                                    ahead();
-                                    break;
-                            }
+    private int num;
+    private String active;
+    private int position;
+    private boolean finish = false;
 
 
-                        case "3":
-                            userA = get.Town3();
-                            switch (userA){
-                                case "1":
-                                    ahead();
-                                    break;
-                                case "2":
-                                    ahead();
-                                    break;
-                                case "3":
-                                    ahead();
-                                    break;
-                            }
+    public void mainTree(){
+        if (position == 0){
+            branch(get.Forest(),get.Mountain(),get.Town(),1,2,3); // Picking first path
+        }
+        else if(position == 1){
+            branch(get.Forest1(),get.Forest2(),get.Forest3(),4,5,6); // Forest entry
+        }
+        else if(position == 2){
+            branch(get.Mountain1(),get.Mountain2(),get.Mountain3(),7,8,9); // Mountain entry
+        }
+        else if(position == 3){
+            branch(get.Town1(),get.Town2(),get.Town3(),10,12,13); // Town entry
+        }
+        getUserClass();
+    }
+    public void getUserClass(){
+        if(position == 4){
+            getUserClass(get.Druid());
+        }
+        else if(position == 5){
+            getUserClass(get.Rogue());
+        }
+        else if(position == 6){
+            getUserClass(get.Paladin());
+        }
 
-
-                    }
-                    break;
-            }
+    }
+    public void branch(String prompt1, String prompt2, String prompt3,int pos1, int pos2, int pos3){
+        if(num == 0){
+            activePrompt(get.start());
+        }
+        switch (num){
+            case 1:
+                activePrompt(prompt1);
+                position = pos1;
+                break;
+            case 2:
+                activePrompt(prompt2);
+                position = pos2;
+                break;
+            case 3:
+                activePrompt(prompt3);
+                position = pos3;
+                break;
         }
     }
-    public void ahead() throws InterruptedException, IOException {
-        String text = "Press e to continue";
-        boolean continueLoop = true;
-        do {
-            System.out.print(text);
-            Thread.sleep(1000);
-            for (int i = 0; i < text.length(); i++) {
-                System.out.print("\b");
-            }
-            Thread.sleep(400);
-            if (System.in.available() > 0) {
-                char input = (char) System.in.read();
-                if (input == 'e') {
-                    continueLoop = false;
-                }
-            }
-        } while (continueLoop);
+    public void getUserClass(String userClass){
+        activePrompt(userClass);
+        finish = true;
     }
-    public boolean continueUser(){
-        boolean vool = true;
-        if(get.pressAhead().equals("e")){
-            vool = false;
-        }
-        return vool;
+    public void activePrompt(String prompt){
+        this.active = prompt;
+    }
+    public String getPrompt(){
+        caseNum();
+        mainTree();
+        return active;
+    }
+    public int caseNum(){
+        return num;
+    }
+    public void getNum(int num){
+        this.num = num;
+    }
+    public boolean finish(){
+        return finish;
     }
 }
