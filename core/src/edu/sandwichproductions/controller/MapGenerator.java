@@ -67,6 +67,6 @@ public class MapGenerator {
     }
 
     public boolean spawnBossRoom() {
-        return myRandom.nextInt(15) == 7;
+        return myRandom.nextInt(15) <= 2;
     }
 }
