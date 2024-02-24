@@ -20,7 +20,7 @@ public class MapGenerator {
             for (int column = 0; column < 5; column++){
                 if (row == 2 && column == 2){
                     myRooms[row][column] = new SpawnRoom();
-                } else if (isEdgeOfMap(row, column) && !hasBossRoom) {
+                } else if (isEdgeOfMap(row, column) && !hasBossRoom && spawnBossRoom()) {
                     myRooms[row][column] = new BossRoom();
                     myRooms[row][column].setRoomNumber((row*5) + column);
                     hasBossRoom = true;
@@ -63,6 +63,10 @@ public class MapGenerator {
     }
 
     public boolean isEdgeOfMap(int row, int column) {
-        return (row == 0 || row == 4) && (column == 0 || column == 4);
+        return (row == 0 || row == 4) || (column == 0 || column == 4);
+    }
+
+    public boolean spawnBossRoom() {
+        return myRandom.nextInt(15) == 7;
     }
 }

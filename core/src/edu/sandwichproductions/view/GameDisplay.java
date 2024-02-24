@@ -41,9 +41,9 @@ public class GameDisplay {
     public void update() {
         if (player.isAlive()) {
             controller.getMyMovement().move(player);
-            if (controller.getMyMovement().checkForEnemy(player.getPositionInRoom()) != null) {
-                controller.getMyCombat().fight(player, controller.getMyMovement().checkForEnemy(player.getPositionInRoom()));
-            }
+//            if (controller.getMyMovement().checkForEnemy(player.getPositionInRoom()) != null) {
+//                controller.getMyCombat().fight(player, controller.getMyMovement().checkForEnemy(player.getPositionInRoom()));
+//            }
             entity.setCharacterRoomPositions(player);
             entity.updateCharacterPosition(floorWidth, floowHeight);
             drawMap();
