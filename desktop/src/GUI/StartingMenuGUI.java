@@ -14,8 +14,6 @@ public class StartingMenuGUI extends Base {
         JButton setting = new JButton("Setting");// Set buttons text
         JButton exit = new JButton("Exit");
 
-
-
         start.setBounds(750, 200, 250, 100);
         start.setBackground(Color.GRAY);
         start.setFocusable(false);

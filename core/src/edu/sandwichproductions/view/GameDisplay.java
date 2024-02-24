@@ -11,6 +11,7 @@ public class GameDisplay {
     private GameController controller;
     private GameEntitySprite entity;
     private GameMap map;
+    private GamePlayerMenu menu;
     private SpriteBatch batch;
     private Sprite character;
     private Sprite enemy;
@@ -26,6 +27,7 @@ public class GameDisplay {
         controller = new GameController();
         batch = new SpriteBatch();
         map = new GameMap();
+        menu = new GamePlayerMenu();
         entity = new GameEntitySprite();
         character = entity.getCharacter();
         enemy = entity.getEnemy();
@@ -47,7 +49,7 @@ public class GameDisplay {
             entity.setCharacterRoomPositions(player);
             entity.updateCharacterPosition(floorWidth, floowHeight);
             drawMap();
-            System.out.println(player.getHealth());
+            menu.draw(batch);
         } else {
             disposeBatch();
         }
