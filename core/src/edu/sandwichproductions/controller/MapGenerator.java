@@ -2,6 +2,7 @@ package edu.sandwichproductions.controller;
 
 import edu.sandwichproductions.model.entity.Enemy;
 import edu.sandwichproductions.model.entity.Skeleton;
+import edu.sandwichproductions.model.map.BossRoom;
 import edu.sandwichproductions.model.map.SpawnRoom;
 import edu.sandwichproductions.model.map.Room;
 
@@ -11,6 +12,7 @@ public class MapGenerator {
 
     Random myRandom = new Random();
     Enemy[] enemies = new Enemy[7];
+    boolean hasBossRoom = false;
 
     public void generateMap(Room[][] myRooms){
         // generates all rooms on the map
@@ -18,6 +20,10 @@ public class MapGenerator {
             for (int column = 0; column < 5; column++){
                 if (row == 2 && column == 2){
                     myRooms[row][column] = new SpawnRoom();
+                } else if (isEdgeOfMap(row, column) && !hasBossRoom) {
+                    myRooms[row][column] = new BossRoom();
+                    myRooms[row][column].setRoomNumber((row*5) + column);
+                    hasBossRoom = true;
                 } else {
                     myRooms[row][column] = new Room();
                     myRooms[row][column].setEnemyRoom(true);
@@ -27,6 +33,7 @@ public class MapGenerator {
                     myRooms[row][column].setRoomPositions(populateRooms());
                     myRooms[row][column].setEnemies(enemies);
                     enemies = new Enemy[7];
+
                 }
             }
         }
@@ -53,5 +60,9 @@ public class MapGenerator {
 
     public boolean tileIsEnemy() {
         return myRandom.nextInt(100) + 1 <= 25;
+    }
+
+    public boolean isEdgeOfMap(int row, int column) {
+        return (row == 0 || row == 4) && (column == 0 || column == 4);
     }
 }

@@ -1,5 +1,6 @@
 package edu.sandwichproductions.view;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import edu.sandwichproductions.controller.GameController;
@@ -15,6 +16,7 @@ public class GameDisplay {
     private Sprite enemy;
     private Sprite room;
     private Sprite enemyRoom;
+    private Sprite bossRoom;
     private Player player;
     private int floorWidth;
     private int floowHeight;
@@ -29,6 +31,7 @@ public class GameDisplay {
         enemy = entity.getEnemy();
         room = map.getRoom();
         enemyRoom = map.getEnemyRoom();
+        bossRoom = new Sprite(new Texture("bossroom.png"), 180, 180);
         player = controller.getPlayer();
         floorWidth = map.getFloorWidth();
         floowHeight = map.getFloorHeight();
@@ -57,15 +60,16 @@ public class GameDisplay {
     public void drawMap() {
         currentPlayerPosition = controller.getWorld().getPlayerWorldPosition();
         batch.begin();
-        for (int row = 0; row < 7; row++) {
-            for (int column = 0; column < 7; column++) {
-                if (getRoom().isEnemyRoom()) {
-                    batch.draw(map.getEnemyRoom(), row * (floorWidth + 1), column * (floowHeight + 1));
-                    if (getRoom().getEnemies()[column] != null) {
-                        batch.draw(enemy, setEnemyX(column), setEnemyY(column));
-                    }
+        for (int row = 0; row < 5; row++) {
+            for (int column = 0; column < 5; column++) {
+                if (getRoom().isBossRoom()) {
+                    drawRoom(bossRoom);
+                    drawEntities(1);
+                } else if (getRoom().isEnemyRoom()) {
+                    drawRoom(enemyRoom);
+                    drawEntities(getRoom().getEnemies().length);
                 } else {
-                    batch.draw(room, row * (floorWidth + 1), column * (floowHeight + 1));
+                    drawRoom(room);
                 }
             }
         }
@@ -87,6 +91,22 @@ public class GameDisplay {
 
     public int setEnemyY(int column) {
         return (getEnemyPosition(column) % 7) * (floowHeight + 1) + entity.getEntityDimension();
+    }
+
+    public void drawRoom(Sprite room) {
+        for (int row = 0; row < 7; row++) {
+            for (int column = 0; column < 7; column++) {
+                batch.draw(room, row * (floorWidth + 1), column * (floowHeight + 1));
+            }
+        }
+    }
+
+    public void drawEntities(int amountOfEnemies) {
+        for (int i = 0; i < amountOfEnemies; i++) {
+            if (getRoom().getEnemies()[i] != null) {
+                batch.draw(enemy, setEnemyX(i), setEnemyY(i));
+            }
+        }
     }
 }
 

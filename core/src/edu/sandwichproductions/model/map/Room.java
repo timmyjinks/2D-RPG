@@ -6,6 +6,7 @@ public class Room {
     protected int roomNumber;
     protected int[][] roomPositions = new int[7][7];
     protected boolean isEnemyRoom = false;
+    protected boolean isBossRoom = false;
     protected boolean hasPlayer = false;
     protected Enemy[] enemies = new Enemy[7];
     public int[][] getRoomPositions(){
@@ -36,5 +37,9 @@ public class Room {
 
     public void setEnemies(Enemy[] enemies) {
         this.enemies = enemies;
+    }
+
+    public boolean isBossRoom() {
+        return this.isBossRoom;
     }
 }
