@@ -1,32 +1,33 @@
 package GUI;
 
-import edu.sandwichproductions.view.UserChoice;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 public class StartingMenuGUI extends Base {
     Image img;
     public StartingMenuGUI() {
+        JButton start = new JButton();
+        JButton setting = new JButton();// Set buttons text
+        JButton exit = new JButton();
 
-        JButton start = new JButton("Start");
-        JButton setting = new JButton("Setting");// Set buttons text
-        JButton exit = new JButton("Exit");
-
-        start.setBounds(750, 200, 250, 100);
+        start.setBounds(613, 200, 479, 166);
         start.setBackground(Color.GRAY);
         start.setFocusable(false);
+        start.setIcon(new ImageIcon("assets/Start_Button.png"));
 
 
-        setting.setBounds(750, 400, 250, 100); //this just add the location and size and change colors
+        setting.setBounds(520, 400, 664, 166); //this just add the location and size and change colors
         setting.setBackground(Color.GRAY);
         setting.setFocusable(false);
+        setting.setIcon(new ImageIcon("assets/Settings_Button.png"));
 
 
-        exit.setBounds(750, 600, 250, 100);
+        exit.setBounds(660, 600, 386, 165);
         exit.setBackground(Color.GRAY);
         exit.setFocusable(false);
+        exit.setIcon(new ImageIcon("assets/Exit_Button.png"));
 
         Base base = new Base();
 
