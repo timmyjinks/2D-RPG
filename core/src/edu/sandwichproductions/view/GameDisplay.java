@@ -1,10 +1,14 @@
 package edu.sandwichproductions.view;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import edu.sandwichproductions.controller.GameController;
 import edu.sandwichproductions.model.entity.Player;
+import edu.sandwichproductions.model.entity.Skeleton;
 import edu.sandwichproductions.model.map.Room;
 
 public class GameDisplay {
@@ -14,7 +18,7 @@ public class GameDisplay {
     private GamePlayerMenu menu;
     private SpriteBatch batch;
     private Sprite character;
-    private Sprite enemy;
+    private Animation<TextureRegion> enemy;
     private Sprite room;
     private Sprite enemyRoom;
     private Sprite bossRoom;
@@ -22,6 +26,7 @@ public class GameDisplay {
     private int floorWidth;
     private int floowHeight;
     private int currentPlayerPosition;
+    private float elapsedTime = 0;
 
     public GameDisplay() {
         controller = new GameController();
@@ -30,7 +35,7 @@ public class GameDisplay {
         menu = new GamePlayerMenu();
         entity = new GameEntitySprite();
         character = entity.getCharacter();
-        enemy = entity.getEnemy();
+        enemy = Skeleton.getSkeletonAnimation();
         room = map.getRoom();
         enemyRoom = map.getEnemyRoom();
         bossRoom = new Sprite(new Texture("bossroom.png"), 195, 195);
@@ -106,9 +111,10 @@ public class GameDisplay {
     }
 
     public void drawEntities(int amountOfEnemies) {
+        elapsedTime += Gdx.graphics.getDeltaTime();
         for (int i = 0; i < amountOfEnemies; i++) {
             if (getRoom().getEnemies()[i] != null) {
-                batch.draw(enemy, setEnemyX(i), setEnemyY(i));
+                batch.draw(enemy.getKeyFrame(elapsedTime, true), setEnemyX(i), setEnemyY(i));
             }
         }
     }

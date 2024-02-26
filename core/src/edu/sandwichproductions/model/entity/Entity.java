@@ -1,6 +1,9 @@
 package edu.sandwichproductions.model.entity;
 
 
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import edu.sandwichproductions.controller.AnimationHandler;
 import edu.sandwichproductions.model.item.DamageItem;
 import edu.sandwichproductions.model.item.DefenseItem;
 import edu.sandwichproductions.util.Dice;
