@@ -10,8 +10,8 @@ public class GameMap {
     private int floorHeight;
 
     public GameMap() {
-        room = new Sprite(new Texture("room.png"), 180, 180);
-        enemyRoom = new Sprite(new Texture("enemyroom.png"), 180, 180);
+        room = new Sprite(new Texture("room.png"), 199, 199);
+        enemyRoom = new Sprite(new Texture("enemyroom.png"), 195, 195);
         floorWidth = (int) room.getWidth();
         floorHeight = (int) room.getHeight();
     }
