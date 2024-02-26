@@ -43,9 +43,10 @@ public class GameDisplay {
     public void update() {
         if (player.isAlive()) {
             controller.getMyMovement().move(player);
-//            if (controller.getMyMovement().checkForEnemy(player.getPositionInRoom()) != null) {
-//                controller.getMyCombat().fight(player, controller.getMyMovement().checkForEnemy(player.getPositionInRoom()));
-//            }
+            if (controller.getMyMovement().checkForEnemy(player.getPositionInRoom()) != null) {
+                controller.getMyCombat().fight(player, controller.getMyMovement().checkForEnemy(player.getPositionInRoom()));
+                removeEnemy();
+            }
             entity.setCharacterRoomPositions(player);
             entity.updateCharacterPosition(floorWidth, floowHeight);
             drawMap();
@@ -73,6 +74,7 @@ public class GameDisplay {
                 } else {
                     drawRoom(room);
                 }
+
             }
         }
         batch.draw(character, entity.getCharacterXPosition(), entity.getCharacterYPosition());
@@ -109,6 +111,16 @@ public class GameDisplay {
                 batch.draw(enemy, setEnemyX(i), setEnemyY(i));
             }
         }
+    }
+
+    public void removeEnemy() {
+       for (int i = 0; i < 7; i++) {
+           if (!(getRoom().getEnemies()[i] == null)) {
+               if (!getRoom().getEnemies()[i].isAlive()) {
+                   getRoom().getEnemies()[i] = null;
+               }
+           }
+       }
     }
 }
 
