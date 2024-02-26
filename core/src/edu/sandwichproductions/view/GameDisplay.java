@@ -2,13 +2,11 @@ package edu.sandwichproductions.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import edu.sandwichproductions.controller.AnimationHandler;
 import edu.sandwichproductions.controller.GameController;
 import edu.sandwichproductions.model.entity.Player;
-import edu.sandwichproductions.model.entity.Skeleton;
 import edu.sandwichproductions.model.map.Room;
 
 public class GameDisplay {
@@ -18,7 +16,7 @@ public class GameDisplay {
     private GamePlayerMenu menu;
     private SpriteBatch batch;
     private Sprite character;
-    private Animation<TextureRegion> enemy;
+    private AnimationHandler enemy;
     private Sprite room;
     private Sprite enemyRoom;
     private Sprite bossRoom;
@@ -35,7 +33,7 @@ public class GameDisplay {
         menu = new GamePlayerMenu();
         entity = new GameEntitySprite();
         character = entity.getCharacter();
-        enemy = Skeleton.getSkeletonAnimation();
+        enemy = new AnimationHandler("Skeleton_Idle.png", 4, 4);
         room = map.getRoom();
         enemyRoom = map.getEnemyRoom();
         bossRoom = new Sprite(new Texture("bossroom.png"), 195, 195);
