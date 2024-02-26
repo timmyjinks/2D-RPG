@@ -33,7 +33,7 @@ public class GameDisplay {
         enemy = entity.getEnemy();
         room = map.getRoom();
         enemyRoom = map.getEnemyRoom();
-        bossRoom = new Sprite(new Texture("bossroom.png"), 180, 180);
+        bossRoom = new Sprite(new Texture("bossroom.png"), 195, 195);
         player = controller.getPlayer();
         floorWidth = map.getFloorWidth();
         floowHeight = map.getFloorHeight();

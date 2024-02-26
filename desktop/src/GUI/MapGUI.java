@@ -12,8 +12,8 @@ public class MapGUI {
     public MapGUI() {
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
         config.setForegroundFPS(60);
-        config.setWindowedMode(2200,1300);
-        config.setResizable(false);
+        config.setWindowedMode(2560, 1400);
+        config.setResizable(true);
         config.setTitle("CSC150_FinalGame");
         new Lwjgl3Application(new Game(), config);
     }
