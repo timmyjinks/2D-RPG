@@ -1,11 +1,16 @@
 package edu.sandwichproductions.model.entity;
 
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import edu.sandwichproductions.controller.AnimationHandler;
 import edu.sandwichproductions.model.item.HealingItem;
 import edu.sandwichproductions.model.item.Item;
 
 import java.util.Arrays;
 
 public abstract class Player extends Entity {
+    private static AnimationHandler animatePlayer;
+    private static Animation<TextureRegion> playerAnimation;
     private HealingItem ring;
     private Item[] healingPotions = new Item[10];
     private Item[] inventory = new Item[10];
