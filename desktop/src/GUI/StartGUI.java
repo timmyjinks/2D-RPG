@@ -1,5 +1,6 @@
 package GUI;
 
+import edu.sandwichproductions.controller.GameController;
 import edu.sandwichproductions.controller.PathTreeController;
 
 import javax.swing.*;
@@ -41,11 +42,17 @@ public class StartGUI {
 
         promptArea.setBounds(675,200,400,200);
 
-        Base base = new Base(); // make the frame
+        JFrame base = new JFrame();
 
         base.add(path1); // add the buttons to the forms
         base.add(path2);
         base.add(path3);
+
+        base.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        base.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        base.setLayout(null);
+        base.setVisible(true);
+
 
         promptArea.add(prompt);
         base.add(promptArea);

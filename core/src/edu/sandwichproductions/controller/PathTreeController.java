@@ -1,5 +1,6 @@
 package edu.sandwichproductions.controller;
 
+import edu.sandwichproductions.model.entity.*;
 import edu.sandwichproductions.view.UserChoice;
 
 import java.nio.file.attribute.PosixFileAttributes;
@@ -10,6 +11,7 @@ public class PathTreeController {
     private int num, position;
     private String active;
     private boolean finish = false;
+    private static Player choice;
     public void mainTree(){
         switch (position) {
             case 0:
@@ -25,48 +27,47 @@ public class PathTreeController {
                 branch(get.Town1(), get.Town2(), get.Town3(), 10, 11, 12); // Town entry
                 break;
             case 4:
-                getUserClass(get.Druid(), get.Rogue(), get.Paladin()); // Forest options 1
+                getUserClass(get.Druid(), get.Rogue(), get.Paladin(), new Druid("Name"), new Rogue("Dk"), new Paladin("Df")); // Forest options 1
                 break;
             case 5:
-                getUserClass(get.Druid(), get.Barbarian(), get.Druid()); // Forest options 2
+                getUserClass(get.Druid(), get.Barbarian(), get.Druid(), new Druid("Name"), new Barbarian("Dk"), new Druid("Df")); // Forest options 2
                 break;
             case 6:
-                getUserClass(get.Cleric(), get.Druid(), get.Cleric()); // Forest options 3
+                getUserClass(get.Cleric(), get.Druid(), get.Cleric(), new Cleric("Name"), new Druid("Dk"), new Cleric("Df")); // Forest options 3
                 break;
             case 7:
-                getUserClass(get.Monk(), get.Paladin(), get.Bard()); // Mountain options 1
+                getUserClass(get.Monk(), get.Paladin(), get.Bard(), new Monk("Name"), new Paladin("Dk"), new Bard("Df")); // Mountain options 1
                 break;
             case 8:
-                getUserClass(get.Barbarian(), get.Wizard(), get.Bard()); // Mountain options 2
+                getUserClass(get.Barbarian(), get.Wizard(), get.Bard(), new Barbarian("Name"), new Wizard("Dk"), new Bard("Df")); // Mountain options 2
                 break;
             case 9:
-                getUserClass(get.Cleric(), get.Wizard(), get.Monk()); // Mountain options 3
+                getUserClass(get.Cleric(), get.Wizard(), get.Monk(), new Cleric("Name"), new Wizard("Dk"), new Monk("Df")); // Mountain options 3
                 break;
             case 10:
-                getUserClass(get.Barbarian(), get.Rogue(), get.Rogue()); // Town options 1
+                getUserClass(get.Barbarian(), get.Rogue(), get.Rogue(), new Barbarian("Name"), new Rogue("Dk"), new Rogue("Df")); // Town options 1
                 break;
             case 11:
-                getUserClass(get.Monk(), get.Bard(), get.Rogue()); // Town options 2
+                getUserClass(get.Monk(), get.Bard(), get.Rogue(), new Monk("Name"), new Bard("Dk"), new Rogue("Df")); // Town options 2
                 break;
             case 12:
-                getUserClass(get.Druid(), get.Wizard(), get.Paladin()); // Town options 3
+                getUserClass(get.Druid(), get.Wizard(), get.Paladin(), new Druid("Name"), new Wizard("Dk"), new Paladin("Df")); // Town options 3
                 break;
             default:
                 break;
         }
     }
 
-
-    public void getUserClass(String class1,String class2,String class3){
-        switch(num){
+    public void getUserClass(String class1, String class2, String class3, Player one, Player two, Player three){
+        switch (num) {
             case 1:
-                getUserClass(class1);
+                getUserClass(class1,one);
                 break;
             case 2:
-                getUserClass(class2);
+                getUserClass(class2,two);
                 break;
             case 3:
-                getUserClass(class3);
+                getUserClass(class3,three);
                 break;
         }
     }
@@ -91,12 +92,19 @@ public class PathTreeController {
     }
 
 
-    public void getUserClass(String userClass){
+    public void getUserClass(String userClass, Player player){
         activePrompt(userClass);
+        returnPlayer(player);
         finish = true;
+    }
+    public void returnPlayer(Player player){
+        this.choice = player;
     }
     public void activePrompt(String prompt){
         this.active = prompt;
+    }
+    public Player playerChoice(){
+        return choice;
     }
     public String getPrompt(){
         caseNum();
