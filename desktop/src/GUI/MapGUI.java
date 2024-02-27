@@ -7,7 +7,6 @@ import edu.sandwichproductions.Game;
 import javax.swing.*;
 
 public class MapGUI {
-    private JPanel panel1;
 
     public MapGUI() {
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();

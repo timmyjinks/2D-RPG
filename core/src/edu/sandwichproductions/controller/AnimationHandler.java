@@ -7,19 +7,18 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class AnimationHandler {
     private Texture texture;
-    private int rows, columns, frameCount;
-    private String filePath;
-    private float frameDuration;
+    private int frameCount;
     private Animation<TextureRegion> animated;
 
-    public AnimationHandler (String filePath, int columns, int frameCount) {
+    public AnimationHandler (String filePath, int frameCount) {
         texture = new Texture(filePath);
         TextureRegion[][] tmpFrames = TextureRegion.split(texture, texture.getWidth() / frameCount, texture.getHeight());
-        TextureRegion[] animationFrames = new TextureRegion[4];
+        TextureRegion[] animationFrames = new TextureRegion[frameCount];
+        this.frameCount = frameCount;
         int frames = 0;
-        for (int rowsI = 0; rowsI < 1; rowsI++) {
-            for (int columnsI = 0; columnsI < columns; columnsI++) {
-                animationFrames[frames++] = tmpFrames[rowsI][columnsI];
+        for (int rows = 0; rows < 1; rows++) {
+            for (int columns = 0; columns < frameCount; columns++) {
+                animationFrames[frames++] = tmpFrames[rows][columns];
             }
         }
         animated = new Animation<>(0.1F, animationFrames);
@@ -30,6 +29,10 @@ public class AnimationHandler {
     }
 
     public int getCenter() {
-        return (150 - (texture.getWidth() / 4)) / 2;
+        return (150 - (texture.getWidth() / frameCount)) / 2;
+    }
+
+    public int getWidth() {
+        return texture.getWidth() / 4;
     }
 }
