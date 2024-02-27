@@ -1,7 +1,6 @@
-package GUI;
+package edu.sandwichproductions.GUI;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
 public class SettingGUI extends JDialog {

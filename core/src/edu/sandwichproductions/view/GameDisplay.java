@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import edu.sandwichproductions.controller.AnimationHandler;
 import edu.sandwichproductions.controller.GameController;
+import edu.sandwichproductions.controller.PlayerStatus;
 import edu.sandwichproductions.model.entity.Player;
 import edu.sandwichproductions.model.map.Room;
 
@@ -43,7 +44,7 @@ public class GameDisplay {
         controller.run();
     }
 
-    public void update() {
+    public boolean update() {
         if (player.isAlive()) {
             controller.getMyMovement().move(player);
             if (controller.getMyMovement().checkForEnemy(player.getPositionInRoom()) != null) {
@@ -54,13 +55,11 @@ public class GameDisplay {
             entity.updateCharacterPosition(floorWidth, floorHeight);
             drawMap();
             menu.draw(batch);
+            return true;
         } else {
-            disposeBatch();
+            PlayerStatus.setStatus(true);
+            return false;
         }
-    }
-
-    public void disposeBatch() {
-        batch.dispose();
     }
 
     public void drawMap() {

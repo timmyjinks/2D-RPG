@@ -10,6 +10,7 @@ import edu.sandwichproductions.view.GameDisplay;
 
 public class Game extends ApplicationAdapter {
 	GameDisplay gameDisplay;
+	boolean count = true;
 
     @Override
 	public void create () {
@@ -21,11 +22,10 @@ public class Game extends ApplicationAdapter {
 		Gdx.gl.glClearColor(0,0,0, 0.5F);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		gameDisplay.update();
-	}
-	
-	@Override
-	public void dispose () {
-		gameDisplay.disposeBatch();
+		if (!count) {
+			Gdx.app.exit();
+		} else {
+			count = gameDisplay.update();
+		}
 	}
 }

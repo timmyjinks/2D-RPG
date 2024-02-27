@@ -1,11 +1,10 @@
-package GUI;
+package edu.sandwichproductions.GUI;
 
 import edu.sandwichproductions.controller.GameController;
 import edu.sandwichproductions.controller.PathTreeController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 
 public class StartGUI {
     PathTreeController con = new PathTreeController();
