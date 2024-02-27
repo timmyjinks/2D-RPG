@@ -1,7 +1,5 @@
 package GUI;
 
-import com.badlogic.gdx.Game;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

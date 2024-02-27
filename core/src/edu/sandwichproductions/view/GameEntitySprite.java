@@ -2,43 +2,31 @@ package edu.sandwichproductions.view;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import edu.sandwichproductions.controller.AnimationHandler;
 import edu.sandwichproductions.controller.GameController;
 import edu.sandwichproductions.model.entity.Enemy;
 import edu.sandwichproductions.model.entity.Player;
 
 public class GameEntitySprite {
-    private Sprite character;
-    private Sprite enemy;
+    private AnimationHandler character;
+    private AnimationHandler enemy;
     private int characterRoomRow;
     private int characterRoomColumn;
     private int characterXPosition;
     private int characterYPosition;
     private int entityDimension;
-    private Enemy currentEnemy;
 
     public GameEntitySprite() {
-        character = new Sprite(new Texture("shlagg.jpg"), 150, 150);
-        enemy = new Sprite(new Texture("skeleton.png"));
+        character = new AnimationHandler("Knight_Idle.png", 6);
+        enemy = new AnimationHandler("Skeleton_Idle.png", 4);
     }
 
-    public Sprite getCharacter() {
+    public AnimationHandler getCharacter() {
         return character;
     }
 
-    public void setCharacter(Sprite character) {
-        this.character = character;
-    }
-
-    public Sprite getEnemy() {
+    public AnimationHandler getEnemy() {
         return enemy;
-    }
-
-    public void setEnemy(Sprite enemy) {
-        this.enemy = enemy;
-    }
-
-    public int getCharacterRoomRow() {
-        return characterRoomRow;
     }
 
     public void setCharacterRoomRow(int playerPositionInRoom) {
@@ -54,7 +42,7 @@ public class GameEntitySprite {
     }
 
     public void setCharacterXPosition(int floorWidth) {
-        characterXPosition = characterRoomRow * (floorWidth + 1) + entityDimension;
+        characterXPosition = characterRoomRow * (floorWidth + 1) + entityDimension + character.getCenter();
     }
 
     public int getCharacterYPosition() {
@@ -70,7 +58,7 @@ public class GameEntitySprite {
     }
 
     public void setEntityDimensionToCenter(int floorWidth) {
-        this.entityDimension = (int) ((floorWidth - character.getWidth()) / 2);
+        this.entityDimension = (floorWidth - character.getWidth()) / 2;
     }
 
     public void setCharacterRoomPositions(Player player) {

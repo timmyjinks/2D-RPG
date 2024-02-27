@@ -15,14 +15,14 @@ public class GameDisplay {
     private GameMap map;
     private GamePlayerMenu menu;
     private SpriteBatch batch;
-    private Sprite character;
+    private AnimationHandler character;
     private AnimationHandler enemy;
     private Sprite room;
     private Sprite enemyRoom;
     private Sprite bossRoom;
     private Player player;
     private int floorWidth;
-    private int floowHeight;
+    private int floorHeight;
     private int currentPlayerPosition;
     private float elapsedTime = 0;
 
@@ -33,13 +33,13 @@ public class GameDisplay {
         menu = new GamePlayerMenu();
         entity = new GameEntitySprite();
         character = entity.getCharacter();
-        enemy = new AnimationHandler("Skeleton_Idle.png", 4, 4);
+        enemy = entity.getEnemy();
         room = map.getRoom();
         enemyRoom = map.getEnemyRoom();
         bossRoom = new Sprite(new Texture("bossroom.png"), 195, 195);
         player = controller.getPlayer();
         floorWidth = map.getFloorWidth();
-        floowHeight = map.getFloorHeight();
+        floorHeight = map.getFloorHeight();
         controller.run();
     }
 
@@ -51,7 +51,7 @@ public class GameDisplay {
                 removeEnemy();
             }
             entity.setCharacterRoomPositions(player);
-            entity.updateCharacterPosition(floorWidth, floowHeight);
+            entity.updateCharacterPosition(floorWidth, floorHeight);
             drawMap();
             menu.draw(batch);
         } else {
@@ -64,6 +64,7 @@ public class GameDisplay {
     }
 
     public void drawMap() {
+        elapsedTime += Gdx.graphics.getDeltaTime();
         currentPlayerPosition = controller.getWorld().getPlayerWorldPosition();
         batch.begin();
         for (int row = 0; row < 5; row++) {
@@ -80,7 +81,7 @@ public class GameDisplay {
 
             }
         }
-        batch.draw(character, entity.getCharacterXPosition(), entity.getCharacterYPosition());
+        batch.draw(character.getKeyFrame(elapsedTime, true), entity.getCharacterXPosition(), entity.getCharacterYPosition());
         batch.end();
     }
 
@@ -97,19 +98,18 @@ public class GameDisplay {
     }
 
     public int setEnemyY(int column) {
-        return (getEnemyPosition(column) % 7) * (floowHeight + 1) + entity.getEntityDimension();
+        return (getEnemyPosition(column) % 7) * (floorHeight + 1) + entity.getEntityDimension();
     }
 
     public void drawRoom(Sprite room) {
         for (int row = 0; row < 7; row++) {
             for (int column = 0; column < 7; column++) {
-                batch.draw(room, row * (floorWidth + 1), column * (floowHeight + 1));
+                batch.draw(room, row * (floorWidth + 1), column * (floorHeight + 1));
             }
         }
     }
 
     public void drawEntities(int amountOfEnemies) {
-        elapsedTime += Gdx.graphics.getDeltaTime();
         for (int i = 0; i < amountOfEnemies; i++) {
             if (getRoom().getEnemies()[i] != null) {
                 batch.draw(enemy.getKeyFrame(elapsedTime, true), setEnemyX(i), setEnemyY(i));
