@@ -11,7 +11,9 @@ import edu.sandwichproductions.model.entity.Player;
 public class GameController {
     private Map world;
     private final Menu menu;
-    private Player player = new Barbarian("John");
+    private Player playerClass;
+    private final PathTreeController con = new PathTreeController();
+    private final Player player = con.playerChoice();
     private final CombatController myCombat;
     private MovementController myMovement;
     private int selection = 0;
@@ -37,6 +39,7 @@ public class GameController {
         game = new Game();
         world = new Map();
         myMovement = new MovementController(world);
+        System.out.println(player);
 //        playGame();
     }
 

@@ -5,8 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StartingMenuGUI extends JDialog {
+public class StartingMenuGUI{
     public StartingMenuGUI() {
+        BackgroundGUI backgroundGUI = new BackgroundGUI("assets/MenuCover.png");
         JButton start = new JButton();
         JButton setting = new JButton();// Set buttons text
         JButton exit = new JButton();
@@ -28,12 +29,15 @@ public class StartingMenuGUI extends JDialog {
         exit.setFocusable(false);
         exit.setIcon(new ImageIcon("assets/Exit_Button.png"));
 
-        Base base = new Base();
-        base.setSize(2560, 1660);
+        JFrame base = new JFrame();
+        base.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        base.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        base.setVisible(true);
 
         base.add(start); // add the buttons to the forms
         base.add(setting);
         base.add(exit);
+        base.add(backgroundGUI);
 
         start.addActionListener(new ActionListener() { //this is the event handler for the buttons
             @Override
@@ -45,14 +49,13 @@ public class StartingMenuGUI extends JDialog {
         setting.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                base.dispose();
-                new SettingGUI();
+
             }
         });
         exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                base.dispose();
+
             }
         });
     }
