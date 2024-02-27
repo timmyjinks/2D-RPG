@@ -49,13 +49,13 @@ public class StartingMenuGUI{
         setting.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new SettingGUI();
             }
         });
         exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                base.dispose();
             }
         });
     }
