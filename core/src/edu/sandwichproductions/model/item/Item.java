@@ -8,10 +8,20 @@ public abstract class Item {
     protected int durability;
     protected Dice itemDice = new Dice();
     protected Sprite itemSprite;
+    protected String itemType;
+    public enum ITEM_TYPE {
+        DAMAGE_ITEM,
+        HEALING_ITEM,
+        DEFENSE_ITEM
+    }
 
     public Item(String name, int durability) {
         this.name = name;
         this.durability = durability;
+    }
+
+    public String getItemType(){
+        return itemType;
     }
 
     public abstract int use();

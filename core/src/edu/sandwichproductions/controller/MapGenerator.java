@@ -42,6 +42,7 @@ public class MapGenerator {
         int[][] myIntArray = new int[7][7];
         for (int row = 0; row < 7; row++) {
             for (int column = 0; column < 7; column++) {
+                if (!((row == 0 || row == 6) || (column == 0 || column == 6))){
                 if (tileIsEnemy()) {
                     Enemy enemy = new Skeleton("Skeleton");
                     enemy.setPositionInRoom((row * 7) + column);
@@ -51,6 +52,7 @@ public class MapGenerator {
                             break;
                         }
                     }
+                }
                 }
                 myIntArray[row][column] = (row * 7) + (column);
             }
