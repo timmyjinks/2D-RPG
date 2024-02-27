@@ -10,7 +10,6 @@ public class StartGUI {
     PathTreeController con = new PathTreeController();
     public StartGUI(){
         JPanel promptArea = new JPanel();
-
         JTextArea prompt = new JTextArea();
 
         con.getNum(0);
@@ -62,7 +61,7 @@ public class StartGUI {
                 base.revalidate();
                 base.repaint();
                 path2.setText("Continue ahead");
-
+                work[0] = true;
             }
         });
         path2.addActionListener(e -> {
@@ -94,6 +93,7 @@ public class StartGUI {
                     base.revalidate();
                     base.repaint();
                     path2.setText("Continue ahead");
+                    work[0] = true;
                 }
         });
     }

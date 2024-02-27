@@ -93,7 +93,7 @@ public class GameDisplay {
     }
 
     public int setEnemyX(int column) {
-        return (getEnemyPosition(column) / 7) * (floorWidth + 1) + entity.getEntityDimension() + 40;
+        return (getEnemyPosition(column) / 7) * (floorWidth + 1) + entity.getEntityDimension() + enemy.getCenter();
     }
 
     public int setEnemyY(int column) {

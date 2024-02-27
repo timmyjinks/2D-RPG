@@ -1,12 +1,13 @@
 package GUI;
 
+import com.badlogic.gdx.Game;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StartingMenuGUI extends Base {
-    Image img;
+public class StartingMenuGUI extends JDialog {
     public StartingMenuGUI() {
         JButton start = new JButton();
         JButton setting = new JButton();// Set buttons text
@@ -30,6 +31,7 @@ public class StartingMenuGUI extends Base {
         exit.setIcon(new ImageIcon("assets/Exit_Button.png"));
 
         Base base = new Base();
+        base.setSize(2560, 1660);
 
         base.add(start); // add the buttons to the forms
         base.add(setting);
@@ -45,13 +47,14 @@ public class StartingMenuGUI extends Base {
         setting.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                base.dispose();
+                new SettingGUI();
             }
         });
         exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                base.dispose();
             }
         });
     }

@@ -28,4 +28,8 @@ public class AnimationHandler {
     public TextureRegion getKeyFrame(float elapsedTime, boolean loops) {
         return animated.getKeyFrame(elapsedTime, loops);
     }
+
+    public int getCenter() {
+        return (150 - (texture.getWidth() / 4)) / 2;
+    }
 }
