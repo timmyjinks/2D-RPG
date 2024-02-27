@@ -1,10 +1,6 @@
 package edu.sandwichproductions.view;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import edu.sandwichproductions.controller.AnimationHandler;
-import edu.sandwichproductions.controller.GameController;
-import edu.sandwichproductions.model.entity.Enemy;
 import edu.sandwichproductions.model.entity.Player;
 
 public class GameEntitySprite {

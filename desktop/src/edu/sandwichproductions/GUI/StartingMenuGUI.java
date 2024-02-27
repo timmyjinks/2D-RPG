@@ -1,4 +1,4 @@
-package GUI;
+package edu.sandwichproductions.GUI;
 
 import javax.swing.*;
 import java.awt.*;
