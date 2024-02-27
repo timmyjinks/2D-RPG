@@ -6,6 +6,7 @@ public class DefenseItem extends Item {
     public DefenseItem(String name, int durability, int defense) {
         super(name, durability);
         this.defense = defense;
+        super.itemType = ITEM_TYPE.DEFENSE_ITEM.toString();
     }
 
     @Override

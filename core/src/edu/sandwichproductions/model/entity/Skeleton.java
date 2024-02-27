@@ -6,7 +6,7 @@ import edu.sandwichproductions.controller.AnimationHandler;
 
 public class Skeleton extends Enemy {
     public Skeleton(String name) {
-        super(name, 40, 25, 0);
+        super(name, 40, 25, 10);
     }
 
     @Override

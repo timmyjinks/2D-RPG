@@ -4,8 +4,11 @@ package edu.sandwichproductions.model.entity;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import edu.sandwichproductions.controller.AnimationHandler;
+import edu.sandwichproductions.controller.InventoryController;
 import edu.sandwichproductions.model.item.DamageItem;
 import edu.sandwichproductions.model.item.DefenseItem;
+import edu.sandwichproductions.model.item.Item;
+import edu.sandwichproductions.model.item.Stick;
 import edu.sandwichproductions.util.Dice;
 
 public abstract class Entity implements Attacker {
@@ -16,6 +19,7 @@ public abstract class Entity implements Attacker {
     private DefenseItem armour;
     private Dice entityDice = new Dice();
     private int positionInRoom;
+    private Item[] inventory = new Item[10];
 
     public Entity(String name, int health, int speed, int armorClass) {
         this.name = name;
@@ -23,11 +27,14 @@ public abstract class Entity implements Attacker {
         this.speed = speed;
         this.armorClass = armorClass;
         isAlive = true;
-        this.weapon = new DamageItem("stick", 10, 4, 2, 1);
+        this.weapon = new DamageItem("Stick", 1, 4, 1, 0);
     }
 
     @Override
     public int attack(Entity attacked) {
+        if (weapon == null){
+            InventoryController.setWeapon(this);
+        }
         int hit = entityDice.rollDice(20, 1, weapon.getDamageModifier());
         int damage = 0;
         if (attacked.getArmour() != null) {
@@ -37,10 +44,14 @@ public abstract class Entity implements Attacker {
                     damage *= 2;
                 }
             }
+        } else if (hit >= attacked.getArmorClass()) {
+            damage += weapon.use();
+            if (hit == 20) {
+                damage *= 2;
+            }
         }
-        damage += weapon.use();
-        if (hit == 20) {
-            damage *= 2;
+        if (weapon.getDurability() == 0){
+            weapon = null;
         }
         attacked.setHealth(attacked.getHealth() - damage);
         return attacked.getHealth();
@@ -105,5 +116,8 @@ public abstract class Entity implements Attacker {
 
     public void setPositionInRoom(int positionInRoom) {
         this.positionInRoom = positionInRoom;
+    }
+    public Item[] getInventory(){
+        return inventory;
     }
 }

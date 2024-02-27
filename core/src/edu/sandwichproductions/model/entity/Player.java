@@ -13,20 +13,12 @@ public abstract class Player extends Entity {
     private static Animation<TextureRegion> playerAnimation;
     private HealingItem ring;
     private Item[] healingPotions = new Item[10];
-    private Item[] inventory = new Item[10];
 
     public Player(String name, int health, int speed, int armorClass){
         super(name, health, speed, armorClass);
         setPositionInRoom(24);
     }
 
-    public Item[] getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(Item item) {
-
-    }
     public int howManyPotions(){
         int howManyPots = 0;
         for (int howMany = 0; howMany < healingPotions.length; howMany++){
@@ -44,7 +36,6 @@ public abstract class Player extends Entity {
         return "Player{" +
                 " name= " + super.getName() +
                 ", healingPotions=" + howManyPotions() +
-                ", inventory=" + Arrays.toString(inventory) +
                 '}';
     }
 }
