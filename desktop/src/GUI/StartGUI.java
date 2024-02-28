@@ -10,6 +10,8 @@ import java.io.File;
 public class StartGUI {
     PathTreeController con = new PathTreeController();
     public StartGUI(){
+        BackgroundGUI backgroundGUI = new BackgroundGUI("assets/valley.png");
+
         JPanel promptArea = new JPanel();
         JTextArea prompt = new JTextArea();
 
@@ -17,6 +19,7 @@ public class StartGUI {
         prompt.setText(con.getPrompt());
 
         promptArea.setLayout(new BorderLayout());
+        promptArea.setBounds(750,570,25,25);
 
         prompt.setLineWrap(true); // Enable text wrapping
         prompt.setWrapStyleWord(true); // Wrap at word boundaries
@@ -47,15 +50,16 @@ public class StartGUI {
         base.add(path1); // add the buttons to the forms
         base.add(path2);
         base.add(path3);
+        base.add(backgroundGUI);
 
         base.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         base.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        base.setLayout(null);
+        base.setLayout(null); //Doesnt work with background photo :(
         base.setVisible(true);
 
 
         promptArea.add(prompt);
-        base.add(promptArea);
+        base.add(promptArea); //need to make the bounds smaller :(
         final boolean[] work = {false};
 
         path1.addActionListener(e -> {
