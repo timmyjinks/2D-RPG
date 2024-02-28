@@ -1,10 +1,11 @@
 package edu.sandwichproductions.model.entity;
 
 import edu.sandwichproductions.controller.AnimationHandler;
+import edu.sandwichproductions.util.Dice;
 
 public abstract class Enemy extends Entity {
     public Enemy(String name, int health, int speed, int armorClass) {
-        super(name, health, speed, armorClass);
+        super(name, (int) (health * Dice.setMode), speed, armorClass);
     }
 
     public boolean willDropItem() {
