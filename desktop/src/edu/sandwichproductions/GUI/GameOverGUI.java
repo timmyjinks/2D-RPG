@@ -20,12 +20,13 @@ public class GameOverGUI extends JDialog {
         tryAgain.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new StartingMenuGUI();
+                frame.dispose();
             }
         });
 
         quit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                frame.dispose();
             }
         });
     }
