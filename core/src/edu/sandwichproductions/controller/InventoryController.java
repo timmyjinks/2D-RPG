@@ -17,7 +17,7 @@ public class InventoryController {
                 }
             }
         }
-            player.setWeapon(new Stick("Stick", 10, 4, 1, 0));
+            player.setWeapon(new Stick("Stick", 10, 4, 1, 0, "assets/room.png"));
     }
     public void setArmor(Entity player){
 

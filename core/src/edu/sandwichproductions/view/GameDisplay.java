@@ -8,6 +8,7 @@ import edu.sandwichproductions.controller.AnimationHandler;
 import edu.sandwichproductions.controller.GameController;
 import edu.sandwichproductions.controller.PlayerStatus;
 import edu.sandwichproductions.model.entity.Player;
+import edu.sandwichproductions.model.item.Stick;
 import edu.sandwichproductions.model.map.Room;
 
 public class GameDisplay {
@@ -29,6 +30,7 @@ public class GameDisplay {
 
     public GameDisplay() {
         controller = new GameController();
+        controller.run();
         batch = new SpriteBatch();
         map = new GameMap();
         menu = new GamePlayerMenu();
@@ -38,10 +40,10 @@ public class GameDisplay {
         room = map.getRoom();
         enemyRoom = map.getEnemyRoom();
         bossRoom = new Sprite(new Texture("bossroom.png"), 195, 195);
-        player = controller.getPlayer();
+        player = controller.createPlayer();
+        player.setWeapon(new Stick("Stick", 1, 4, 1, 0, "assets/room.png"));
         floorWidth = map.getFloorWidth();
         floorHeight = map.getFloorHeight();
-        controller.run();
     }
 
     public boolean update() {
@@ -51,6 +53,8 @@ public class GameDisplay {
                 controller.getMyCombat().fight(player, controller.getMyMovement().checkForEnemy(player.getPositionInRoom()));
                 removeEnemy();
             }
+            player.getWeapon().setItemSprite("assets/room.png");
+            menu.setWeaponSprite(player.getWeapon().getItemSprite());
             entity.setCharacterRoomPositions(player);
             entity.updateCharacterPosition(floorWidth, floorHeight);
             drawMap();
@@ -61,6 +65,8 @@ public class GameDisplay {
             return false;
         }
     }
+
+
 
     public void drawMap() {
         elapsedTime += Gdx.graphics.getDeltaTime();

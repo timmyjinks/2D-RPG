@@ -9,8 +9,6 @@ import edu.sandwichproductions.model.item.Item;
 import java.util.Arrays;
 
 public abstract class Player extends Entity {
-    private static AnimationHandler animatePlayer;
-    private static Animation<TextureRegion> playerAnimation;
     private HealingItem ring;
     private Item[] healingPotions = new Item[10];
 
@@ -29,6 +27,14 @@ public abstract class Player extends Entity {
             }
         }
         return howManyPots;
+    }
+
+    public HealingItem getRing() {
+        return this.ring;
+    }
+
+    public void setRing(HealingItem ring) {
+        this.ring = ring;
     }
 
     @Override

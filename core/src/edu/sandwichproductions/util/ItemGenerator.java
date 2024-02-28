@@ -38,45 +38,45 @@ public class ItemGenerator {
 
     public Item commonItem(int itemType) {
         return switch (itemType) {
-            case 1 -> new DamageItem("Broken Sword", 15, 6, 1, 1);
-            case 2 -> new HealingItem("Broken Ring", 9, 4, 2, 2);
-            case 3 -> new DefenseItem("Rags", 15, 1);
+            case 1 -> new DamageItem("Broken Sword", 15, 6, 1, 1, "assets/room.png");
+            case 2 -> new HealingItem("Broken Ring", 9, 4, 2, 2, "assets/room.png");
+            case 3 -> new DefenseItem("Rags", 15, 1, "assets/room.png");
             default -> throw new IllegalStateException("Unexpected value: " + itemType);
         };
     }
 
     public Item uncommonItem(int itemType) {
         return switch (itemType) {
-            case 1 -> new DamageItem("Plain ol' Sword", 20, 8, 1, 2);
-            case 2 -> new HealingItem("Ring of Lesser Restoration", 12, 6, 2, 2);
-            case 3 -> new DefenseItem("Leather Armor", 25, 2);
+            case 1 -> new DamageItem("Plain ol' Sword", 20, 8, 1, 2, "assets/room.png");
+            case 2 -> new HealingItem("Ring of Lesser Restoration", 12, 6, 2, 2, "assets/room.png");
+            case 3 -> new DefenseItem("Leather Armor", 25, 2, "assets/room.png");
             default -> throw new IllegalStateException("Unexpected value: " + itemType);
         };
     }
 
     public Item rareItem(int itemType) {
         return switch (itemType) {
-            case 1 -> new DamageItem("Sharp Sword", 25, 8, 2, 3);
-            case 2 -> new HealingItem("Ring of Restoration", 12, 4, 4, 4);
-            case 3 -> new DefenseItem("Chain-mail", 35, 3);
+            case 1 -> new DamageItem("Sharp Sword", 25, 8, 2, 3, "assets/room.png");
+            case 2 -> new HealingItem("Ring of Restoration", 12, 4, 4, 4, "assets/room.png");
+            case 3 -> new DefenseItem("Chain-mail", 35, 3, "assets/room.png");
             default -> throw new IllegalStateException("Unexpected value: " + itemType);
         };
     }
 
     public Item epicItem(int itemType) {
         return switch (itemType) {
-            case 1 -> new DamageItem("Fiend Slasher", 30, 4, 5, 4);
-            case 2 -> new HealingItem("Ring of Greater Restoration", 15, 4, 6, 6);
-            case 3 -> new DefenseItem("Enchanted Armor", 80, 3);
+            case 1 -> new DamageItem("Fiend Slasher", 30, 4, 5, 4, "assets/room.png");
+            case 2 -> new HealingItem("Ring of Greater Restoration", 15, 4, 6, 6, "assets/Ring_Of_Greater_Restoration.png");
+            case 3 -> new DefenseItem("Enchanted Armor", 80, 3, "assets/room.png");
             default -> throw new IllegalStateException("Unexpected value: " + itemType);
         };
     }
 
     public Item legendaryItem(int itemType) {
         return switch (itemType) {
-            case 1 -> new DamageItem("Sky Render", 35, 12, 3, 6);
-            case 2 -> new HealingItem("Hero's Ring of Immortality", 18, 8, 3, 8);
-            case 3 -> new DefenseItem("Ancient Dragon's Scale-mail", 100, 5);
+            case 1 -> new DamageItem("Sky Render", 35, 12, 3, 6, "assets/Sky_Render.png");
+            case 2 -> new HealingItem("Hero's Ring of Immortality", 18, 8, 3, 8, "assets/room.png");
+            case 3 -> new DefenseItem("Ancient Dragon's Scale-mail", 100, 5, "assets/room.png");
             default -> throw new IllegalStateException("Unexpected value: " + itemType);
         };
     }

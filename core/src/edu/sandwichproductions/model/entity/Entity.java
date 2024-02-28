@@ -2,6 +2,7 @@ package edu.sandwichproductions.model.entity;
 
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import edu.sandwichproductions.controller.AnimationHandler;
 import edu.sandwichproductions.controller.InventoryController;
@@ -27,7 +28,7 @@ public abstract class Entity implements Attacker {
         this.speed = speed;
         this.armorClass = armorClass;
         isAlive = true;
-        this.weapon = new DamageItem("Stick", 1, 4, 1, 0);
+        //this.weapon = new DamageItem("Stick", 1, 4, 1, 0, "assets/room.png");
     }
 
     @Override
