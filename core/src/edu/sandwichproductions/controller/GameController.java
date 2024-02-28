@@ -12,8 +12,8 @@ public class GameController {
     private Map world;
     private final Menu menu;
     private Player playerClass;
-    private final PathTreeController con = new PathTreeController();
-    private final Player player = con.playerChoice();
+    private PathTreeController con;
+    private Player player;
     private final CombatController myCombat;
     private MovementController myMovement;
     private int selection = 0;
@@ -39,21 +39,17 @@ public class GameController {
         game = new Game();
         world = new Map();
         myMovement = new MovementController(world);
-        System.out.println(player);
-//        playGame();
-    }
-
-    public void playGame() {
-        while (player.isAlive()) {
-            myMovement.move(player);
-
-        }
     }
 
     public void attacking(Enemy enemy) {
         if (enemy != null) {
             myCombat.fight(player, enemy);
         }
+    }
+
+    public Player createPlayer() {
+        con = new PathTreeController();
+        return player = con.playerChoice();
     }
 
     public Player getPlayer() {
