@@ -1,5 +1,7 @@
 package edu.sandwichproductions.GUI;
 
+import edu.sandwichproductions.GUI.BackgroundGUI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -49,7 +51,8 @@ public class StartingMenuGUI{
         setting.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new SettingGUI();
+                base.dispose();
+                new  SettingGUI();
             }
         });
         exit.addActionListener(new ActionListener() {
