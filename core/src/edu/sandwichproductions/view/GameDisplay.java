@@ -8,6 +8,9 @@ import edu.sandwichproductions.controller.AnimationHandler;
 import edu.sandwichproductions.controller.GameController;
 import edu.sandwichproductions.controller.PlayerStatus;
 import edu.sandwichproductions.model.entity.Player;
+import edu.sandwichproductions.model.item.DamageItem;
+import edu.sandwichproductions.model.item.DefenseItem;
+import edu.sandwichproductions.model.item.HealingItem;
 import edu.sandwichproductions.model.item.Stick;
 import edu.sandwichproductions.model.map.Room;
 
@@ -41,7 +44,7 @@ public class GameDisplay {
         enemyRoom = map.getEnemyRoom();
         bossRoom = new Sprite(new Texture("bossroom.png"), 195, 195);
         player = controller.createPlayer();
-        player.setWeapon(new Stick("Stick", 10, 4, 1, 0, "assets/room.png"));
+        createPlayer();
         floorWidth = map.getFloorWidth();
         floorHeight = map.getFloorHeight();
     }
@@ -56,9 +59,9 @@ public class GameDisplay {
             entity.setCharacterRoomPositions(player);
             entity.updateCharacterPosition(floorWidth, floorHeight);
             drawMap();
-            menu.draw();
-            menu.drawHotBar(player);
-//            drawInventory();
+            menu.draw(batch);
+            drawHotBar();
+            drawInventory();
             return true;
         } else {
             PlayerStatus.setStatus(true);
@@ -66,7 +69,23 @@ public class GameDisplay {
         }
     }
 
+    public void drawHotBar() {
+        player.getWeapon().setItemSprite("assets/room.png");
+        menu.setWeaponSprite(player.getWeapon().getItemSprite());
 
+        if (player.getArmour() == null) {
+
+            menu.setArmourSprite(new Sprite(new Texture("assets/placeholder.png")));
+        } else {
+            menu.setArmourSprite(player.getArmour().getItemSprite());
+        }
+
+        if (player.getRing() == null) {
+            menu.setHealthSprite(new Sprite(new Texture("assets/placeholder.png")));
+        } else {
+            menu.setHealthSprite(player.getRing().getItemSprite());
+        }
+    }
 
     public void drawMap() {
         elapsedTime += Gdx.graphics.getDeltaTime();
@@ -123,17 +142,21 @@ public class GameDisplay {
     }
 
     public void drawInventory() {
-        int offSet = 0;
+        int row = 0;
         int x, y;
         batch.begin();
         for (int inventoryIndex = 0; inventoryIndex < player.getInventory().length; inventoryIndex++) {
             if (inventoryIndex % 5 == 0 && inventoryIndex != 0) {
-                offSet++;
+                row++;
             }
             x = inventoryIndex % 5 * (208 + 1) + 1460;
-            y = offSet * (208 + 1) + 60;
-            batch.draw(new Sprite(new Texture("room.png"), 208, 208),x , y);
-            batch.draw(new Sprite(new Texture("Sky_Render.png"), 178, 178), inventoryIndex % 5 + x + 1, offSet + y + 1);
+            y = row * (208 + 1) + 60;
+            batch.draw(new Sprite(new Texture("room.png"), 208, 208), x, y);
+            if (player.getInventory()[inventoryIndex] == null) {
+                batch.draw(new Sprite(new Texture("placeholder.png")), inventoryIndex % 5 + x + 1, row + y + 1);
+            } else {
+                batch.draw(player.getInventory()[inventoryIndex].getItemSprite(), inventoryIndex % 5 + x + 1 + 15, row + y + 1 + 15);
+            }
         }
         batch.end();
     }
@@ -145,6 +168,13 @@ public class GameDisplay {
                     getRoom().getEnemies()[i] = null;
                 }
             }
+        }
+    }
+
+    public void createPlayer() {
+        player.setWeapon(new Stick("Stick", 10, 4, 1, 0, "assets/room.png"));
+        for (int i = 0; i < 5; i++) {
+            player.getInventory()[i] = new HealingItem("Healing Potion", 5, 2, 6, 5, "assets/Ring_Of_Greater.png");
         }
     }
 }
