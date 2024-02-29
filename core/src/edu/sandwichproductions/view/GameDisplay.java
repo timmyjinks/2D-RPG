@@ -1,21 +1,15 @@
 package edu.sandwichproductions.view;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import edu.sandwichproductions.controller.AnimationHandler;
 import edu.sandwichproductions.controller.GameController;
-import edu.sandwichproductions.controller.InventoryController;
 import edu.sandwichproductions.controller.PlayerStatus;
 import edu.sandwichproductions.model.entity.Player;
-import edu.sandwichproductions.model.item.HealingItem;
-import edu.sandwichproductions.model.item.Item;
 import edu.sandwichproductions.model.item.Stick;
 import edu.sandwichproductions.model.map.Room;
-
-import java.util.ArrayList;
 
 public class GameDisplay {
     private GameController controller;
@@ -47,7 +41,7 @@ public class GameDisplay {
         enemyRoom = map.getEnemyRoom();
         bossRoom = new Sprite(new Texture("bossroom.png"), 195, 195);
         player = controller.createPlayer();
-        createPlayer();
+        player.setWeapon(new Stick("Stick", 10, 4, 1, 0, "assets/room.png"));
         floorWidth = map.getFloorWidth();
         floorHeight = map.getFloorHeight();
     }
@@ -63,15 +57,16 @@ public class GameDisplay {
             entity.updateCharacterPosition(floorWidth, floorHeight);
             drawMap();
             menu.draw();
-//            menu.drawHotBar(player);
-            displayInventorySwap();
-//            menu.drawInventory(player);
+            menu.drawHotBar(player);
+//            drawInventory();
             return true;
         } else {
             PlayerStatus.setStatus(true);
             return false;
         }
     }
+
+
 
     public void drawMap() {
         elapsedTime += Gdx.graphics.getDeltaTime();
@@ -127,37 +122,30 @@ public class GameDisplay {
         }
     }
 
+    public void drawInventory() {
+        int offSet = 0;
+        int x, y;
+        batch.begin();
+        for (int inventoryIndex = 0; inventoryIndex < player.getInventory().length; inventoryIndex++) {
+            if (inventoryIndex % 5 == 0 && inventoryIndex != 0) {
+                offSet++;
+            }
+            x = inventoryIndex % 5 * (208 + 1) + 1460;
+            y = offSet * (208 + 1) + 60;
+            batch.draw(new Sprite(new Texture("room.png"), 208, 208),x , y);
+            batch.draw(new Sprite(new Texture("Sky_Render.png"), 178, 178), inventoryIndex % 5 + x + 1, offSet + y + 1);
+        }
+        batch.end();
+    }
+
     public void removeEnemy() {
-        for (int i = 0; i < getRoom().getEnemies().length; i++) {
+        for (int i = 0; i < 7; i++) {
             if (!(getRoom().getEnemies()[i] == null)) {
                 if (!getRoom().getEnemies()[i].isAlive()) {
                     getRoom().getEnemies()[i] = null;
                 }
             }
         }
-    }
-
-    public void createPlayer() {
-        player.setWeapon(new Stick("Stick", 10, 4, 1, 0, "assets/room.png"));
-        player.setRing(new HealingItem("Healing Potion", 5, 2, 6, 5, "assets/Ring_Of_Greater_Restoration.png"));
-        player.setHealth(999999999);
-    }
-
-    public void displayInventorySwap() {
-        boolean exit = false;
-        ArrayList<Item> items;
-        batch.begin();
-        if (InventoryController.isPressingI()) {
-            while (!exit)
-                if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
-                    items = InventoryController.getItems(Item.ITEM_TYPE.DAMAGE_ITEM, player);
-                    for (int row = 0; row < items.size(); row++) {
-                        batch.draw(enemyRoom, row * (250 + 1) + 1460, row * (250 + 1) + 1000);
-                    }
-                exit = true;
-            }
-        }
-        batch.end();
     }
 }
 

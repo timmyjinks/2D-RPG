@@ -8,6 +8,7 @@ import edu.sandwichproductions.model.entity.Player;
 public class GamePlayerMenu {
     private SpriteBatch batch;
     private Sprite placeholder;
+    private Sprite characterItemSlot = new Sprite(new Texture("Character_Screen_Item_Slot.png"), 208, 208);
     private Sprite menuBody;
     private Sprite menuScreen;
     private Sprite weaponSlot;
@@ -33,16 +34,16 @@ public class GamePlayerMenu {
     }
 
     public void draw() {
-        batch.begin();
-        batch.draw(menuBody, 1420, 20);
-        batch.draw(menuScreen, getMenuScreenX(), getMenuScreenY());
-        batch.draw(weaponSlot, 1460 , menuScreen.getY() - (250 + 10));
-        batch.draw(armourSlot, 1855, menuScreen.getY() - (250 + 10));
-        batch.draw(healthSlot, 2250, menuScreen.getY() - (250 + 10));
-        batch.draw(weapon, 1475, 560);
-        batch.draw(armour, 1870, 560);
-        batch.draw(health, 2265, 560);
-        batch.end();
+        this.batch.begin();
+        this.batch.draw(menuBody, 1420, 20);
+        this.batch.draw(menuScreen, getMenuScreenX(), getMenuScreenY());
+        this.batch.draw(weaponSlot, 1460 , menuScreen.getY() - (250 + 10));
+        this.batch.draw(armourSlot, 1855, menuScreen.getY() - (250 + 10));
+        this.batch.draw(healthSlot, 2250, menuScreen.getY() - (250 + 10));
+        this.batch.draw(weapon, 1475, 560);
+        this.batch.draw(armour, 1870, 560);
+        this.batch.draw(health, 2265, 560);
+        this.batch.end();
     }
 
     public void drawInventory(Player player) {
@@ -55,11 +56,11 @@ public class GamePlayerMenu {
             }
             x = inventoryIndex % 5 * (208 + 1) + 1460;
             y = row * (208 + 1) + 60;
-            batch.draw(new Sprite(new Texture("Character_Screen_Item_Slot.png"), 208, 208), x, y);
+            batch.draw(characterItemSlot, x, y);
             if (player.getInventory()[inventoryIndex] == null) {
                 batch.draw(placeholder, inventoryIndex % 5 + x + 1, row + y + 1);
             } else {
-                batch.draw(player.getInventory()[inventoryIndex].getItemSprite(), inventoryIndex % 5 + x + 1 + 15, row + y + 1 + 15);
+          //      batch.draw(player.getInventory()[inventoryIndex].getItemSprite(), inventoryIndex % 5 + x + 1 + 15, row + y + 1 + 15);
             }
         }
         batch.end();
