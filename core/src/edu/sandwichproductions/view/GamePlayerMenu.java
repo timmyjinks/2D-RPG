@@ -22,9 +22,9 @@ public class GamePlayerMenu {
         weaponSlot = new Sprite(new Texture("Character_Screen_Item_Slot.png"), 250, 250);
         armourSlot = new Sprite(new Texture("Character_Screen_Item_Slot.png"), 250, 250);
         healthSlot = new Sprite(new Texture("Character_Screen_Item_Slot.png"), 250, 250);
-        weapon = new Sprite(new Texture("Sky_Render.png"));
-        armour = new Sprite(new Texture("Ring_Of_Greater_Restoration.png"));
-        health = new Sprite(new Texture("bossroom.png"), 220, 220);
+        weapon = new Sprite(new Texture("placeholder.png"));
+        armour = new Sprite(new Texture("placeholder.png"));
+        health = new Sprite(new Texture("placeholder.png"));
     }
 
     public void draw(SpriteBatch batch) {
