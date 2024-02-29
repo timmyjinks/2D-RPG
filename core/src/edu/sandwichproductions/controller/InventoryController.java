@@ -1,5 +1,7 @@
 package edu.sandwichproductions.controller;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import edu.sandwichproductions.model.entity.Entity;
 import edu.sandwichproductions.model.entity.Player;
 import edu.sandwichproductions.model.item.*;
@@ -56,5 +58,12 @@ public class InventoryController {
         Item tempItem = playerItems[item1];
         playerItems[item1] = playerItems[item2];
         playerItems[item2] = tempItem;
+    }
+
+    public static boolean isPressingI() {
+        if (Gdx.input.isButtonJustPressed(Input.Keys.I)) {
+            return true;
+        }
+        return false;
     }
 }
