@@ -28,7 +28,6 @@ public abstract class Entity implements Attacker {
         this.speed = speed;
         this.armorClass = armorClass;
         isAlive = true;
-        //this.weapon = new DamageItem("Stick", 1, 4, 1, 0, "assets/room.png");
     }
 
     @Override

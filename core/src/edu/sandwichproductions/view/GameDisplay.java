@@ -41,7 +41,7 @@ public class GameDisplay {
         enemyRoom = map.getEnemyRoom();
         bossRoom = new Sprite(new Texture("bossroom.png"), 195, 195);
         player = controller.createPlayer();
-        player.setWeapon(new Stick("Stick", 1, 4, 1, 0, "assets/room.png"));
+        player.setWeapon(new Stick("Stick", 10, 4, 1, 0, "assets/room.png"));
         floorWidth = map.getFloorWidth();
         floorHeight = map.getFloorHeight();
     }
@@ -53,12 +53,12 @@ public class GameDisplay {
                 controller.getMyCombat().fight(player, controller.getMyMovement().checkForEnemy(player.getPositionInRoom()));
                 removeEnemy();
             }
-            player.getWeapon().setItemSprite("assets/room.png");
-            menu.setWeaponSprite(player.getWeapon().getItemSprite());
             entity.setCharacterRoomPositions(player);
             entity.updateCharacterPosition(floorWidth, floorHeight);
             drawMap();
             menu.draw(batch);
+            player.getWeapon().setItemSprite("assets/room.png");
+            menu.setWeaponSprite(player.getWeapon().getItemSprite());
             return true;
         } else {
             PlayerStatus.setStatus(true);
