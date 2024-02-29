@@ -5,7 +5,7 @@ import edu.sandwichproductions.util.Dice;
 
 public abstract class Enemy extends Entity {
     public Enemy(String name, int health, int speed, int armorClass) {
-        super(name, (int) (health * Dice.setMode), speed, armorClass);
+        super(name, (int) (health * Dice.setMode), speed, armorClass); //TODO fix all enemies starting with 0 health
     }
 
     public boolean willDropItem() {
