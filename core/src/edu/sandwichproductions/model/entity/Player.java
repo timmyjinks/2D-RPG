@@ -23,6 +23,7 @@ public abstract class Player extends Entity {
     public void addItem(Item addedItem){
         for (int inventoryPosition = 0; inventoryPosition < this.inventory.length; inventoryPosition++){
             if (this.getWeapon() == null){
+
                 this.setWeapon(new Stick("Stick", 10, 4, 1, 0, "assets/room.png"));
                 break;
             }

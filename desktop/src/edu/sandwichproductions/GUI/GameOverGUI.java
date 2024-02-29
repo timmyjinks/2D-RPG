@@ -14,6 +14,7 @@ public class GameOverGUI extends JDialog {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
+        frame.setLayout(null);
 
         frame.add(tryAgain);
 

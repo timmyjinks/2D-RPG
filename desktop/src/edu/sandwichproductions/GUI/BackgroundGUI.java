@@ -8,6 +8,7 @@ public class BackgroundGUI extends JPanel {
     public BackgroundGUI(String fileName){
         ImageIcon obj = new ImageIcon(fileName);
         pic = obj.getImage();
+        setPreferredSize(new Dimension(pic.getWidth(null), pic.getHeight(null)));
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
