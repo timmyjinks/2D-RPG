@@ -3,13 +3,16 @@ package edu.sandwichproductions.model.entity;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import edu.sandwichproductions.controller.AnimationHandler;
+import edu.sandwichproductions.model.item.DamageItem;
 import edu.sandwichproductions.model.item.HealingItem;
 import edu.sandwichproductions.model.item.Item;
+import edu.sandwichproductions.model.item.Stick;
 
 import java.util.Arrays;
 
 public abstract class Player extends Entity {
-    private HealingItem ring;
+    private static AnimationHandler animatePlayer;
+    private static Animation<TextureRegion> playerAnimation;
     private Item[] healingPotions = new Item[10];
 
     public Player(String name, int health, int speed, int armorClass){
@@ -17,6 +20,22 @@ public abstract class Player extends Entity {
         setPositionInRoom(24);
     }
 
+    public void addItem(Item addedItem){
+        for (int inventoryPosition = 0; inventoryPosition < this.inventory.length; inventoryPosition++){
+            if (this.getWeapon() == null){
+                this.setWeapon(new Stick("Stick", 10, 4, 1, 0));
+                break;
+            }
+            if (this.inventory[inventoryPosition] == null){
+                this.inventory[inventoryPosition] = addedItem;
+                if (this.getWeapon().getItemType() == Item.ITEM_TYPE.STICK && addedItem.getItemType() == Item.ITEM_TYPE.DAMAGE_ITEM){
+                    this.setWeapon((DamageItem) addedItem);
+                    this.inventory[inventoryPosition] = null;
+                }
+                break;
+            }
+        }
+    }
     public int howManyPotions(){
         int howManyPots = 0;
         for (int howMany = 0; howMany < healingPotions.length; howMany++){
@@ -27,14 +46,6 @@ public abstract class Player extends Entity {
             }
         }
         return howManyPots;
-    }
-
-    public HealingItem getRing() {
-        return this.ring;
-    }
-
-    public void setRing(HealingItem ring) {
-        this.ring = ring;
     }
 
     @Override

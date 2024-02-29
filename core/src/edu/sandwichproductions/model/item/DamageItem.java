@@ -10,7 +10,7 @@ public class DamageItem extends Item {
         this.diceSides = diceSides;
         this.diceAmount = diceAmount;
         this.damageModifier = damageModifier;
-        super.itemType = ITEM_TYPE.DAMAGE_ITEM.toString();
+        super.itemType = ITEM_TYPE.DAMAGE_ITEM;
     }
     public int getDamageModifier(){
         return damageModifier;

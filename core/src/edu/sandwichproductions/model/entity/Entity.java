@@ -6,10 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import edu.sandwichproductions.controller.AnimationHandler;
 import edu.sandwichproductions.controller.InventoryController;
-import edu.sandwichproductions.model.item.DamageItem;
-import edu.sandwichproductions.model.item.DefenseItem;
-import edu.sandwichproductions.model.item.Item;
-import edu.sandwichproductions.model.item.Stick;
+import edu.sandwichproductions.model.item.*;
 import edu.sandwichproductions.util.Dice;
 
 public abstract class Entity implements Attacker {
@@ -18,9 +15,10 @@ public abstract class Entity implements Attacker {
     private boolean isAlive;
     private DamageItem weapon;
     private DefenseItem armour;
+    private HealingItem ring;
     private Dice entityDice = new Dice();
     private int positionInRoom;
-    private Item[] inventory = new Item[10];
+    protected Item[] inventory = new Item[10];
 
     public Entity(String name, int health, int speed, int armorClass) {
         this.name = name;
@@ -33,7 +31,7 @@ public abstract class Entity implements Attacker {
     @Override
     public int attack(Entity attacked) {
         if (weapon == null){
-            InventoryController.setWeapon(this);
+            InventoryController.setItem(Item.ITEM_TYPE.DAMAGE_ITEM,this);
         }
         int hit = entityDice.rollDice(20, 1, weapon.getDamageModifier());
         int damage = 0;
@@ -46,7 +44,7 @@ public abstract class Entity implements Attacker {
             }
         } else if (hit >= attacked.getArmorClass()) {
             damage += weapon.use();
-            if (hit == 20) {
+            if (hit - weapon.getDamageModifier() == 20) {
                 damage *= 2;
             }
         }
@@ -101,6 +99,13 @@ public abstract class Entity implements Attacker {
         this.weapon = weapon;
     }
 
+    public HealingItem getRing() {
+        return ring;
+    }
+
+    public void setRing(HealingItem ring) {
+        this.ring = ring;
+    }
 
     public DefenseItem getArmour() {
         return armour;

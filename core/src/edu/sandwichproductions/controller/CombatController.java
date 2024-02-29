@@ -1,12 +1,15 @@
 package edu.sandwichproductions.controller;
 
+import edu.sandwichproductions.model.entity.Enemy;
 import edu.sandwichproductions.model.entity.Entity;
+import edu.sandwichproductions.model.entity.Player;
+import edu.sandwichproductions.util.ItemGenerator;
 import edu.sandwichproductions.view.Menu;
 
 public class CombatController {
     Menu menu = new Menu();
 
-    public void fight(Entity attacker, Entity defender) {
+    public void fight(Player attacker, Enemy defender) {
         int round = 1;
         Entity firstPlayer = null;
         Entity secondPlayer = null;
@@ -35,6 +38,9 @@ public class CombatController {
                     secondPlayer.attack(firstPlayer);
                 }
                 round++;
+            }
+            if (!defender.isAlive() && defender.willDropItem()){
+                attacker.addItem(ItemGenerator.generateItem());
             }
         }
     }

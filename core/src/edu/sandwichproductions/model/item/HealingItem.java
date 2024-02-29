@@ -12,7 +12,7 @@ public class HealingItem extends  Item{
         this.diceSides = diceSides;
         this.diceAmount = diceAmount;
         this.damageModifier = damageModifier;
-        super.itemType = ITEM_TYPE.HEALING_ITEM.toString();
+        super.itemType = ITEM_TYPE.HEALING_ITEM;
     }
 
     @Override
