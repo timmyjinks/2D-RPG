@@ -51,7 +51,7 @@ public abstract class Item {
     }
 
     public void setItemSprite(String filePath) {
-        this.itemSprite = new Sprite(new Texture(filePath));
+        this.itemSprite = new Sprite(new Texture(filePath), 178, 178);
     }
 
     @Override
