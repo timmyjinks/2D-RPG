@@ -3,11 +3,11 @@ package edu.sandwichproductions.view;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import edu.sandwichproductions.model.entity.Player;
 
 public class GamePlayerMenu {
     private SpriteBatch batch;
     private Sprite placeholder;
-    private Sprite
     private Sprite menuBody;
     private Sprite menuScreen;
     private Sprite weaponSlot;
@@ -32,7 +32,7 @@ public class GamePlayerMenu {
         health = new Sprite(new Texture("placeholder.png"));
     }
 
-    public void draw(SpriteBatch batch) {
+    public void draw() {
         batch.begin();
         batch.draw(menuBody, 1420, 20);
         batch.draw(menuScreen, getMenuScreenX(), getMenuScreenY());
@@ -43,6 +43,41 @@ public class GamePlayerMenu {
         batch.draw(armour, 1870, 560);
         batch.draw(health, 2265, 560);
         batch.end();
+    }
+
+    public void drawInventory(Player player) {
+        int row = 0;
+        int x, y;
+        batch.begin();
+        for (int inventoryIndex = 0; inventoryIndex < player.getInventory().length; inventoryIndex++) {
+            if (inventoryIndex % 5 == 0 && inventoryIndex != 0) {
+                row++;
+            }
+            x = inventoryIndex % 5 * (208 + 1) + 1460;
+            y = row * (208 + 1) + 60;
+            batch.draw(new Sprite(new Texture("Character_Screen_Item_Slot.png"), 208, 208), x, y);
+            if (player.getInventory()[inventoryIndex] == null) {
+                batch.draw(placeholder, inventoryIndex % 5 + x + 1, row + y + 1);
+            } else {
+                batch.draw(player.getInventory()[inventoryIndex].getItemSprite(), inventoryIndex % 5 + x + 1 + 15, row + y + 1 + 15);
+            }
+        }
+        batch.end();
+    }
+
+    public void drawHotBar(Player player) {
+        player.getWeapon().setItemSprite("assets/room.png");
+        setWeaponSprite(player.getWeapon().getItemSprite());
+        if (player.getArmour() == null) {
+            setArmourSprite(placeholder);
+        } else {
+            setArmourSprite(player.getArmour().getItemSprite());
+        }
+        if (player.getRing() == null) {
+            setHealthSprite(placeholder);
+        } else {
+            setHealthSprite(player.getRing().getItemSprite());
+        }
     }
 
     public int getMenuScreenX() {
