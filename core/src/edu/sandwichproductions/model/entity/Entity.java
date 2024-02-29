@@ -55,6 +55,23 @@ public abstract class Entity implements Attacker {
         return attacked.getHealth();
     }
 
+    public Item getItem(Item.ITEM_TYPE itemType){
+        return switch (itemType){
+            case DAMAGE_ITEM -> this.weapon;
+            case HEALING_ITEM -> this.ring;
+            case DEFENSE_ITEM -> this.armour;
+            default -> throw new IllegalStateException("unexpected value:" + itemType);
+        };
+    }
+    public void setItem(Item.ITEM_TYPE itemType, Item item, int inventorySpot){
+        Item tempItem = switch (itemType){
+            case DAMAGE_ITEM, STICK -> setWeapon((DamageItem) item);
+            case HEALING_ITEM -> setRing((HealingItem) item);
+            case DEFENSE_ITEM -> setArmour((DefenseItem) item);
+        };
+        inventory[inventorySpot] = tempItem;
+    }
+
     public int getArmorClass() {
         return armorClass;
     }
@@ -95,24 +112,30 @@ public abstract class Entity implements Attacker {
         return weapon;
     }
 
-    public void setWeapon(DamageItem weapon) {
+    public DamageItem setWeapon(DamageItem weapon) {
+        DamageItem tempItem = this.weapon;
         this.weapon = weapon;
+        return tempItem;
     }
 
     public HealingItem getRing() {
         return ring;
     }
 
-    public void setRing(HealingItem ring) {
+    public HealingItem setRing(HealingItem ring) {
+        HealingItem tempItem = this.ring;
         this.ring = ring;
+        return tempItem;
     }
 
     public DefenseItem getArmour() {
         return armour;
     }
 
-    public void setArmour(DefenseItem armour) {
+    public DefenseItem setArmour(DefenseItem armour) {
+        DefenseItem tempItem = this.armour;
         this.armour = armour;
+        return tempItem;
     }
 
     public int getPositionInRoom() {
