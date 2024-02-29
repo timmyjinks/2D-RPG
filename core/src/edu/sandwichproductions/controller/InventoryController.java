@@ -18,6 +18,9 @@ public class InventoryController {
                 }
             }
         }
+        if (itemType == Item.ITEM_TYPE.DAMAGE_ITEM){
+            equipItem(itemType, player, new Stick("Stick", 10, 4, 1, 0, "assets/room.png"));
+        }
     }
 
     public static ArrayList<Item> getItems (Item.ITEM_TYPE itemType, Entity player){
