@@ -57,6 +57,7 @@ public class GameDisplay {
             entity.updateCharacterPosition(floorWidth, floorHeight);
             drawMap();
             menu.draw(batch);
+            drawInventory();
             player.getWeapon().setItemSprite("assets/room.png");
             menu.setWeaponSprite(player.getWeapon().getItemSprite());
             return true;
@@ -122,14 +123,30 @@ public class GameDisplay {
         }
     }
 
+    public void drawInventory() {
+        int offSet = 0;
+        int x, y;
+        batch.begin();
+        for (int inventoryIndex = 0; inventoryIndex < player.getInventory().length; inventoryIndex++) {
+            if (inventoryIndex % 5 == 0 && inventoryIndex != 0) {
+                offSet++;
+            }
+            x = inventoryIndex % 5 * (208 + 1) + 1460;
+            y = offSet * (208 + 1) + 60;
+            batch.draw(new Sprite(new Texture("room.png"), 208, 208),x , y);
+            batch.draw(new Sprite(new Texture("Sky_Render.png"), 178, 178), inventoryIndex % 5 + x + 1, offSet + y + 1);
+        }
+        batch.end();
+    }
+
     public void removeEnemy() {
-       for (int i = 0; i < 7; i++) {
-           if (!(getRoom().getEnemies()[i] == null)) {
-               if (!getRoom().getEnemies()[i].isAlive()) {
-                   getRoom().getEnemies()[i] = null;
-               }
-           }
-       }
+        for (int i = 0; i < 7; i++) {
+            if (!(getRoom().getEnemies()[i] == null)) {
+                if (!getRoom().getEnemies()[i].isAlive()) {
+                    getRoom().getEnemies()[i] = null;
+                }
+            }
+        }
     }
 }
 
