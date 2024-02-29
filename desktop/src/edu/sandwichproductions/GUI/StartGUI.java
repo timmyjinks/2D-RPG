@@ -11,14 +11,14 @@ public class StartGUI {
     public StartGUI(){
         BackgroundGUI backgroundGUI = new BackgroundGUI("assets/valley.png");
 
-        JPanel promptArea = new JPanel();
         JTextArea prompt = new JTextArea();
 
         con.getNum(0);
         prompt.setText(con.getPrompt());
-
-        promptArea.setLayout(new BorderLayout());
-        promptArea.setBounds(750,570,25,25);
+        Font font = prompt.getFont();
+        prompt.setFont(new Font(font.getFontName(),font.getStyle(),24));
+        prompt.setBackground(Color.LIGHT_GRAY);
+        prompt.setCaretColor(Color.LIGHT_GRAY);
 
         prompt.setLineWrap(true); // Enable text wrapping
         prompt.setWrapStyleWord(true); // Wrap at word boundaries
@@ -40,29 +40,26 @@ public class StartGUI {
         path3.setBackground(Color.GRAY);
         path3.setFocusable(false);
 
-        promptArea.setBackground(Color.YELLOW);
-
-        promptArea.setBounds(675,200,400,200);
+        prompt.setBounds(650,300,400,300);
 
         JFrame base = new JFrame();
 
         base.add(path1); // add the buttons to the forms
         base.add(path2);
         base.add(path3);
+        base.add(prompt);
         base.add(backgroundGUI);
+
 
         base.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         base.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        base.setLayout(null); //Doesnt work with background photo :(
         base.setVisible(true);
 
 
-        promptArea.add(prompt);
-        base.add(promptArea); //need to make the bounds smaller :(
         final boolean[] work = {false};
 
         path1.addActionListener(e -> {
-            con.getNum(3);
+            con.getNum(1);
             prompt.setText(con.getPrompt());
             con.getNum(0);
             if(con.finish()) {
@@ -79,19 +76,18 @@ public class StartGUI {
                 base.dispose();
                 new MapGUI();
             }
-            else if(con.finish()){
-                base.remove(path1);
-                base.remove(path3);
-                base.revalidate();
-                base.repaint();
-                path2.setText("Continue ahead");
-                work[0] = true;
-            }
             else{
                 con.getNum(2);
                 prompt.setText(con.getPrompt());
                 con.getNum(0);
-            }
+                if(con.finish()){
+                    base.remove(path1);
+                    base.remove(path3);
+                    base.revalidate();
+                    base.repaint();
+                    path2.setText("Continue ahead");
+                    work[0] = true;
+            }}
         });
         path3.addActionListener(e -> {
                 con.getNum(3);
