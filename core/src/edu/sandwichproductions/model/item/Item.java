@@ -10,11 +10,12 @@ public abstract class Item {
     protected int durability;
     protected Dice itemDice = new Dice();
     protected Sprite itemSprite;
-    protected String itemType;
+    protected Item.ITEM_TYPE itemType;
     public enum ITEM_TYPE {
         DAMAGE_ITEM,
         HEALING_ITEM,
-        DEFENSE_ITEM
+        DEFENSE_ITEM,
+        STICK
     }
 
     public Item(String name, int durability, String filePath) {
@@ -23,7 +24,7 @@ public abstract class Item {
         setItemSprite(filePath);
     }
 
-    public String getItemType(){
+    public ITEM_TYPE getItemType(){
         return itemType;
     }
 

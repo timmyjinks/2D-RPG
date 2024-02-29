@@ -8,9 +8,8 @@ import edu.sandwichproductions.model.item.Item;
 import java.util.Random;
 
 public class ItemGenerator {
-    private Random randomItem = new Random();
-
-    public Item generateItem() {
+    public static Item generateItem() {
+        Random randomItem = new Random();
         int itemType = randomItem.nextInt(3) + 1;
         int whichItem = randomItem.nextInt(1000) + 1;
         // 90% chance for common 9% chance for uncommon 0.9% chance for rare 0.1% chance for epic
@@ -25,7 +24,8 @@ public class ItemGenerator {
         }
     }
 
-    public Item generateBossItem() {
+    public static Item generateBossItem() {
+        Random randomItem = new Random();
         int itemType = randomItem.nextInt(3) + 1;
         int itemRarity = randomItem.nextInt(100) + 1;
         // 90% chance for epic 10% chance for legendary
@@ -36,7 +36,7 @@ public class ItemGenerator {
         }
     }
 
-    public Item commonItem(int itemType) {
+    public static Item commonItem(int itemType) {
         return switch (itemType) {
             case 1 -> new DamageItem("Broken Sword", 15, 6, 1, 1, "assets/room.png");
             case 2 -> new HealingItem("Broken Ring", 9, 4, 2, 2, "assets/room.png");
@@ -45,7 +45,7 @@ public class ItemGenerator {
         };
     }
 
-    public Item uncommonItem(int itemType) {
+    public static Item uncommonItem(int itemType) {
         return switch (itemType) {
             case 1 -> new DamageItem("Plain ol' Sword", 20, 8, 1, 2, "assets/room.png");
             case 2 -> new HealingItem("Ring of Lesser Restoration", 12, 6, 2, 2, "assets/room.png");
@@ -54,7 +54,7 @@ public class ItemGenerator {
         };
     }
 
-    public Item rareItem(int itemType) {
+    public static Item rareItem(int itemType) {
         return switch (itemType) {
             case 1 -> new DamageItem("Sharp Sword", 25, 8, 2, 3, "assets/room.png");
             case 2 -> new HealingItem("Ring of Restoration", 12, 4, 4, 4, "assets/room.png");
@@ -63,7 +63,7 @@ public class ItemGenerator {
         };
     }
 
-    public Item epicItem(int itemType) {
+    public static Item epicItem(int itemType) {
         return switch (itemType) {
             case 1 -> new DamageItem("Fiend Slasher", 30, 4, 5, 4, "assets/room.png");
             case 2 -> new HealingItem("Ring of Greater Restoration", 15, 4, 6, 6, "assets/Ring_Of_Greater_Restoration.png");
@@ -72,7 +72,7 @@ public class ItemGenerator {
         };
     }
 
-    public Item legendaryItem(int itemType) {
+    public static Item legendaryItem(int itemType) {
         return switch (itemType) {
             case 1 -> new DamageItem("Sky Render", 35, 12, 3, 6, "assets/Sky_Render.png");
             case 2 -> new HealingItem("Hero's Ring of Immortality", 18, 8, 3, 8, "assets/room.png");
