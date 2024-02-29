@@ -5,6 +5,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GamePlayerMenu {
+    private SpriteBatch batch;
+    private Sprite placeholder;
+    private Sprite
     private Sprite menuBody;
     private Sprite menuScreen;
     private Sprite weaponSlot;
