@@ -7,8 +7,8 @@ public class HealingItem extends  Item{
     protected int diceAmount;
     protected int damageModifier;
 
-    public HealingItem(String name, int durability, int diceSides, int diceAmount, int damageModifier, String filePath) {
-        super(name, durability, filePath);
+    public HealingItem(String name, int durability, int diceSides, int diceAmount, int damageModifier, Sprite sprite) {
+        super(name, durability, sprite);
         this.diceSides = diceSides;
         this.diceAmount = diceAmount;
         this.damageModifier = damageModifier;

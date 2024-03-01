@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import edu.sandwichproductions.model.entity.Entity;
 import edu.sandwichproductions.model.entity.Player;
 import edu.sandwichproductions.model.item.*;
+import edu.sandwichproductions.view.ItemSprite;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public class InventoryController {
             }
         }
         if (itemType == Item.ITEM_TYPE.DAMAGE_ITEM){
-            equipItem(itemType, player, new Stick("Stick", 10, 4, 1, 0, "assets/room.png"), 0);
+            equipItem(itemType, player, new Stick("Stick", 10, 4, 1, 0, ItemSprite.STICK), 0);
         }
     }
 

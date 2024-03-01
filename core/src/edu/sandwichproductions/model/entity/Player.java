@@ -3,9 +3,10 @@ package edu.sandwichproductions.model.entity;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import edu.sandwichproductions.controller.AnimationHandler;
-import edu.sandwichproductions.model.item.*;
-
-import java.util.Arrays;
+import edu.sandwichproductions.model.item.DamageItem;
+import edu.sandwichproductions.model.item.Item;
+import edu.sandwichproductions.model.item.Stick;
+import edu.sandwichproductions.view.ItemSprite;
 
 public abstract class Player extends Entity {
     private static AnimationHandler animatePlayer;
@@ -20,7 +21,7 @@ public abstract class Player extends Entity {
     public void addItem(Item addedItem){
         for (int inventoryPosition = 0; inventoryPosition < this.inventory.length; inventoryPosition++){
             if (this.getWeapon() == null){
-                this.setWeapon(new Stick("Stick", 10, 4, 1, 0, "assets/room.png"));
+                this.setWeapon(new Stick("Stick", 10, 4, 1, 0, ItemSprite.STICK));
                 break;
             }
             if (this.inventory[inventoryPosition] == null){

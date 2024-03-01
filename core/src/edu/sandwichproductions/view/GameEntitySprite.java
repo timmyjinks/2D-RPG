@@ -13,8 +13,8 @@ public class GameEntitySprite {
     private int entityDimension;
 
     public GameEntitySprite() {
-        character = new AnimationHandler("Knight_Idle.png", 6);
-        enemy = new AnimationHandler("Skeleton_Idle.png", 4);
+        character = ItemSprite.KNIGHT;
+        enemy = ItemSprite.SKELETON;
     }
 
     public AnimationHandler getCharacter() {

@@ -1,7 +1,6 @@
 package edu.sandwichproductions.model.map;
 
 import edu.sandwichproductions.controller.MapGenerator;
-import edu.sandwichproductions.model.entity.Enemy;
 
 public class Map {
     private int playerWorldPosition;

@@ -1,12 +1,11 @@
 package edu.sandwichproductions.model.entity;
 
 
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import edu.sandwichproductions.controller.AnimationHandler;
 import edu.sandwichproductions.controller.InventoryController;
-import edu.sandwichproductions.model.item.*;
+import edu.sandwichproductions.model.item.DamageItem;
+import edu.sandwichproductions.model.item.DefenseItem;
+import edu.sandwichproductions.model.item.HealingItem;
+import edu.sandwichproductions.model.item.Item;
 import edu.sandwichproductions.util.Dice;
 
 public abstract class Entity implements Attacker {

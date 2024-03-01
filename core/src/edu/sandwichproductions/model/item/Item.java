@@ -1,7 +1,5 @@
 package edu.sandwichproductions.model.item;
 
-import com.badlogic.gdx.Files;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import edu.sandwichproductions.util.Dice;
 
@@ -18,10 +16,10 @@ public abstract class Item {
         STICK
     }
 
-    public Item(String name, int durability, String filePath) {
+    public Item(String name, int durability, Sprite sprite) {
         this.name = name;
         this.durability = durability;
-        setItemSprite(filePath);
+        setItemSprite(sprite);
     }
 
     public ITEM_TYPE getItemType(){
@@ -50,8 +48,8 @@ public abstract class Item {
         return this.itemSprite;
     }
 
-    public void setItemSprite(String filePath) {
-        this.itemSprite = new Sprite(new Texture(filePath), 178, 178);
+    public void setItemSprite(Sprite sprite) {
+        this.itemSprite = sprite;
     }
 
     @Override

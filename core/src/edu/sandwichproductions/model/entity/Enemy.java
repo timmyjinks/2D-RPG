@@ -1,6 +1,5 @@
 package edu.sandwichproductions.model.entity;
 
-import edu.sandwichproductions.controller.AnimationHandler;
 import edu.sandwichproductions.util.Dice;
 
 import java.util.Random;

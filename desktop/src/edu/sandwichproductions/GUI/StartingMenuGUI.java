@@ -1,7 +1,5 @@
 package edu.sandwichproductions.GUI;
 
-import edu.sandwichproductions.GUI.BackgroundGUI;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

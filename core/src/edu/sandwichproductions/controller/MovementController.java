@@ -3,8 +3,8 @@ package edu.sandwichproductions.controller;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import edu.sandwichproductions.model.entity.Enemy;
-import edu.sandwichproductions.model.map.Map;
 import edu.sandwichproductions.model.entity.Player;
+import edu.sandwichproductions.model.map.Map;
 
 public class MovementController {
     private Map world;

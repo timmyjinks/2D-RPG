@@ -3,8 +3,6 @@ package edu.sandwichproductions.controller;
 import edu.sandwichproductions.model.entity.*;
 import edu.sandwichproductions.view.UserChoice;
 
-import java.nio.file.attribute.PosixFileAttributes;
-
 
 public class PathTreeController {
     UserChoice get = new UserChoice();
