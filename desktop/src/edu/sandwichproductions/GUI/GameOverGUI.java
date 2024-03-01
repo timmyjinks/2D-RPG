@@ -1,34 +1,42 @@
 package edu.sandwichproductions.GUI;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 
 public class GameOverGUI extends JDialog {
     public GameOverGUI() {
-        JFrame frame = new JFrame();
+        BackgroundGUI backgroundGUI = new BackgroundGUI("assets/death.png");
+        JFrame base = new JFrame();
         JButton tryAgain = new JButton("Try Again");
-        JButton quit = new JButton("Quit");
+        JButton quit = new JButton("leave :(");
 
-        tryAgain.setBounds(300, 150, 500, 500);
+        quit.setIcon(new ImageIcon("assets/Exit_Button.png"));
+        tryAgain.setBounds(750, 300, 250, 100);
+        quit.setBounds(750,650,386, 165);
+        tryAgain.setBackground(Color.DARK_GRAY);
+        quit.setBackground(Color.darkGray);
+        tryAgain.setFocusable(false);
+        quit.setFocusable(false);
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setVisible(true);
-        frame.setLayout(null);
+        base.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        base.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        base.setVisible(true);
 
-        frame.add(tryAgain);
+        base.add(tryAgain);
+        base.add(quit);
+        base.add(backgroundGUI);
 
         tryAgain.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new StartingMenuGUI();
-                frame.dispose();
+                base.dispose();
             }
         });
 
         quit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                frame.dispose();
+                base.dispose();
             }
         });
     }

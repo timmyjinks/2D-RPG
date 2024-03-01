@@ -1,8 +1,10 @@
 package edu.sandwichproductions.model.item;
 
+import edu.sandwichproductions.view.ItemSprite;
+
 public class BrokenRing extends HealingItem{
     public BrokenRing() {
-        super("Broken Ring", 10, 4, 1, 0, "assets/room.png");
+        super("Broken Ring", 10, 4, 1, 0, ItemSprite.STICK);
         this.itemType = ITEM_TYPE.BROKEN_RING;
     }
 

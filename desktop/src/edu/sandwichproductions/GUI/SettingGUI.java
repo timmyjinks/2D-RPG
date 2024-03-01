@@ -15,30 +15,49 @@ public class SettingGUI extends JDialog {
         BackgroundGUI backgroundGUI = new BackgroundGUI("assets/setting-img.png");
 
 
-        JButton difficulty = new JButton("Difficulty");
-        JButton easy = new JButton("Easy");
-        JButton normal = new JButton("normal");
-        JButton medium = new JButton("Medium");
-        JButton hard = new JButton("Hard");
-        JButton Jshlatt = new JButton("Shlagg :(");
-        JButton back = new JButton("Go back silly");
-        JButton setting = new JButton("Back");
+        JButton difficulty = new JButton();
+        JButton easy = new JButton();
+        JButton normal = new JButton();
+        JButton medium = new JButton();
+        JButton hard = new JButton();
+        JButton Jshlatt = new JButton();
+        JButton back = new JButton();
+        JButton exit = new JButton();
 
 
-        difficulty.setBounds(750, 400, 250, 100);
-        setting.setBounds(750, 650, 250, 100);
+        difficulty.setContentAreaFilled(false);
+        easy.setContentAreaFilled(false);
+        normal.setContentAreaFilled(false);
+        medium.setContentAreaFilled(false);
+        hard.setContentAreaFilled(false);
+        Jshlatt.setContentAreaFilled(false);
+        back.setContentAreaFilled(false);
+        exit.setContentAreaFilled(false);
+
+        difficulty.setIcon(new ImageIcon("assets/difficulty-button.png"));
+        easy.setIcon(new ImageIcon("assets/easy-button.png"));
+        normal.setIcon(new ImageIcon("assets/normal-button.png"));
+        medium.setIcon(new ImageIcon("assets/medium-button.png"));
+        hard.setIcon(new ImageIcon("assets/hard-button.png"));
+        Jshlatt.setIcon(new ImageIcon("assets/Jshlatt-button.png"));
+        back.setIcon(new ImageIcon("assets/Back-button.png"));
+        exit.setIcon(new ImageIcon("assets/Back-button.png"));
 
 
 
-
-        easy.setBounds(750,75,250,100);
-        normal.setBounds(750,200,250,100);
-        medium.setBounds(750,325,250,100);
-        hard.setBounds(750,459,250,100);
-        Jshlatt.setBounds(750,575,250,100);
-        back.setBounds(750,800,250,100);
+        difficulty.setBounds(700, 400, 350, 150);
+        exit.setBounds(700, 600, 350, 150);
 
 
+        easy.setBounds(175,100,350,150);
+        normal.setBounds(175,325,350,150);
+
+        medium.setBounds(1200,100,350,150);
+        hard.setBounds(1200,325,350,150);
+
+        Jshlatt.setBounds(700,400,350,150);
+
+        back.setBounds(700,800,350,150);
 
 
         easy.setVisible(false);
@@ -50,26 +69,24 @@ public class SettingGUI extends JDialog {
 
 
         difficulty.setFocusable(false);
-        setting.setFocusable(false);
+        exit.setFocusable(false);
 
 
         JFrame base = new JFrame();
         base.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         base.setExtendedState(JFrame.MAXIMIZED_BOTH);
         base.setVisible(true);
+
+
         base.add(difficulty);
-        base.add(setting);
+        base.add(exit);
         base.add(easy);
         base.add(normal);
         base.add(medium);
         base.add(hard);
         base.add(Jshlatt);
         base.add(back);
-
-
         base.add(backgroundGUI);
-
-
 
 
         difficulty.addActionListener(new ActionListener() {
@@ -80,11 +97,11 @@ public class SettingGUI extends JDialog {
                 hard.setVisible(true);
                 Jshlatt.setVisible(true);
                 back.setVisible(true);
-                setting.setVisible(false);
+                exit.setVisible(false);
                 difficulty.setVisible(false);
             }
         });
-        setting.addActionListener(new ActionListener() {
+        exit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 base.dispose();
                 new StartingMenuGUI();
@@ -99,12 +116,10 @@ public class SettingGUI extends JDialog {
                 hard.setVisible(false);
                 Jshlatt.setVisible(false);
                 back.setVisible(false);
-                setting.setVisible(true);
+                exit.setVisible(true);
                 difficulty.setVisible(true);
             }
         });
-
-
         easy.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -123,8 +138,6 @@ public class SettingGUI extends JDialog {
                 modifier.setMode(1.5);
             }
         });
-
-
         hard.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -137,7 +150,5 @@ public class SettingGUI extends JDialog {
                 modifier.setMode(10); // :( no survival :(
             }
         });
-
-
     }
 }

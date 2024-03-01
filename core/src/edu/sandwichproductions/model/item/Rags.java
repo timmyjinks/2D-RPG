@@ -1,8 +1,10 @@
 package edu.sandwichproductions.model.item;
 
+import edu.sandwichproductions.view.ItemSprite;
+
 public class Rags extends DefenseItem{
     public Rags() {
-        super("Rags", 10, 0, "assets/room.png");
+        super("Rags", 10, 0, ItemSprite.STICK);
         this.itemType = ITEM_TYPE.RAGS;
     }
 
