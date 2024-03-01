@@ -8,7 +8,7 @@ import java.awt.*;
 public class StartGUI {
     PathTreeController con = new PathTreeController();
     public StartGUI(){
-        BackgroundGUI backgroundGUI = new BackgroundGUI("assets/valley.png");
+        BackgroundGUI backgroundGUI = new BackgroundGUI("assets/path.png");
 
         JTextArea prompt = new JTextArea();
 

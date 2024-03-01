@@ -22,11 +22,22 @@ public class SettingGUI extends JDialog {
         JButton hard = new JButton("Hard");
         JButton Jshlatt = new JButton("Shlagg :(");
         JButton back = new JButton("Go back silly");
-        JButton setting = new JButton("Back");
+
+
+        JButton exit = new JButton("Back");
+
+        exit.setBounds(660, 600, 386, 165);
+        exit.setBackground(Color.GRAY);
+        exit.setFocusable(false);
+        exit.setIcon(new ImageIcon("assets/Exit_Button.png"));
+        exit.setVerticalAlignment(SwingConstants.CENTER);
+        exit.setHorizontalAlignment(SwingConstants.CENTER);
+
+
 
 
         difficulty.setBounds(750, 400, 250, 100);
-        setting.setBounds(750, 650, 250, 100);
+
 
 
 
@@ -50,7 +61,7 @@ public class SettingGUI extends JDialog {
 
 
         difficulty.setFocusable(false);
-        setting.setFocusable(false);
+        exit.setFocusable(false);
 
 
         JFrame base = new JFrame();
@@ -58,7 +69,7 @@ public class SettingGUI extends JDialog {
         base.setExtendedState(JFrame.MAXIMIZED_BOTH);
         base.setVisible(true);
         base.add(difficulty);
-        base.add(setting);
+        base.add(exit);
         base.add(easy);
         base.add(normal);
         base.add(medium);
@@ -80,11 +91,11 @@ public class SettingGUI extends JDialog {
                 hard.setVisible(true);
                 Jshlatt.setVisible(true);
                 back.setVisible(true);
-                setting.setVisible(false);
+                exit.setVisible(false);
                 difficulty.setVisible(false);
             }
         });
-        setting.addActionListener(new ActionListener() {
+        exit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 base.dispose();
                 new StartingMenuGUI();
@@ -99,7 +110,7 @@ public class SettingGUI extends JDialog {
                 hard.setVisible(false);
                 Jshlatt.setVisible(false);
                 back.setVisible(false);
-                setting.setVisible(true);
+                exit.setVisible(true);
                 difficulty.setVisible(true);
             }
         });
