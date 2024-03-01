@@ -4,8 +4,6 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import edu.sandwichproductions.Game;
 
-import javax.swing.*;
-
 public class MapGUI {
 
     public MapGUI() {

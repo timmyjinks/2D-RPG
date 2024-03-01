@@ -1,12 +1,11 @@
 package edu.sandwichproductions.controller;
 
 import edu.sandwichproductions.Game;
-import edu.sandwichproductions.model.entity.Barbarian;
 import edu.sandwichproductions.model.entity.Enemy;
+import edu.sandwichproductions.model.entity.Player;
 import edu.sandwichproductions.model.map.Map;
 import edu.sandwichproductions.model.map.Room;
 import edu.sandwichproductions.view.Menu;
-import edu.sandwichproductions.model.entity.Player;
 
 public class GameController {
     private Map world;

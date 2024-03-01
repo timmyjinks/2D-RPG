@@ -2,10 +2,9 @@ package edu.sandwichproductions.controller;
 
 import edu.sandwichproductions.model.entity.Enemy;
 import edu.sandwichproductions.model.entity.Skeleton;
-import edu.sandwichproductions.model.item.Stick;
 import edu.sandwichproductions.model.map.BossRoom;
-import edu.sandwichproductions.model.map.SpawnRoom;
 import edu.sandwichproductions.model.map.Room;
+import edu.sandwichproductions.model.map.SpawnRoom;
 
 import java.util.Random;
 

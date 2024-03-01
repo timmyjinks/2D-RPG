@@ -1,6 +1,5 @@
 package edu.sandwichproductions.GUI;
 
-import edu.sandwichproductions.controller.GameController;
 import edu.sandwichproductions.controller.PathTreeController;
 
 import javax.swing.*;

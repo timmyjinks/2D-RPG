@@ -1,13 +1,20 @@
 package edu.sandwichproductions.view;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import edu.sandwichproductions.controller.InventoryController;
 import edu.sandwichproductions.model.entity.Player;
+import edu.sandwichproductions.model.item.Item;
+
+import java.util.ArrayList;
 
 public class GamePlayerMenu {
     private SpriteBatch batch;
     private Sprite placeholder;
+    private Sprite characterItemSlot;
     private Sprite menuBody;
     private Sprite menuScreen;
     private Sprite weaponSlot;
@@ -19,17 +26,18 @@ public class GamePlayerMenu {
 
     public GamePlayerMenu() {
         batch = new SpriteBatch();
-        placeholder = new Sprite(new Texture("assets/placeholder.png"), 178, 178);
-        menuBody = new Sprite(new Texture("Character_Screen_Background.png"), 1120, 1360);
+        menuBody = ItemSprite.MENU_BODY;
+        characterItemSlot = ItemSprite.CHARACTER_ITEM_SLOT;
+        placeholder = ItemSprite.PLACEHOLDER;
         menuBody.setX(1420);
         menuBody.setY(20);
         menuScreen = new Sprite(new Texture("bossroom.png"), 1040, 550);
         weaponSlot = new Sprite(new Texture("Character_Screen_Item_Slot.png"), 250, 250);
         armourSlot = new Sprite(new Texture("Character_Screen_Item_Slot.png"), 250, 250);
         healthSlot = new Sprite(new Texture("Character_Screen_Item_Slot.png"), 250, 250);
-        weapon = new Sprite(new Texture("placeholder.png"));
-        armour = new Sprite(new Texture("placeholder.png"));
-        health = new Sprite(new Texture("placeholder.png"));
+        weapon = placeholder;
+        armour = placeholder;
+        health = placeholder;
     }
 
     public void draw() {
@@ -55,7 +63,7 @@ public class GamePlayerMenu {
             }
             x = inventoryIndex % 5 * (208 + 1) + 1460;
             y = row * (208 + 1) + 60;
-            batch.draw(new Sprite(new Texture("Character_Screen_Item_Slot.png"), 208, 208), x, y);
+            batch.draw(characterItemSlot, x, y);
             if (player.getInventory()[inventoryIndex] == null) {
                 batch.draw(placeholder, inventoryIndex % 5 + x + 1, row + y + 1);
             } else {
@@ -66,7 +74,7 @@ public class GamePlayerMenu {
     }
 
     public void drawHotBar(Player player) {
-        player.getWeapon().setItemSprite("assets/room.png");
+        player.getWeapon().setItemSprite(ItemSprite.STICK); // TODO replace with real item
         setWeaponSprite(player.getWeapon().getItemSprite());
         if (player.getArmour() == null) {
             setArmourSprite(placeholder);
@@ -78,6 +86,23 @@ public class GamePlayerMenu {
         } else {
             setHealthSprite(player.getRing().getItemSprite());
         }
+    }
+
+    public void displayInventorySwap(Player player) {
+        boolean exit = false;
+        ArrayList<Item> items;
+        batch.begin();
+        if (InventoryController.isPressingI()) {
+            while (!exit)
+                if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
+                    items = InventoryController.getItems(Item.ITEM_TYPE.DAMAGE_ITEM, player);
+                    for (int row = 0; row < items.size(); row++) {
+                        batch.draw(ItemSprite.ENEMY_R00M, row * (250 + 1) + 1460, row * (250 + 1) + 1000);
+                    }
+                    exit = true;
+                }
+        }
+        batch.end();
     }
 
     public int getMenuScreenX() {

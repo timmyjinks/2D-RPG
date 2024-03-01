@@ -1,12 +1,10 @@
 package edu.sandwichproductions.GUI;
-import edu.sandwichproductions.GUI.BackgroundGUI;
-import edu.sandwichproductions.util.Dice;
-import edu.sandwichproductions.view.GameDisplay;
 
+import edu.sandwichproductions.util.Dice;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class SettingGUI extends JDialog {
