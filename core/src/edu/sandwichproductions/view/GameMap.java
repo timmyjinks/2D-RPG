@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import edu.sandwichproductions.model.entity.Player;
 import edu.sandwichproductions.model.map.Map;
 import edu.sandwichproductions.model.map.Room;
+import edu.sandwichproductions.util.ItemSprite;
 
 public class GameMap {
     private SpriteBatch batch;
@@ -19,7 +20,7 @@ public class GameMap {
     private float elapsedTime;
 
     public GameMap(Map world) {
-        batch = ItemSprite.BATCH;
+        batch = new SpriteBatch();
         entity = new GameEntitySprite();
         room = ItemSprite.ROOM;
         enemyroom = ItemSprite.ENEMY_R00M;
@@ -47,7 +48,7 @@ public class GameMap {
             }
         }
         batch.draw(ItemSprite.KNIGHT.getKeyFrame(elapsedTime, true), entity.getCharacterXPosition(), entity.getCharacterYPosition());
-        ItemSprite.BATCH.end();
+        batch.end();
     }
 
     public void drawRoom(Sprite room) {
