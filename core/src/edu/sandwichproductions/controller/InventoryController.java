@@ -12,16 +12,22 @@ import java.util.ArrayList;
 public class InventoryController {
     public static void setItem(Item.ITEM_TYPE itemType, Entity player) {
         Item[] inventory = player.getInventory();
-        for (int inventorySpot = 0; inventorySpot < inventory.length; inventorySpot++) {
-            if (inventory[inventorySpot] != null) {
-                if (inventory[inventorySpot].getItemType() == itemType) {
-                    equipItem(itemType, player, inventory[inventorySpot], inventorySpot);
+        for (Item item : inventory) {
+            if (item != null) {
+                if (item.getItemType() == itemType) {
+                    equipItem(itemType, player, item);
                     break;
                 }
             }
         }
-        if (itemType == Item.ITEM_TYPE.DAMAGE_ITEM){
-            equipItem(itemType, player, new Stick("Stick", 10, 4, 1, 0, ItemSprite.STICK), 0);
+        equipDefaults(itemType, player);
+    }
+
+    private static void equipDefaults(Item.ITEM_TYPE itemType, Entity player){
+        switch (itemType){
+            case DAMAGE_ITEM -> equipItem(itemType, player, new Stick());
+            case DEFENSE_ITEM -> equipItem(itemType, player, new Rags());
+            case HEALING_ITEM -> equipItem(itemType, player, new BrokenRing());
         }
     }
 
@@ -41,8 +47,8 @@ public class InventoryController {
     public static void equipItem(Item.ITEM_TYPE itemType, Entity player, Item equipItem){
         switch (itemType){
             case DAMAGE_ITEM, STICK -> player.setWeapon((DamageItem) equipItem);
-            case HEALING_ITEM -> player.setRing((HealingItem) equipItem);
-            case DEFENSE_ITEM -> player.setArmour((DefenseItem) equipItem);
+            case HEALING_ITEM, BROKEN_RING -> player.setRing((HealingItem) equipItem);
+            case DEFENSE_ITEM, RAGS -> player.setArmour((DefenseItem) equipItem);
         }
     }
 
@@ -55,6 +61,7 @@ public class InventoryController {
     }
 
     public void moveItemsInInventory(Player player, int item1, int item2) {
+        // no work sadge D:
         Item[] playerItems = player.getInventory();
         Item tempItem = playerItems[item1];
         playerItems[item1] = playerItems[item2];
