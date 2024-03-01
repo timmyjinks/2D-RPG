@@ -13,19 +13,19 @@ public class StartingMenuGUI{
         JButton exit = new JButton();
 
         start.setBounds(613, 200, 479, 166);
-        start.setBackground(Color.GRAY);
+        start.setContentAreaFilled(false);
         start.setFocusable(false);
         start.setIcon(new ImageIcon("assets/Start_Button.png"));
 
 
         setting.setBounds(520, 400, 664, 166); //this just add the location and size and change colors
-        setting.setBackground(Color.GRAY);
+        setting.setContentAreaFilled(false);
         setting.setFocusable(false);
         setting.setIcon(new ImageIcon("assets/Settings_Button.png"));
 
 
         exit.setBounds(660, 600, 386, 165);
-        exit.setBackground(Color.GRAY);
+        exit.setContentAreaFilled(false);
         exit.setFocusable(false);
         exit.setIcon(new ImageIcon("assets/Exit_Button.png"));
 
