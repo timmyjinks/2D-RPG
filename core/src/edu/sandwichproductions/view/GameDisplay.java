@@ -2,7 +2,6 @@ package edu.sandwichproductions.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import edu.sandwichproductions.controller.GameController;
 import edu.sandwichproductions.controller.PlayerStatus;
 import edu.sandwichproductions.model.entity.Player;
@@ -13,13 +12,11 @@ public class GameDisplay {
     private GameController controller;
     private GameMap map;
     private GamePlayerMenu menu;
-    private SpriteBatch batch;
     private Player player;
 
     public GameDisplay() {
         controller = new GameController();
         controller.run();
-        batch = new SpriteBatch();
         menu = new GamePlayerMenu();
         map = new GameMap(controller.getWorld());
         player = controller.createPlayer();
