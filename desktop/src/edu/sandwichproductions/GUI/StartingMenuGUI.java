@@ -1,9 +1,8 @@
 package edu.sandwichproductions.GUI;
 
-import edu.sandwichproductions.controller.GameStatus;
+import edu.sandwichproductions.util.GameStatus;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

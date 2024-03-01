@@ -1,7 +1,6 @@
 package edu.sandwichproductions.model.item;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import edu.sandwichproductions.view.ItemSprite;
+import edu.sandwichproductions.util.ItemSprite;
 
 public class Stick extends DamageItem{
     public Stick() {

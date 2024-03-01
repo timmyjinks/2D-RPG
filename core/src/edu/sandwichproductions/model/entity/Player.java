@@ -6,7 +6,6 @@ import edu.sandwichproductions.controller.AnimationHandler;
 import edu.sandwichproductions.model.item.DamageItem;
 import edu.sandwichproductions.model.item.Item;
 import edu.sandwichproductions.model.item.Stick;
-import edu.sandwichproductions.view.ItemSprite;
 
 public abstract class Player extends Entity {
     private static AnimationHandler animatePlayer;

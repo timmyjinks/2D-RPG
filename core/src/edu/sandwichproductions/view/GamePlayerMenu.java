@@ -1,15 +1,10 @@
 package edu.sandwichproductions.view;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import edu.sandwichproductions.controller.InventoryController;
 import edu.sandwichproductions.model.entity.Player;
-import edu.sandwichproductions.model.item.Item;
-
-import java.util.ArrayList;
+import edu.sandwichproductions.util.ItemSprite;
 
 public class GamePlayerMenu {
     private SpriteBatch batch;
@@ -40,7 +35,7 @@ public class GamePlayerMenu {
         health = placeholder;
     }
 
-    public void draw() {
+    public void drawMenu(Player player) {
         batch.begin();
         batch.draw(menuBody, 1420, 20);
         batch.draw(menuScreen, getMenuScreenX(), getMenuScreenY());
@@ -51,6 +46,9 @@ public class GamePlayerMenu {
         batch.draw(armour, 1870, 560);
         batch.draw(health, 2265, 560);
         batch.end();
+        drawInventory(player);
+        drawInventory(player);
+        drawHotBar(player);
     }
 
     public void drawInventory(Player player) {
@@ -86,23 +84,6 @@ public class GamePlayerMenu {
         } else {
             setHealthSprite(player.getRing().getItemSprite());
         }
-    }
-
-    public void displayInventorySwap(Player player) {
-        boolean exit = false;
-        ArrayList<Item> items;
-        batch.begin();
-        if (InventoryController.isPressingI()) {
-            while (!exit)
-                if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
-                    items = InventoryController.getItems(Item.ITEM_TYPE.DAMAGE_ITEM, player);
-                    for (int row = 0; row < items.size(); row++) {
-                        batch.draw(ItemSprite.ENEMY_R00M, row * (250 + 1) + 1460, row * (250 + 1) + 1000);
-                    }
-                    exit = true;
-                }
-        }
-        batch.end();
     }
 
     public int getMenuScreenX() {

@@ -4,7 +4,6 @@ import edu.sandwichproductions.model.item.DamageItem;
 import edu.sandwichproductions.model.item.DefenseItem;
 import edu.sandwichproductions.model.item.HealingItem;
 import edu.sandwichproductions.model.item.Item;
-import edu.sandwichproductions.view.ItemSprite;
 
 import java.util.Random;
 

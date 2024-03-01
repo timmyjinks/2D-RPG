@@ -9,41 +9,22 @@ import edu.sandwichproductions.view.Menu;
 
 public class GameController {
     private Map world;
-    private final Menu menu;
-    private Player playerClass;
     private PathTreeController con;
     private Player player;
-    private final CombatController myCombat;
+    private CombatController myCombat;
     private MovementController myMovement;
-    private int selection = 0;
-    private Game game;
 
     public GameController() {
-        menu = new Menu();
         myCombat = new CombatController();
     }
 
     public void run(){
-//        while (selection != 1) {
-//            selection = menu.startMenu();
-//            switch (selection) {
-//                case 1 -> startGame();
-//                case 2 -> menu.settingsMenu();
-//            }
-//        }
         startGame();
     }
 
     public void startGame() {
-        game = new Game();
         world = new Map();
         myMovement = new MovementController(world);
-    }
-
-    public void attacking(Enemy enemy) {
-        if (enemy != null) {
-            myCombat.fight(player, enemy);
-        }
     }
 
     public Player createPlayer() {
@@ -57,10 +38,6 @@ public class GameController {
 
     public Map getWorld() {
         return this.world;
-    }
-
-    public Room[][] getRooms() {
-        return this.world.getRooms();
     }
 
     public MovementController getMyMovement() {

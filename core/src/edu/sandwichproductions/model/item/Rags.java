@@ -1,6 +1,6 @@
 package edu.sandwichproductions.model.item;
 
-import edu.sandwichproductions.view.ItemSprite;
+import edu.sandwichproductions.util.ItemSprite;
 
 public class Rags extends DefenseItem{
     public Rags() {

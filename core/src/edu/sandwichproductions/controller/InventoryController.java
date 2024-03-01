@@ -5,7 +5,6 @@ import com.badlogic.gdx.Input;
 import edu.sandwichproductions.model.entity.Entity;
 import edu.sandwichproductions.model.entity.Player;
 import edu.sandwichproductions.model.item.*;
-import edu.sandwichproductions.view.ItemSprite;
 
 import java.util.ArrayList;
 

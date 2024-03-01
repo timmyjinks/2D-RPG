@@ -2,7 +2,7 @@ package edu.sandwichproductions;
 
 import edu.sandwichproductions.GUI.GameOverGUI;
 import edu.sandwichproductions.GUI.StartingMenuGUI;
-import edu.sandwichproductions.controller.GameStatus;
+import edu.sandwichproductions.util.GameStatus;
 
 public class DesktopLauncher extends StartingMenuGUI {
 	public static void main (String[] arg) {

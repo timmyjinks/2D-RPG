@@ -20,9 +20,15 @@ public class Game extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		if (!count) {
+			dispose();
 			Gdx.app.exit();
 		} else {
 			count = gameDisplay.update();
 		}
+	}
+
+	@Override
+	public void dispose() {
+
 	}
 }

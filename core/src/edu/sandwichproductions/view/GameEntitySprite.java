@@ -2,6 +2,7 @@ package edu.sandwichproductions.view;
 
 import edu.sandwichproductions.controller.AnimationHandler;
 import edu.sandwichproductions.model.entity.Player;
+import edu.sandwichproductions.util.ItemSprite;
 
 public class GameEntitySprite {
     private AnimationHandler character;

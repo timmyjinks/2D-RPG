@@ -1,4 +1,4 @@
-package edu.sandwichproductions.controller;
+package edu.sandwichproductions.util;
 
 public class GameStatus {
     private static boolean playerStatus = true;
