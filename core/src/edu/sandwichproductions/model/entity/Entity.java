@@ -29,9 +29,7 @@ public abstract class Entity implements Attacker {
 
     @Override
     public int attack(Entity attacked) {
-        if (weapon == null){
-            InventoryController.setItem(Item.ITEM_TYPE.DAMAGE_ITEM,this);
-        }
+        checkEquippedItems();
         int hit = entityDice.rollDice(20, 1, weapon.getDamageModifier());
         int damage = 0;
         if (attacked.getArmour() != null) {
@@ -53,6 +51,17 @@ public abstract class Entity implements Attacker {
         attacked.setHealth(attacked.getHealth() - damage);
         return attacked.getHealth();
     }
+    private void checkEquippedItems(){
+        if (weapon == null){
+            InventoryController.setItem(Item.ITEM_TYPE.DAMAGE_ITEM, this);
+        }
+        if (ring == null){
+            InventoryController.setItem(Item.ITEM_TYPE.HEALING_ITEM, this);
+        }
+        if (armour == null){
+            InventoryController.setItem(Item.ITEM_TYPE.DEFENSE_ITEM, this);
+        }
+    }
 
     public Item getItem(Item.ITEM_TYPE itemType){
         return switch (itemType){
@@ -63,12 +72,11 @@ public abstract class Entity implements Attacker {
         };
     }
     public void setItem(Item.ITEM_TYPE itemType, Item item, int inventorySpot){
-        Item tempItem = switch (itemType){
+        switch (itemType){
             case DAMAGE_ITEM, STICK -> setWeapon((DamageItem) item);
             case HEALING_ITEM -> setRing((HealingItem) item);
             case DEFENSE_ITEM -> setArmour((DefenseItem) item);
         };
-        inventory[inventorySpot] = tempItem;
     }
 
     public int getArmorClass() {
@@ -111,30 +119,24 @@ public abstract class Entity implements Attacker {
         return weapon;
     }
 
-    public DamageItem setWeapon(DamageItem weapon) {
-        DamageItem tempItem = this.weapon;
+    public void setWeapon(DamageItem weapon) {
         this.weapon = weapon;
-        return tempItem;
     }
 
     public HealingItem getRing() {
         return ring;
     }
 
-    public HealingItem setRing(HealingItem ring) {
-        HealingItem tempItem = this.ring;
+    public void setRing(HealingItem ring) {
         this.ring = ring;
-        return tempItem;
     }
 
     public DefenseItem getArmour() {
         return armour;
     }
 
-    public DefenseItem setArmour(DefenseItem armour) {
-        DefenseItem tempItem = this.armour;
+    public void setArmour(DefenseItem armour) {
         this.armour = armour;
-        return tempItem;
     }
 
     public int getPositionInRoom() {
