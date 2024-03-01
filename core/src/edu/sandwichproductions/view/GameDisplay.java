@@ -52,7 +52,7 @@ public class GameDisplay {
     }
 
     public void createPlayer() {
-        player.setWeapon(new Stick("Stick", 10, 4, 1, 0, ItemSprite.STICK));
+        player.setWeapon(new Stick());
         player.setRing(new HealingItem("Healing Potion", 5, 2, 6, 5, ItemSprite.RING));
         player.setHealth(999999999);
     }
