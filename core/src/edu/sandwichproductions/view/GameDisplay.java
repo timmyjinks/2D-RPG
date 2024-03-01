@@ -2,8 +2,9 @@ package edu.sandwichproductions.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import edu.sandwichproductions.controller.GameController;
-import edu.sandwichproductions.controller.PlayerStatus;
+import edu.sandwichproductions.controller.GameStatus;
 import edu.sandwichproductions.model.entity.Player;
 import edu.sandwichproductions.model.item.HealingItem;
 import edu.sandwichproductions.model.item.Stick;
@@ -13,6 +14,7 @@ public class GameDisplay {
     private GameMap map;
     private GamePlayerMenu menu;
     private Player player;
+    private BitmapFont fightDetails;
 
     public GameDisplay() {
         controller = new GameController();
@@ -21,6 +23,8 @@ public class GameDisplay {
         map = new GameMap(controller.getWorld());
         player = controller.createPlayer();
         createPlayer();
+
+        fightDetails = new BitmapFont(Gdx.files.internal("font.fnt"));
     }
 
     public boolean update() {
@@ -37,15 +41,19 @@ public class GameDisplay {
             menu.drawHotBar(player);
             menu.displayInventorySwap(player);
             menu.drawInventory(player);
+            ItemSprite.BATCH.begin();
+            fightDetails.draw(ItemSprite.BATCH, "Test Text ksjdfkdjkfdjfkdjfkdj\nskdjfkdjfkdjfkdjf\nkdsjfkdjfkdjdsfdf\n\n\ndfsd", 1460, 1345);
+            ItemSprite.BATCH.end();
             return quit();
         } else {
+            GameStatus.setPlayerStatus(false);
             return false;
         }
     }
 
     public boolean quit() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
-            PlayerStatus.setStatus(true);
+            GameStatus.setPlayerStatus(false);
             return false;
         }
         return true;
@@ -54,6 +62,6 @@ public class GameDisplay {
     public void createPlayer() {
         player.setWeapon(new Stick());
         player.setRing(new HealingItem("Healing Potion", 5, 2, 6, 5, ItemSprite.RING));
-        player.setHealth(999999999);
+        player.setHealth(5);
     }
 }

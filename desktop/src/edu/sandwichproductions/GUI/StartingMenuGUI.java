@@ -1,5 +1,7 @@
 package edu.sandwichproductions.GUI;
 
+import edu.sandwichproductions.controller.GameStatus;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -56,6 +58,7 @@ public class StartingMenuGUI{
         exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                GameStatus.setGameStatus(false);
                 base.dispose();
             }
         });
