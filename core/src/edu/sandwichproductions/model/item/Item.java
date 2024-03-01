@@ -13,7 +13,9 @@ public abstract class Item {
         DAMAGE_ITEM,
         HEALING_ITEM,
         DEFENSE_ITEM,
-        STICK
+        STICK,
+        BROKEN_RING,
+        RAGS
     }
 
     public Item(String name, int durability, Sprite sprite) {
