@@ -26,7 +26,7 @@ public class GamePlayerMenu {
         placeholder = ItemSprite.PLACEHOLDER;
         menuBody.setX(1420);
         menuBody.setY(20);
-        menuScreen = new Sprite(new Texture("bossroom.png"), 1040, 550);
+        menuScreen = new Sprite(new Texture("bossroom.png"), 1060, 570);
         weaponSlot = new Sprite(new Texture("Character_Screen_Item_Slot.png"), 250, 250);
         armourSlot = new Sprite(new Texture("Character_Screen_Item_Slot.png"), 250, 250);
         healthSlot = new Sprite(new Texture("Character_Screen_Item_Slot.png"), 250, 250);
@@ -37,14 +37,14 @@ public class GamePlayerMenu {
 
     public void drawMenu(Player player) {
         batch.begin();
-        batch.draw(menuBody, 1420, 20);
+        batch.draw(menuBody, 1400, 0);
         batch.draw(menuScreen, getMenuScreenX(), getMenuScreenY());
-        batch.draw(weaponSlot, 1460 , menuScreen.getY() - (250 + 10));
+        batch.draw(weaponSlot, 1450 , menuScreen.getY() - (250 + 10));
         batch.draw(armourSlot, 1855, menuScreen.getY() - (250 + 10));
-        batch.draw(healthSlot, 2250, menuScreen.getY() - (250 + 10));
-        batch.draw(weapon, 1475, 560);
-        batch.draw(armour, 1870, 560);
-        batch.draw(health, 2265, 560);
+        batch.draw(healthSlot, 2260, menuScreen.getY() - (250 + 10));
+        batch.draw(weapon, 1465, 550);
+        batch.draw(armour, 1870, 550);
+        batch.draw(health, 2275, 550);
         batch.end();
         drawInventory(player);
         drawInventory(player);
@@ -60,8 +60,8 @@ public class GamePlayerMenu {
                 row++;
             }
             x = inventoryIndex % 5 * (208 + 1) + 1460;
-            y = row * (208 + 1) + 60;
-            batch.draw(characterItemSlot, x, y);
+            y = row * (208 + 1) + 40;
+            batch.draw(ItemSprite.INVENTORY_ITEM_SLOT, x, y);
             if (player.getInventory()[inventoryIndex] == null) {
                 batch.draw(placeholder, inventoryIndex % 5 + x + 1, row + y + 1);
             } else {
@@ -72,7 +72,7 @@ public class GamePlayerMenu {
     }
 
     public void drawHotBar(Player player) {
-        player.getWeapon().setItemSprite(ItemSprite.STICK); // TODO replace with real item
+        player.getWeapon().setItemSprite(player.getWeapon().getItemSprite());
         setWeaponSprite(player.getWeapon().getItemSprite());
         if (player.getArmour() == null) {
             setArmourSprite(placeholder);
@@ -87,13 +87,13 @@ public class GamePlayerMenu {
     }
 
     public int getMenuScreenX() {
-        int menuBodyX = (int) (menuBody.getX() + 40);
+        int menuBodyX = (int) (menuBody.getX() + 30);
         menuScreen.setX(menuBodyX);
         return menuBodyX;
     }
 
     public int getMenuScreenY() {
-        int menuBodyY = (int) ((menuBody.getHeight() - menuScreen.getHeight()) - 8);
+        int menuBodyY = (int) ((menuBody.getHeight() - menuScreen.getHeight()) - 30);
         menuScreen.setY(menuBodyY);
         return menuBodyY;
     }
