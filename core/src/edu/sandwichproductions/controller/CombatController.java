@@ -41,8 +41,14 @@ public class CombatController {
             if (firstPlayer != null) {
                 if (round % 2 == 1) {
                     damage = firstPlayer.attack(secondPlayer);
+                setFightLog(firstPlayer.getName() + " dealt " + damage + " to " + secondPlayer.getName());
                 } else {
-                    secondPlayer.attack(firstPlayer);
+                    damage = secondPlayer.attack(firstPlayer);
+                    setFightLog(secondPlayer.getName() + " dealt " + damage + " to " + firstPlayer.getName());
+                }
+                if (round % 6 == 0){
+                    int tempHeal = attacker.addHealth(attacker.getRing().use());
+                    setFightLog(attacker.getName() + " healed for " + tempHeal);
                 }
                 if (round % 6 == 0){
                     attacker.addHealth(attacker.getRing().use());

@@ -53,7 +53,7 @@ public abstract class Entity implements Attacker {
             weapon = null;
         }
         attacked.setHealth(attacked.getHealth() - damage);
-        return attacked.getHealth();
+        return damage;
     }
 
 
@@ -88,8 +88,10 @@ public abstract class Entity implements Attacker {
         }
         this.health = health;
     }
-    public void addHealth(int health){
+
+    public int addHealth(int health){
         this.health += health;
+        return health;
     }
 
     public int getSpeed() {
