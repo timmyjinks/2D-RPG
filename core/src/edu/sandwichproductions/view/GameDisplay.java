@@ -9,8 +9,6 @@ import edu.sandwichproductions.util.GameStatus;
 import edu.sandwichproductions.model.entity.Player;
 import edu.sandwichproductions.model.item.BrokenRing;
 import edu.sandwichproductions.model.item.DamageItem;
-import edu.sandwichproductions.model.item.HealingItem;
-import edu.sandwichproductions.model.item.Stick;
 import edu.sandwichproductions.util.ItemSprite;
 
 public class GameDisplay {
@@ -20,11 +18,10 @@ public class GameDisplay {
     private GamePlayerMenu menu;
     private Player player;
     private BitmapFont fightDetails;
-    private ItemSprite itemSprite;
 
     public GameDisplay() {
         ItemSprite.refresh();
-        itemSprite = new ItemSprite();
+        ItemSprite itemSprite = new ItemSprite();
         batch = new SpriteBatch();
         controller = new GameController();
         controller.run();
@@ -67,6 +64,6 @@ public class GameDisplay {
     public void createPlayer() {
         player.setWeapon(new DamageItem("Great Axe", 15, 8, 3, 3, ItemSprite.STICK));
         player.setRing(new BrokenRing());
-        player.setHealth(100);
+        player.setHealth(50);
     }
 }
