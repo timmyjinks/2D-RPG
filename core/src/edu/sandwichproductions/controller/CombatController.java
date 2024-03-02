@@ -8,10 +8,14 @@ import edu.sandwichproductions.util.ItemGenerator;
 import edu.sandwichproductions.view.Menu;
 
 public class CombatController {
-    Menu menu = new Menu();
+    private final Menu menu = new Menu();
+    private String fightLog = "";
 
     public void fight(Player attacker, Enemy defender) {
+        fightLog = "";
         int round = 1;
+        int damage = 0;
+        int lineCount = 0;
         Entity firstPlayer = null;
         Entity secondPlayer = null;
         if (attacker == null || defender == null) {
@@ -34,13 +38,20 @@ public class CombatController {
             }
             if (firstPlayer != null) {
                 if (round % 2 == 1) {
-                    firstPlayer.attack(secondPlayer);
+                    damage = firstPlayer.attack(secondPlayer);
                 } else {
                     secondPlayer.attack(firstPlayer);
                 }
                 if (round % 6 == 0){
                     attacker.addHealth(attacker.getRing().use());
                     System.out.println(attacker.getHealth());
+                }
+                if (lineCount != 14) {
+                    fightLog += firstPlayer.getName() + " dealt " + damage + " to " + secondPlayer.getName() + "\n";
+                    lineCount++;
+                } else {
+                    fightLog = fightLog.substring(fightLog.indexOf("\n") + 1);
+                    lineCount--;
                 }
                 round++;
             }
@@ -68,5 +79,9 @@ public class CombatController {
         } else {
             return 2;
         }
+    }
+
+    public String getFightLog() {
+        return fightLog;
     }
 }
