@@ -3,7 +3,6 @@ package edu.sandwichproductions.controller;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import edu.sandwichproductions.model.entity.Entity;
-import edu.sandwichproductions.model.entity.Player;
 import edu.sandwichproductions.model.item.*;
 
 import java.util.ArrayList;
@@ -43,6 +42,30 @@ public class InventoryController {
         return items;
     }
 
+    public static void checkEquippedItems(Entity player){
+        DamageItem tempWep = player.getWeapon();
+        HealingItem tempHeal = player.getRing();
+        DefenseItem tempDef = player.getArmour();
+        if (tempWep == null){
+            setItem(Item.ITEM_TYPE.DAMAGE_ITEM, player);
+        }
+        if (tempHeal == null){
+            setItem(Item.ITEM_TYPE.HEALING_ITEM, player);
+        }
+        if (tempDef == null){
+            setItem(Item.ITEM_TYPE.DEFENSE_ITEM, player);
+        }
+        if (tempWep != null && tempWep.getItemType() == Item.ITEM_TYPE.STICK){
+            setItem(Item.ITEM_TYPE.DAMAGE_ITEM, player);
+        }
+        if (tempHeal != null && tempHeal.getItemType() == Item.ITEM_TYPE.BROKEN_RING){
+            setItem(Item.ITEM_TYPE.HEALING_ITEM,player);
+        }
+        if (tempDef != null && tempDef.getItemType() == Item.ITEM_TYPE.RAGS){
+            setItem(Item.ITEM_TYPE.DEFENSE_ITEM, player);
+        }
+    }
+
     public static void equipItem(Item.ITEM_TYPE itemType, Entity player, Item equipItem){
         switch (itemType){
             case DAMAGE_ITEM, STICK -> player.setWeapon((DamageItem) equipItem);
@@ -51,21 +74,6 @@ public class InventoryController {
         }
     }
 
-    public static void equipItem(Item.ITEM_TYPE itemType, Entity player, Item equipItem, int inventorySpot){
-        if (inventorySpot != 0){
-            player.setItem(itemType, equipItem, inventorySpot);
-        } else {
-            equipItem(itemType, player, equipItem);
-        }
-    }
-
-    public void moveItemsInInventory(Player player, int item1, int item2) {
-        // no work sadge D:
-        Item[] playerItems = player.getInventory();
-        Item tempItem = playerItems[item1];
-        playerItems[item1] = playerItems[item2];
-        playerItems[item2] = tempItem;
-    }
 
     public static boolean isPressingI() {
         if (Gdx.input.isButtonJustPressed(Input.Keys.I)) {

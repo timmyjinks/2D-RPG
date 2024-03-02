@@ -8,7 +8,10 @@ import edu.sandwichproductions.model.item.HealingItem;
 import edu.sandwichproductions.model.item.Item;
 import edu.sandwichproductions.util.Dice;
 
+import java.util.Random;
+
 public abstract class Entity implements Attacker {
+    protected static Random entityRandom = new Random();
     private int health, speed, armorClass;
     private String name;
     private boolean isAlive;
@@ -18,6 +21,7 @@ public abstract class Entity implements Attacker {
     private Dice entityDice = new Dice();
     private int positionInRoom;
     protected Item[] inventory = new Item[10];
+    protected int MAX_HEALTH;
 
     public Entity(String name, int health, int speed, int armorClass) {
         this.name = name;
@@ -29,7 +33,7 @@ public abstract class Entity implements Attacker {
 
     @Override
     public int attack(Entity attacked) {
-        checkEquippedItems();
+        InventoryController.checkEquippedItems(this);
         int hit = entityDice.rollDice(20, 1, weapon.getDamageModifier());
         int damage = 0;
         if (attacked.getArmour() != null) {
@@ -51,17 +55,7 @@ public abstract class Entity implements Attacker {
         attacked.setHealth(attacked.getHealth() - damage);
         return attacked.getHealth();
     }
-    private void checkEquippedItems(){
-        if (weapon == null){
-            InventoryController.setItem(Item.ITEM_TYPE.DAMAGE_ITEM, this);
-        }
-        if (ring == null){
-            InventoryController.setItem(Item.ITEM_TYPE.HEALING_ITEM, this);
-        }
-        if (armour == null){
-            InventoryController.setItem(Item.ITEM_TYPE.DEFENSE_ITEM, this);
-        }
-    }
+
 
     public Item getItem(Item.ITEM_TYPE itemType){
         return switch (itemType){
@@ -71,11 +65,11 @@ public abstract class Entity implements Attacker {
             default -> throw new IllegalStateException("unexpected value:" + itemType);
         };
     }
-    public void setItem(Item.ITEM_TYPE itemType, Item item, int inventorySpot){
+    public void setItem(Item.ITEM_TYPE itemType, Item item){
         switch (itemType){
             case DAMAGE_ITEM, STICK -> setWeapon((DamageItem) item);
-            case HEALING_ITEM -> setRing((HealingItem) item);
-            case DEFENSE_ITEM -> setArmour((DefenseItem) item);
+            case HEALING_ITEM, BROKEN_RING -> setRing((HealingItem) item);
+            case DEFENSE_ITEM, RAGS -> setArmour((DefenseItem) item);
         };
     }
 
@@ -93,6 +87,9 @@ public abstract class Entity implements Attacker {
             isAlive = false;
         }
         this.health = health;
+    }
+    public void addHealth(int health){
+        this.health += health;
     }
 
     public int getSpeed() {

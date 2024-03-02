@@ -3,6 +3,7 @@ package edu.sandwichproductions.controller;
 import edu.sandwichproductions.model.entity.Enemy;
 import edu.sandwichproductions.model.entity.Entity;
 import edu.sandwichproductions.model.entity.Player;
+import edu.sandwichproductions.model.item.HealingItem;
 import edu.sandwichproductions.util.ItemGenerator;
 import edu.sandwichproductions.view.Menu;
 
@@ -37,9 +38,25 @@ public class CombatController {
                 } else {
                     secondPlayer.attack(firstPlayer);
                 }
+                if (round % 6 == 0){
+                    attacker.addHealth(attacker.getRing().use());
+                    System.out.println(attacker.getHealth());
+                }
                 round++;
             }
-            if (!defender.isAlive() && defender.willDropItem()){
+            checkEnemyAlive(attacker, defender);
+        }
+    }
+
+    private void checkEnemyAlive(Player attacker, Enemy defender){
+        if (!defender.isAlive()){
+            HealingItem tempHeal = attacker.getRing();
+            if (tempHeal != null){
+                attacker.addHealth(tempHeal.use());
+            } else {
+                InventoryController.checkEquippedItems(attacker);
+            }
+            if (defender.willDropItem()){
                 attacker.addItem(ItemGenerator.generateItem());
             }
         }
