@@ -88,6 +88,7 @@ public abstract class Entity implements Attacker {
         }
         this.health = health;
     }
+
     public int addHealth(int health){
         this.health += health;
         return health;
