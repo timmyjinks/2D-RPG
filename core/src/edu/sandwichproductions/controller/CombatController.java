@@ -10,12 +10,14 @@ import edu.sandwichproductions.view.Menu;
 public class CombatController {
     private final Menu menu = new Menu();
     private String fightLog = "";
+    private int lineCount = 0;
 
     public void fight(Player attacker, Enemy defender) {
         fightLog = "";
         int round = 1;
         int damage = 0;
-        int lineCount = 0;
+        lineCount = 0;
+
         Entity firstPlayer = null;
         Entity secondPlayer = null;
         if (attacker == null || defender == null) {
@@ -46,24 +48,21 @@ public class CombatController {
                     attacker.addHealth(attacker.getRing().use());
                     System.out.println(attacker.getHealth());
                 }
-                if (lineCount != 14) {
-                    fightLog += firstPlayer.getName() + " dealt " + damage + " to " + secondPlayer.getName() + "\n";
-                    lineCount++;
-                } else {
-                    fightLog = fightLog.substring(fightLog.indexOf("\n") + 1);
-                    lineCount--;
-                }
+                setFightLog(firstPlayer.getName() + " dealt " + damage + " to " + secondPlayer.getName());
                 round++;
             }
             checkEnemyAlive(attacker, defender);
         }
+        fightLog += "Current Health: " + attacker.getHealth() + "\n";
     }
 
     private void checkEnemyAlive(Player attacker, Enemy defender){
+        int health;
         if (!defender.isAlive()){
             HealingItem tempHeal = attacker.getRing();
             if (tempHeal != null){
-                attacker.addHealth(tempHeal.use());
+                attacker.addHealth(health = tempHeal.use());
+                setFightLog(attacker.getName() + " healed for " + health);
             } else {
                 InventoryController.checkEquippedItems(attacker);
             }
@@ -78,6 +77,16 @@ public class CombatController {
             return 1;
         } else {
             return 2;
+        }
+    }
+
+    private void setFightLog(String prompt) {
+        if (lineCount != 13) {
+            fightLog += prompt + "\n";
+            lineCount++;
+        } else {
+            fightLog = fightLog.substring(fightLog.indexOf("\n") + 1);
+            lineCount--;
         }
     }
 
