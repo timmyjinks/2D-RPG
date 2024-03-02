@@ -1,8 +1,11 @@
 package edu.sandwichproductions.model.entity;
 
+import edu.sandwichproductions.model.item.Stick;
+
 public class Skeleton extends Enemy {
     public Skeleton(String name) {
-        super(name, 40, 25, 10);
+        super(name, entityRandom.nextInt(12, 16), entityRandom.nextInt(8,11), 12);
+        this.setWeapon(new Stick());
     }
 
     @Override

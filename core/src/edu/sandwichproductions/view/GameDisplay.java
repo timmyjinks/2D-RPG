@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import edu.sandwichproductions.controller.GameController;
 import edu.sandwichproductions.util.GameStatus;
 import edu.sandwichproductions.model.entity.Player;
+import edu.sandwichproductions.model.item.BrokenRing;
+import edu.sandwichproductions.model.item.DamageItem;
 import edu.sandwichproductions.model.item.HealingItem;
 import edu.sandwichproductions.model.item.Stick;
 import edu.sandwichproductions.util.ItemSprite;
@@ -63,8 +65,8 @@ public class GameDisplay {
     }
 
     public void createPlayer() {
-        player.setWeapon(new Stick());
-        player.setRing(new HealingItem("Healing Potion", 5, 2, 6, 5, ItemSprite.RING));
-        player.setHealth(5);
+        player.setWeapon(new DamageItem("Great Axe", 15, 8, 3, 3, ItemSprite.STICK));
+        player.setRing(new BrokenRing());
+        player.setHealth(100);
     }
 }
