@@ -26,7 +26,7 @@ public class GamePlayerMenu {
         placeholder = ItemSprite.PLACEHOLDER;
         menuBody.setX(1420);
         menuBody.setY(20);
-        menuScreen = new Sprite(new Texture("bossroom.png"), 1060, 570);
+        menuScreen = ItemSprite.MENU_SCREEN;
         weaponSlot = new Sprite(new Texture("Character_Screen_Item_Slot.png"), 250, 250);
         armourSlot = new Sprite(new Texture("Character_Screen_Item_Slot.png"), 250, 250);
         healthSlot = new Sprite(new Texture("Character_Screen_Item_Slot.png"), 250, 250);
@@ -65,7 +65,7 @@ public class GamePlayerMenu {
             if (player.getInventory()[inventoryIndex] == null) {
                 batch.draw(placeholder, inventoryIndex % 5 + x + 1, row + y + 1);
             } else {
-                batch.draw(player.getInventory()[inventoryIndex].getItemSprite(), inventoryIndex % 5 + x + 1 + 15, row + y + 1 + 15);
+                batch.draw(player.getInventory()[inventoryIndex].getItemSprite(), inventoryIndex % 5 + x + 1, row + y - 20);
             }
         }
         batch.end();
@@ -98,24 +98,12 @@ public class GamePlayerMenu {
         return menuBodyY;
     }
 
-    public Sprite getWeapon() {
-        return this.weapon;
-    }
-
     public void setWeaponSprite(Sprite sprite) {
         this.weapon = sprite;
     }
 
-    public Sprite getHealth() {
-        return this.health;
-    }
-
     public void setHealthSprite(Sprite sprite) {
         this.health = sprite;
-    }
-
-    public Sprite getArmour() {
-        return this.armour;
     }
 
     public void setArmourSprite(Sprite sprite) {

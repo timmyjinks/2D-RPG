@@ -12,6 +12,7 @@ public class ItemSprite {
     public static Sprite CHARACTER_ITEM_SLOT;
     public static Sprite INVENTORY_ITEM_SLOT;
     public static Sprite MENU_BODY;
+    public static Sprite MENU_SCREEN;
     public static Sprite STICK;
     public static Sprite SKY_RENDER;
     public static Sprite RING;
@@ -23,6 +24,7 @@ public class ItemSprite {
         ENEMY_R00M = new Sprite(new Texture("enemyroom.png"), 199,199);
         BOSS_ROOM = new Sprite(new Texture("bossroom.png"), 199, 199);
         MENU_BODY = new Sprite(new Texture("Character_Screen_Background.png"), 1160, 1400);
+        MENU_SCREEN = new Sprite(new Texture("Character_Screen_Item_Slot.png"), 1060, 570);
         CHARACTER_ITEM_SLOT = new Sprite(new Texture("Character_Screen_Item_Slot.png"), 250, 250);
         INVENTORY_ITEM_SLOT = new Sprite(new Texture("Character_Screen_Item_Slot.png"), 208, 208);
         PLACEHOLDER = new Sprite(new Texture("assets/placeholder.png"), 220, 220);
