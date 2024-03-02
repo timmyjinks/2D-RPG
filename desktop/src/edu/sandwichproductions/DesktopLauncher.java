@@ -15,6 +15,7 @@ public class DesktopLauncher extends StartingMenuGUI {
 				System.out.println("Oh no");
 			}
 		});
+		applicationThread.start();
 
 
 		new StartingMenuGUI();
