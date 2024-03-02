@@ -6,16 +6,21 @@ import java.awt.event.*;
 
 public class GameOverGUI extends JDialog {
     public GameOverGUI() {
-        BackgroundGUI backgroundGUI = new BackgroundGUI("assets/death.png");
+        BackgroundGUI backgroundGUI = new BackgroundGUI("assets/mountain-img.png");
         JFrame base = new JFrame();
-        JButton tryAgain = new JButton("Try Again");
-        JButton quit = new JButton("leave :(");
+        JButton tryAgain = new JButton();
+        JButton quit = new JButton();
 
-        quit.setIcon(new ImageIcon("assets/Exit_Button.png"));
+
+        quit.setIcon(new ImageIcon("assets/exit-Button.png"));
+        tryAgain.setIcon(new ImageIcon("assets/again-button.png"));
+
         tryAgain.setBounds(750, 300, 250, 100);
-        quit.setBounds(750,650,386, 165);
-        tryAgain.setBackground(Color.DARK_GRAY);
-        quit.setBackground(Color.darkGray);
+        quit.setBounds(750,650,250, 100);
+
+        tryAgain.setContentAreaFilled(false);
+        quit.setContentAreaFilled(false);
+
         tryAgain.setFocusable(false);
         quit.setFocusable(false);
 
