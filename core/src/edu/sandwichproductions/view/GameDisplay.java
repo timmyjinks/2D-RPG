@@ -60,7 +60,7 @@ public class GameDisplay {
     }
 
     public void createPlayer() {
-        player.setWeapon(new DamageItem("Great Axe", 15, 8, 3, 3, ItemSprite.STICK));
+        player.setWeapon(new DamageItem("Great Axe", 15, 8, 2, 3, ItemSprite.STICK));
         player.setRing(new BrokenRing());
         player.setHealth(50);
     }
