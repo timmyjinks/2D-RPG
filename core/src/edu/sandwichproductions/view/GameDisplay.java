@@ -43,9 +43,7 @@ public class GameDisplay {
             map.updateCharacterPosition(player);
             map.drawMap(controller.getWorld().getPlayerWorldPosition());
             menu.drawMenu(player);
-            batch.begin();
-            fightDetails.draw(batch, "Test Text ksjdfkdjkfdjfkdjfkdj\nskdjfkdjfkdjfkdjf\nkdsjfkdjfkdjdsfdf\n\n\ndfsd", 1460, 1345);
-            batch.end();
+            drawFightLog();
             return quit();
         } else {
             GameStatus.setPlayerStatus(false);
@@ -65,5 +63,11 @@ public class GameDisplay {
         player.setWeapon(new DamageItem("Great Axe", 15, 8, 3, 3, ItemSprite.STICK));
         player.setRing(new BrokenRing());
         player.setHealth(50);
+    }
+
+    public void drawFightLog() {
+        batch.begin();
+        fightDetails.draw(batch,controller.getMyCombat().getFightLog(), 1460, 1360);
+        batch.end();
     }
 }
