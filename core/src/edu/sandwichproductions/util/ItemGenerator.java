@@ -49,7 +49,7 @@ public class ItemGenerator {
 
     public static Item uncommonItem(int itemType) {
         if (itemType < 33) {
-            return new DamageItem("Plain ol' Sword", 20, 8, 1, 2, ItemSprite.ROOM);
+            return new DamageItem("Wooden Sword", 20, 8, 1, 2, ItemSprite.ROOM);
         } else if (itemType < 67) {
             return new HealingItem("Ring of Lesser Restoration", 12, 6, 2, 2, ItemSprite.ROOM);
         } else {
