@@ -3,6 +3,7 @@ package edu.sandwichproductions.view;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import edu.sandwichproductions.controller.AnimationHandler;
 import edu.sandwichproductions.model.entity.Player;
 import edu.sandwichproductions.model.map.Map;
 import edu.sandwichproductions.model.map.Room;
@@ -19,9 +20,9 @@ public class GameMap {
     private int currentPlayerPosition;
     private float elapsedTime;
 
-    public GameMap(Map world) {
+    public GameMap(Map world, Player player) {
         batch = new SpriteBatch();
-        entity = new GameEntitySprite();
+        entity = new GameEntitySprite(player);
         room = ItemSprite.ROOM;
         enemyroom = ItemSprite.ENEMY_R00M;
         this.world = world;
@@ -37,17 +38,17 @@ public class GameMap {
         for (int row = 0; row < 5; row++) {
             for (int column = 0; column < 5; column++) {
                 if (getRoom().isBossRoom()) {
-                    drawRoom(ItemSprite.BOSS_ROOM);
-                    drawEntities(1);
+                    drawRoom(room);
+                    drawEnemies(1);
                 } else if (getRoom().isEnemyRoom()) {
-                    drawRoom(ItemSprite.ENEMY_R00M);
-                    drawEntities(getRoom().getEnemies().length);
+                    drawRoom(enemyroom);
+                    drawEnemies(getRoom().getEnemies().length);
                 } else {
                     drawRoom(ItemSprite.ROOM);
                 }
             }
         }
-        batch.draw(ItemSprite.KNIGHT.getKeyFrame(elapsedTime, true), entity.getCharacterXPosition(), entity.getCharacterYPosition());
+        batch.draw(entity.getCharacter().getKeyFrame(elapsedTime, true), entity.getCharacterXPosition(), entity.getCharacterYPosition());
         batch.end();
     }
 
@@ -59,7 +60,7 @@ public class GameMap {
         }
     }
 
-    public void drawEntities(int amountOfEnemies) {
+    public void drawEnemies(int amountOfEnemies) {
         for (int i = 0; i < amountOfEnemies; i++) {
             if (getRoom().getEnemies()[i] != null) {
                 batch.draw(ItemSprite.SKELETON.getKeyFrame(elapsedTime, true), setEnemyX(i), setEnemyY(i));

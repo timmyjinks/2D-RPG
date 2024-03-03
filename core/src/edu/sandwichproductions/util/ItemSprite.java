@@ -31,6 +31,14 @@ public class ItemSprite {
 
 
     public static AnimationHandler KNIGHT;
+    public static AnimationHandler BARBARIAN;
+    public static AnimationHandler BARD;
+    public static AnimationHandler CLERIC;
+    public static AnimationHandler DRUID;
+    public static AnimationHandler MONK;
+    public static AnimationHandler PALADIN;
+    public static AnimationHandler ROUGE;
+    public static AnimationHandler WIZARD;
     public static AnimationHandler SKELETON;
 
     public static void refresh() {
@@ -58,6 +66,14 @@ public class ItemSprite {
         HEROES_RING_OF_IMMORTALITY = new Sprite(new Texture("Hero's_Ring_Of_Immortality.png"), 220, 220);
         ANCIENT_DRAGON_SCALE_MAIL = new Sprite(new Texture("Ancient_Dragon's_Scale_Mail.png"), 183, 219);
         KNIGHT = new AnimationHandler("Knight_Idle.png", 6);
+        BARBARIAN = new AnimationHandler("Barbarian_Idle.png", 6);
+        BARD = new AnimationHandler("Bard_Idle.png", 6);
+        CLERIC = new AnimationHandler("Cleric_Idle.png", 6);
+        DRUID = new AnimationHandler("Druid_Idle.png", 6);
+        MONK = new AnimationHandler("Monk_Idle.png", 6);
+        PALADIN = new AnimationHandler("Paladin_Idle.png", 6);
+        ROUGE = new AnimationHandler("Rogue_Idle.png", 6);
+        WIZARD = new AnimationHandler("Wizard_Idle.png", 6);
         SKELETON = new AnimationHandler("Skeleton_Idle.png", 4);
     }
 }

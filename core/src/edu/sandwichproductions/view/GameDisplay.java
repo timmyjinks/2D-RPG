@@ -21,14 +21,13 @@ public class GameDisplay {
 
     public GameDisplay() {
         ItemSprite.refresh();
-        ItemSprite itemSprite = new ItemSprite();
         batch = new SpriteBatch();
         controller = new GameController();
         controller.run();
-        menu = new GamePlayerMenu();
-        map = new GameMap(controller.getWorld());
         player = controller.createPlayer();
         createPlayer();
+        map = new GameMap(controller.getWorld(), player);
+        menu = new GamePlayerMenu();
         fightDetails = new BitmapFont(Gdx.files.internal("font.fnt"));
     }
 
@@ -63,6 +62,7 @@ public class GameDisplay {
         player.setWeapon(new DamageItem("Great Axe", 15, 8, 2, 3, ItemSprite.STICK));
         player.setRing(new BrokenRing());
         player.setHealth(50);
+        player.setSprite();
     }
 
     public void drawFightLog() {

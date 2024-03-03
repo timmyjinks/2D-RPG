@@ -13,8 +13,8 @@ public class GameEntitySprite {
     private int characterYPosition;
     private int entityDimension;
 
-    public GameEntitySprite() {
-        character = ItemSprite.KNIGHT;
+    public GameEntitySprite(Player player) {
+        character = player.getSprite();
         enemy = ItemSprite.SKELETON;
     }
 

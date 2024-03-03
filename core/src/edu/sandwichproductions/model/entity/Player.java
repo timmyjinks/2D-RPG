@@ -6,16 +6,22 @@ import edu.sandwichproductions.controller.AnimationHandler;
 import edu.sandwichproductions.model.item.DamageItem;
 import edu.sandwichproductions.model.item.Item;
 import edu.sandwichproductions.model.item.Stick;
+import edu.sandwichproductions.util.ItemSprite;
 
 public abstract class Player extends Entity {
-    private static AnimationHandler animatePlayer;
-    private static Animation<TextureRegion> playerAnimation;
-    private Item[] healingPotions = new Item[10];
+    protected AnimationHandler sprite;
+    protected Item[] healingPotions = new Item[10];
 
     public Player(String name, int health, int speed, int armorClass){
         super(name, health, speed, armorClass);
         setPositionInRoom(24);
     }
+
+    public AnimationHandler getSprite() {
+        return this.sprite;
+    }
+
+    public abstract void setSprite();
 
     public void addItem(Item addedItem){
         for (int inventoryPosition = 0; inventoryPosition < this.inventory.length; inventoryPosition++){
