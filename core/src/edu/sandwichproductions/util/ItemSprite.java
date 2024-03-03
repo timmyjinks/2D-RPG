@@ -72,7 +72,7 @@ public class ItemSprite {
         DRUID = new AnimationHandler("Druid_Idle.png", 6);
         MONK = new AnimationHandler("Monk_Idle.png", 6);
         PALADIN = new AnimationHandler("Paladin_Idle.png", 6);
-        ROUGE = new AnimationHandler("Rouge_Idle.png", 6);
+        ROUGE = new AnimationHandler("Rogue_Idle.png", 6);
         WIZARD = new AnimationHandler("Wizard_Idle.png", 6);
         SKELETON = new AnimationHandler("Skeleton_Idle.png", 4);
     }

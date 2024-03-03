@@ -9,22 +9,19 @@ import edu.sandwichproductions.model.item.Stick;
 import edu.sandwichproductions.util.ItemSprite;
 
 public abstract class Player extends Entity {
-    private AnimationHandler sprite;
-    private Item[] healingPotions = new Item[10];
+    protected AnimationHandler sprite;
+    protected Item[] healingPotions = new Item[10];
 
-    public Player(String name, int health, int speed, int armorClass, AnimationHandler sprite){
+    public Player(String name, int health, int speed, int armorClass){
         super(name, health, speed, armorClass);
         setPositionInRoom(24);
-        setSprite(sprite);
     }
 
     public AnimationHandler getSprite() {
         return this.sprite;
     }
 
-    public void setSprite(AnimationHandler sprite) {
-        this.sprite = sprite;
-    }
+    public abstract void setSprite();
 
     public void addItem(Item addedItem){
         for (int inventoryPosition = 0; inventoryPosition < this.inventory.length; inventoryPosition++){

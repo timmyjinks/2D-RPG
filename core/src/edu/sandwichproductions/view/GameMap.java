@@ -3,6 +3,7 @@ package edu.sandwichproductions.view;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import edu.sandwichproductions.controller.AnimationHandler;
 import edu.sandwichproductions.model.entity.Player;
 import edu.sandwichproductions.model.map.Map;
 import edu.sandwichproductions.model.map.Room;
@@ -30,7 +31,7 @@ public class GameMap {
         floorHeight = (int) room.getHeight();
     }
 
-    public void drawMap(int playerWorldPosition, Player player) {
+    public void drawMap(int playerWorldPosition) {
         elapsedTime += Gdx.graphics.getDeltaTime();
         this.currentPlayerPosition = playerWorldPosition;
         batch.begin();
@@ -38,16 +39,16 @@ public class GameMap {
             for (int column = 0; column < 5; column++) {
                 if (getRoom().isBossRoom()) {
                     drawRoom(room);
-                    drawEntities(1);
+                    drawEnemies(1);
                 } else if (getRoom().isEnemyRoom()) {
                     drawRoom(enemyroom);
-                    drawEntities(getRoom().getEnemies().length);
+                    drawEnemies(getRoom().getEnemies().length);
                 } else {
                     drawRoom(ItemSprite.ROOM);
                 }
             }
         }
-        batch.draw(ItemSprite.BARBARIAN.getKeyFrame(elapsedTime, true), entity.getCharacterXPosition(), entity.getCharacterYPosition());
+        batch.draw(entity.getCharacter().getKeyFrame(elapsedTime, true), entity.getCharacterXPosition(), entity.getCharacterYPosition());
         batch.end();
     }
 
@@ -59,7 +60,7 @@ public class GameMap {
         }
     }
 
-    public void drawEntities(int amountOfEnemies) {
+    public void drawEnemies(int amountOfEnemies) {
         for (int i = 0; i < amountOfEnemies; i++) {
             if (getRoom().getEnemies()[i] != null) {
                 batch.draw(ItemSprite.SKELETON.getKeyFrame(elapsedTime, true), setEnemyX(i), setEnemyY(i));
