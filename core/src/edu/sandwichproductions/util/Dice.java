@@ -18,8 +18,14 @@ public class Dice {
     public int rollDice(int sides, int count, int modifier) {
         // loop n times
         int total = 0;
-        for (int n = 0; n < count; n++) {
-            total += rollDice((int) (sides * setMode));
+        if (sides != 20){
+            for (int n = 0; n < count; n++) {
+                total += rollDice((int) (sides * setMode));
+            }
+        } else {
+            for (int n = 0; n < count; n++) {
+                total += rollDice(sides);
+            }
         }
         total += modifier;
         return total;
