@@ -4,12 +4,7 @@ import edu.sandwichproductions.util.ItemSprite;
 
 public class Rags extends DefenseItem{
     public Rags() {
-        super("Rags", 10, 1, ItemSprite.RAGS);
+        super("Rags", 3, 1, ItemSprite.RAGS);
         this.itemType = ITEM_TYPE.RAGS;
-    }
-
-    @Override
-    public int use() {
-        return getDefense();
     }
 }
