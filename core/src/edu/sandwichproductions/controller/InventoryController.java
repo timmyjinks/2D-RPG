@@ -10,15 +10,19 @@ import java.util.ArrayList;
 public class InventoryController {
     public static void setItem(Item.ITEM_TYPE itemType, Entity player) {
         Item[] inventory = player.getInventory();
-        for (Item item : inventory) {
-            if (item != null) {
-                if (item.getItemType() == itemType) {
-                    equipItem(itemType, player, item);
+        boolean hasItem = false;
+        for (int inventorySpot = 0; inventorySpot < inventory.length; inventorySpot++) {
+            if (inventory[inventorySpot] != null) {
+                if (inventory[inventorySpot].getItemType() == itemType) {
+                    equipItem(itemType, player, inventory[inventorySpot]);
+                    hasItem = true;
                     break;
                 }
             }
         }
-        equipDefaults(itemType, player);
+        if (!hasItem){
+            equipDefaults(itemType, player);
+        }
     }
 
     private static void equipDefaults(Item.ITEM_TYPE itemType, Entity player){
@@ -46,22 +50,13 @@ public class InventoryController {
         DamageItem tempWep = player.getWeapon();
         HealingItem tempHeal = player.getRing();
         DefenseItem tempDef = player.getArmour();
-        if (tempWep == null){
+        if (tempWep == null || tempWep.getItemType() == Item.ITEM_TYPE.STICK){
             setItem(Item.ITEM_TYPE.DAMAGE_ITEM, player);
         }
-        if (tempHeal == null){
+        if (tempHeal == null || tempHeal.getItemType() == Item.ITEM_TYPE.BROKEN_RING){
             setItem(Item.ITEM_TYPE.HEALING_ITEM, player);
         }
-        if (tempDef == null){
-            setItem(Item.ITEM_TYPE.DEFENSE_ITEM, player);
-        }
-        if (tempWep != null && tempWep.getItemType() == Item.ITEM_TYPE.STICK){
-            setItem(Item.ITEM_TYPE.DAMAGE_ITEM, player);
-        }
-        if (tempHeal != null && tempHeal.getItemType() == Item.ITEM_TYPE.BROKEN_RING){
-            setItem(Item.ITEM_TYPE.HEALING_ITEM,player);
-        }
-        if (tempDef != null && tempDef.getItemType() == Item.ITEM_TYPE.RAGS){
+        if (tempDef == null || tempDef.getItemType() == Item.ITEM_TYPE.RAGS){
             setItem(Item.ITEM_TYPE.DEFENSE_ITEM, player);
         }
     }
@@ -72,13 +67,5 @@ public class InventoryController {
             case HEALING_ITEM, BROKEN_RING -> player.setRing((HealingItem) equipItem);
             case DEFENSE_ITEM, RAGS -> player.setArmour((DefenseItem) equipItem);
         }
-    }
-
-
-    public static boolean isPressingI() {
-        if (Gdx.input.isButtonJustPressed(Input.Keys.I)) {
-            return true;
-        }
-        return false;
     }
 }
