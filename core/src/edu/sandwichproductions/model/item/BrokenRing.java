@@ -4,7 +4,7 @@ import edu.sandwichproductions.util.ItemSprite;
 
 public class BrokenRing extends HealingItem{
     public BrokenRing() {
-        super("Broken Ring", 10, 4, 1, 0, ItemSprite.ROOM);
+        super("Broken Ring", 10, 4, 1, 0, ItemSprite.BROKEN_RING);
         this.itemType = ITEM_TYPE.BROKEN_RING;
     }
 
