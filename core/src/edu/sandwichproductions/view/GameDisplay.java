@@ -21,7 +21,6 @@ public class GameDisplay {
 
     public GameDisplay() {
         ItemSprite.refresh();
-        ItemSprite itemSprite = new ItemSprite();
         batch = new SpriteBatch();
         controller = new GameController();
         controller.run();

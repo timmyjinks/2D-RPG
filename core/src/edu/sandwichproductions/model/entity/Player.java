@@ -8,8 +8,6 @@ import edu.sandwichproductions.model.item.Item;
 import edu.sandwichproductions.model.item.Stick;
 
 public abstract class Player extends Entity {
-    private static AnimationHandler animatePlayer;
-    private static Animation<TextureRegion> playerAnimation;
     private Item[] healingPotions = new Item[10];
 
     public Player(String name, int health, int speed, int armorClass){
