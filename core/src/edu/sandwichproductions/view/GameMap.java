@@ -19,9 +19,9 @@ public class GameMap {
     private int currentPlayerPosition;
     private float elapsedTime;
 
-    public GameMap(Map world) {
+    public GameMap(Map world, Player player) {
         batch = new SpriteBatch();
-        entity = new GameEntitySprite();
+        entity = new GameEntitySprite(player);
         room = ItemSprite.ROOM;
         enemyroom = ItemSprite.ENEMY_R00M;
         this.world = world;
@@ -30,24 +30,24 @@ public class GameMap {
         floorHeight = (int) room.getHeight();
     }
 
-    public void drawMap(int playerWorldPosition) {
+    public void drawMap(int playerWorldPosition, Player player) {
         elapsedTime += Gdx.graphics.getDeltaTime();
         this.currentPlayerPosition = playerWorldPosition;
         batch.begin();
         for (int row = 0; row < 5; row++) {
             for (int column = 0; column < 5; column++) {
                 if (getRoom().isBossRoom()) {
-                    drawRoom(ItemSprite.BOSS_ROOM);
+                    drawRoom(room);
                     drawEntities(1);
                 } else if (getRoom().isEnemyRoom()) {
-                    drawRoom(ItemSprite.ENEMY_R00M);
+                    drawRoom(enemyroom);
                     drawEntities(getRoom().getEnemies().length);
                 } else {
                     drawRoom(ItemSprite.ROOM);
                 }
             }
         }
-        batch.draw(ItemSprite.KNIGHT.getKeyFrame(elapsedTime, true), entity.getCharacterXPosition(), entity.getCharacterYPosition());
+        batch.draw(ItemSprite.BARBARIAN.getKeyFrame(elapsedTime, true), entity.getCharacterXPosition(), entity.getCharacterYPosition());
         batch.end();
     }
 

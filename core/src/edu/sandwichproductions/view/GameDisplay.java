@@ -25,8 +25,8 @@ public class GameDisplay {
         controller = new GameController();
         controller.run();
         menu = new GamePlayerMenu();
-        map = new GameMap(controller.getWorld());
         player = controller.createPlayer();
+        map = new GameMap(controller.getWorld(), player);
         createPlayer();
         fightDetails = new BitmapFont(Gdx.files.internal("font.fnt"));
     }
@@ -40,7 +40,7 @@ public class GameDisplay {
                 map.removeEnemy();
             }
             map.updateCharacterPosition(player);
-            map.drawMap(controller.getWorld().getPlayerWorldPosition());
+            map.drawMap(controller.getWorld().getPlayerWorldPosition(), player);
             menu.drawMenu(player);
             drawFightLog();
             return quit();
