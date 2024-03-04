@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Musix {
     public void playAudio() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        File file = new File("assets/omf.wav");
+        File file = new File("assets/THeSONGwavv.wav");
         if (!file.exists()) {
             System.err.println("Audio file not found.");
             return;
